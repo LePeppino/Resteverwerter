@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //create an instance of the database and preload with data
-        //TODO: create preloaded database file to insert data
+        //TODO: create preloaded database asset or file to insert data
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Sample.db")
-                .createFromAsset("database/myapp.db")
+                //.createFromAsset("database/myapp.db")
                 .build();
 
         //instantiation of the Data Access Objects
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         IngredientDao ingredientDao = db.ingredientDao();
         ShoppingListDao shoppingListDao = db.shoppingListDao();
 
-        userDao.getUsername(); //example usage of database interaction
+        //userDao.getUsername(); //example usage of database interaction
+
     }
 }

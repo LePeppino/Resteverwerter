@@ -2,9 +2,7 @@ package de.prog3.proj2021.db;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverters;
 
-//TODO: include CrossRef Entities?
 @Database(entities = {
         User.class,
         FavouriteList.class,

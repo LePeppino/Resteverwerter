@@ -23,32 +23,28 @@ public class Recipe {
     public String name;
     public int calories;
     public boolean isFavourite;
-    //public ArrayList<Ingredient> ingredientList;
     public String description;
     public String instructions;
     //public ArrayList<String> keywords; //keywords for search-feature?
 
     @Ignore
-    Bitmap headerImage; //TODO: implement header photo for recipes
+    Bitmap headerImage = null; //TODO: implement header photo for recipes
 
     //constructor
     public Recipe(int recipeId,
                   String name,
                   int calories,
                   boolean isFavourite,
-                  ArrayList<Ingredient> ingredientList,
                   String description,
-                  String instructions,
-                  Bitmap headerImage)
+                  String instructions)
     {
         setId(recipeId);
         setName(name);
         setCalories(calories);
         setFavourite(isFavourite);
-        //setIngredientList(ingredientList);
         setDescription(description);
         setInstructions(instructions);
-        setHeaderImage(headerImage);
+        //setHeaderImage(headerImage);
     }
 
     //getter, setter
@@ -60,9 +56,6 @@ public class Recipe {
 
     public int getCalories() {return calories;}
     private void setCalories(int calories) {this.calories = calories;}
-
-    //public List<Ingredient> getIngredientList() {return ingredientList;}
-    //private void setIngredientList(ArrayList<Ingredient> ingredientList) {this.ingredientList = ingredientList;}
 
     public boolean isFavourite() {
         return isFavourite;

@@ -8,9 +8,14 @@ import androidx.room.TypeConverters;
 @Database(entities = {
         User.class,
         FavouriteList.class,
+        FavouriteRecipeCrossRef.class,
         Recipe.class,
+        RecipeIngredientCrossRef.class,
         Ingredient.class,
-        ShoppingList.class}, version = 1)
+        ShoppingList.class,
+        ShoppingListIngredientCrossRef.class},
+        version = 1,
+        exportSchema = false)
 
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();

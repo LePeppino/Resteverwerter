@@ -18,21 +18,4 @@ public interface IngredientDao {
     @Delete
     void deleteIngredient(Ingredient... ingredients); //attempts to delete one or more ingredients
 
-    @Query("SELECT name FROM Ingredient")
-    String getIngredientName();
-
-    @Query("SELECT numAvailable FROM Ingredient")
-    int getNumAvailable();
-
-    @Query("SELECT numRequired FROM Ingredient")
-    int getNumRequired();
-
-    @Query("SELECT numToBuy FROM Ingredient")
-    int getNumToBuy();
-
-    @Query("SELECT type FROM Ingredient")
-    Ingredient.Type getType();
-
-    @Query("SELECT unit FROM Ingredient")
-    Ingredient.Unit getUnit();
 }

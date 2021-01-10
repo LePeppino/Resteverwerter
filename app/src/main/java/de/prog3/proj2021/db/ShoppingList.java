@@ -3,7 +3,6 @@ package de.prog3.proj2021.db;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.ArrayList;
 
 /*
 * ShoppingList has 1:n relation to User class.
@@ -19,21 +18,15 @@ public class ShoppingList {
 
     public String name;
     public int numUncheckedItems;
-    public ArrayList<Ingredient> uncheckedItems;
-    public ArrayList<Ingredient> checkedItems;
 
     //constructor
     public ShoppingList(int shoppingListId,
                         String name,
-                        int numUncheckedItems,
-                        ArrayList<Ingredient> uncheckedItems,
-                        ArrayList<Ingredient> checkedItems)
+                        int numUncheckedItems)
     {
         setShoppingListId(shoppingListId);
         setName(name);
         setNumUncheckedItems(numUncheckedItems);
-        setUncheckedItems(uncheckedItems);
-        setCheckedItems(checkedItems);
     }
 
     //getter, setter
@@ -46,12 +39,6 @@ public class ShoppingList {
     public int getNumUncheckedItems() {
         return numUncheckedItems;
     }
-    public ArrayList<Ingredient> getUncheckedItems() {
-        return uncheckedItems;
-    }
-    public ArrayList<Ingredient> getCheckedItems() {
-        return checkedItems;
-    }
 
     public void setShoppingListId(int shoppingListId) {
         this.shoppingListId = shoppingListId;
@@ -62,10 +49,5 @@ public class ShoppingList {
     public void setNumUncheckedItems(int numUncheckedItems) {
         this.numUncheckedItems = numUncheckedItems;
     }
-    public void setUncheckedItems(ArrayList<Ingredient> uncheckedItems) {
-        this.uncheckedItems = uncheckedItems;
-    }
-    public void setCheckedItems(ArrayList<Ingredient> checkedItems) {
-        this.checkedItems = checkedItems;
-    }
+
 }

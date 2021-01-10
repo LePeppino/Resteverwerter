@@ -19,6 +19,8 @@ public class Ingredient {
     public int numRequired;         //for recipes
     public int numToBuy;            //for shopping list
     public boolean isCheckedOnShoppingList;
+
+    /*
     public Unit unit;
     public Type type;
 
@@ -41,6 +43,7 @@ public class Ingredient {
         SWEETS,
         BEVERAGES
     }
+    */
 
     //constructor
     public Ingredient(int ingredientId,
@@ -48,9 +51,7 @@ public class Ingredient {
                       int numAvailable,
                       int numRequired,
                       int numToBuy,
-                      boolean isCheckedOnShoppingList,
-                      Unit unit,
-                      Type type)
+                      boolean isCheckedOnShoppingList)
     {
         setId(ingredientId);
         setName(name);
@@ -58,8 +59,6 @@ public class Ingredient {
         setNumRequired(numRequired);
         setNumToBuy(numToBuy);
         setCheckedOnShoppingList(isCheckedOnShoppingList);
-        setUnit(unit);
-        setType(type);
     }
 
     //getter, setter
@@ -81,12 +80,7 @@ public class Ingredient {
     public boolean isCheckedOnShoppingList(){
         return isCheckedOnShoppingList;
     }
-    public Unit getUnit() {
-        return unit;
-    }
-    public Type getType() {
-        return type;
-    }
+
 
     public void setId(int ingredientId) {
         this.ingredientId = ingredientId;
@@ -105,12 +99,6 @@ public class Ingredient {
     }
     public void setCheckedOnShoppingList(boolean isCheckedOnShoppingList){
         this.isCheckedOnShoppingList = isCheckedOnShoppingList;
-    }
-    public void setUnit(Unit unit) {
-        this.unit = unit;
-    }
-    public void setType(Type type) {
-        this.type = type;
     }
 
 }

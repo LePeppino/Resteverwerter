@@ -20,15 +20,4 @@ public interface ShoppingListDao {
     @Delete
     void deleteShoppingList(ShoppingList shoppingList);
 
-    @Query("SELECT name FROM ShoppingList")
-    String getShoppingListName();
-
-    @Query("SELECT numUncheckedItems FROM ShoppingList")
-    int getNumUncheckedItems();
-
-    @Query("SELECT uncheckedItems FROM ShoppingList")
-    List<Ingredient> getUncheckedItems();
-
-    @Query("SELECT checkedItems FROM ShoppingList")
-    List<Ingredient> getCheckedItems();
 }

@@ -16,20 +16,33 @@ public class Recipe {
 
     public String name;
     public int calories;
-    public ArrayList<Ingredient> ingredientList;
+    public boolean isFavourite;
+    public ArrayList<Ingredient> ingredientList; //TODO: find a way to store List of ingredients into database
+    public String description;
+    public String instructions;
+    //public ArrayList<String> keywords; //keywords for search-feature?
 
     @Ignore
     Bitmap headerImage; //TODO: implement header photo for recipes
 
-    //public String description;
-    //public String instructions;
-
     //constructor
-    public Recipe(int id, String name, int calories, ArrayList<Ingredient> ingredientList){
+    public Recipe(int id,
+                  String name,
+                  int calories,
+                  boolean isFavourite,
+                  ArrayList<Ingredient> ingredientList,
+                  String description,
+                  String instructions,
+                  Bitmap headerImage)
+    {
         setId(id);
         setName(name);
         setCalories(calories);
+        setFavourite(isFavourite);
         setIngredientList(ingredientList);
+        setDescription(description);
+        setInstructions(instructions);
+        setHeaderImage(headerImage);
     }
 
     //getter, setter
@@ -44,4 +57,32 @@ public class Recipe {
 
     public List<Ingredient> getIngredientList() {return ingredientList;}
     private void setIngredientList(ArrayList<Ingredient> ingredientList) {this.ingredientList = ingredientList;}
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+    public void setFavourite(boolean favourite) {
+        isFavourite = favourite;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
+    public Bitmap getHeaderImage() {
+        return headerImage;
+    }
+    public void setHeaderImage(Bitmap headerImage) {
+        this.headerImage = headerImage;
+    }
 }

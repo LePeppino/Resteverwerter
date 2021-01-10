@@ -16,8 +16,12 @@ public class ShoppingList {
     public ArrayList<Ingredient> checkedItems;
 
     //constructor
-    public ShoppingList(int id, String name, int numUncheckedItems,
-                        ArrayList<Ingredient> uncheckedItems, ArrayList<Ingredient> checkedItems) {
+    public ShoppingList(int id,
+                        String name,
+                        int numUncheckedItems,
+                        ArrayList<Ingredient> uncheckedItems,
+                        ArrayList<Ingredient> checkedItems)
+    {
         setId(id);
         setName(name);
         setNumUncheckedItems(numUncheckedItems);

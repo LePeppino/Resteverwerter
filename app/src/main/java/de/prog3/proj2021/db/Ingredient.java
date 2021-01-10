@@ -36,8 +36,14 @@ public class Ingredient {
     }
 
     //constructor
-    public Ingredient(int id, String name, int numAvailable,
-                      int numRequired, int numToBuy, Unit unit, Type type) {
+    public Ingredient(int id,
+                      String name,
+                      int numAvailable,
+                      int numRequired,
+                      int numToBuy,
+                      Unit unit,
+                      Type type)
+    {
         setId(id);
         setName(name);
         setNumAvailable(numAvailable);

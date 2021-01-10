@@ -6,6 +6,7 @@ import androidx.room.Room;
 import android.os.Bundle;
 
 import de.prog3.proj2021.db.AppDatabase;
+import de.prog3.proj2021.db.FavouriteListDao;
 import de.prog3.proj2021.db.Ingredient;
 import de.prog3.proj2021.db.IngredientDao;
 import de.prog3.proj2021.db.RecipeDao;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         //instantiation of the Data Access Objects
         UserDao userDao = db.userDao();
+        FavouriteListDao favouriteListDao = db.favouriteListDao();
         RecipeDao recipeDao = db.recipeDao();
         IngredientDao ingredientDao = db.ingredientDao();
         ShoppingListDao shoppingListDao = db.shoppingListDao();

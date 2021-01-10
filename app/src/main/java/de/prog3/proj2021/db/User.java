@@ -2,34 +2,40 @@ package de.prog3.proj2021.db;
 
 import android.widget.ArrayAdapter;
 
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* User has 1:1 relation to FavouriteList class.
+* User has 1:n relation to ShoppingList class.
+*
+* */
+
 @Entity
 public class User {
     @PrimaryKey
-    public int id;
+    public int userId;
 
     public String username;
-    public ArrayList<Recipe> favouriteRecipes;
+
+    @Embedded
+    public FavouriteList favouriteList;
 
     //constructor
-    public User(int id, String username) {
-        setId(id);
+    public User(int userId, String username) {
+        setUserId(userId);
         setUsername(username);
-        setFavouriteRecipes(favouriteRecipes);
     }
 
     //getter, setter
-    public int getId() {return id;}
-    private void setId(int id) {this.id = id;}
+    public int getUserId() {return userId;}
+    private void setUserId(int id) {this.userId = id;}
 
     public String username() {return username;}
     private void setUsername(String username) {this.username = username;}
 
-    public List<Recipe> getFavouriteRecipes() {return favouriteRecipes;}
-    private void setFavouriteRecipes(ArrayList<Recipe> favouriteRecipes) {this.favouriteRecipes = favouriteRecipes;}
 }

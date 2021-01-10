@@ -5,10 +5,17 @@ import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
 
+/*
+* ShoppingList has 1:n relation to User class.
+* ShoppingList has n:m relation to Ingredient class.
+* */
+
 @Entity
 public class ShoppingList {
     @PrimaryKey
-    public int id;
+    public int shoppingListId;
+
+    public int userCreatorId; //for reference to parent entity
 
     public String name;
     public int numUncheckedItems;
@@ -16,13 +23,13 @@ public class ShoppingList {
     public ArrayList<Ingredient> checkedItems;
 
     //constructor
-    public ShoppingList(int id,
+    public ShoppingList(int shoppingListId,
                         String name,
                         int numUncheckedItems,
                         ArrayList<Ingredient> uncheckedItems,
                         ArrayList<Ingredient> checkedItems)
     {
-        setId(id);
+        setShoppingListId(shoppingListId);
         setName(name);
         setNumUncheckedItems(numUncheckedItems);
         setUncheckedItems(uncheckedItems);
@@ -30,8 +37,8 @@ public class ShoppingList {
     }
 
     //getter, setter
-    public int getId() {
-        return id;
+    public int getShoppingListId() {
+        return shoppingListId;
     }
     public String getName() {
         return name;
@@ -46,8 +53,8 @@ public class ShoppingList {
         return checkedItems;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setShoppingListId(int shoppingListId) {
+        this.shoppingListId = shoppingListId;
     }
     public void setName(String name) {
         this.name = name;

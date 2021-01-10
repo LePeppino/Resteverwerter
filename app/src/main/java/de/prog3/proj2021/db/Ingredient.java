@@ -3,22 +3,29 @@ package de.prog3.proj2021.db;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/*
+ * Ingredient has n:m relation to Recipe class.
+ * Ingredient has n:m relation to ShoppingList class.
+ *
+ * */
+
 @Entity
 public class Ingredient {
     @PrimaryKey
-    public int id;
+    public int ingredientId;
 
     public String name;
     public int numAvailable;        //for pantry function
     public int numRequired;         //for recipes
     public int numToBuy;            //for shopping list
+    public boolean isCheckedOnShoppingList;
     public Unit unit;
     public Type type;
 
     public enum Unit {
         g,
-        ml,
-        pinch}
+        ml
+    }
 
     public enum Type {
         DAIRY,
@@ -36,26 +43,28 @@ public class Ingredient {
     }
 
     //constructor
-    public Ingredient(int id,
+    public Ingredient(int ingredientId,
                       String name,
                       int numAvailable,
                       int numRequired,
                       int numToBuy,
+                      boolean isCheckedOnShoppingList,
                       Unit unit,
                       Type type)
     {
-        setId(id);
+        setId(ingredientId);
         setName(name);
         setNumAvailable(numAvailable);
         setNumRequired(numRequired);
         setNumToBuy(numToBuy);
+        setCheckedOnShoppingList(isCheckedOnShoppingList);
         setUnit(unit);
         setType(type);
     }
 
     //getter, setter
-    public int getId() {
-        return id;
+    public int getIngredientId() {
+        return ingredientId;
     }
     public String getName() {
         return name;
@@ -69,6 +78,9 @@ public class Ingredient {
     public int getNumToBuy() {
         return numToBuy;
     }
+    public boolean isCheckedOnShoppingList(){
+        return isCheckedOnShoppingList;
+    }
     public Unit getUnit() {
         return unit;
     }
@@ -76,8 +88,8 @@ public class Ingredient {
         return type;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int ingredientId) {
+        this.ingredientId = ingredientId;
     }
     public void setName(String name) {
         this.name = name;
@@ -90,6 +102,9 @@ public class Ingredient {
     }
     public void setNumToBuy(int numToBuy) {
         this.numToBuy = numToBuy;
+    }
+    public void setCheckedOnShoppingList(boolean isCheckedOnShoppingList){
+        this.isCheckedOnShoppingList = isCheckedOnShoppingList;
     }
     public void setUnit(Unit unit) {
         this.unit = unit;

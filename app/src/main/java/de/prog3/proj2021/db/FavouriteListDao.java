@@ -11,23 +11,19 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface UserDao {
+public interface FavouriteListDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertUser(User user);
+    void insertFavouriteList(FavouriteList favouriteList);
 
     @Update
-    void updateUserInfo(User user);
+    void updateFavouriteListInfo(FavouriteList favouriteList);
 
     @Delete
-    void deleteUser(User user);
+    void deleteFavouriteList(FavouriteList favouriteList);
 
     // Transaction to return all instances for the relation
-    // UserWithFavouriteList atomically
+    // FavouritesWithRecipes atomically
     @Transaction
-    @Query("SELECT * FROM User")
-    public List<UserWithFavouriteList> getUsersWithFavouriteLists();
-
-    @Transaction
-    @Query("SELECT * FROM User")
-    public List<UserWithShoppingLists> getUserWithShoppingLists();
+    @Query("SELECT * FROM FavouriteList")
+    public List<FavouritesWithRecipes> getFavouritesWithRecipes();
 }

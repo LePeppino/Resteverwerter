@@ -9,15 +9,21 @@ import androidx.room.PrimaryKey;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* Recipe has n:m relation to FavouriteList class.
+* Recipe has n:m relation to Ingredient class.
+*
+* */
+
 @Entity
 public class Recipe {
     @PrimaryKey
-    public int id;
+    public int recipeId;
 
     public String name;
     public int calories;
     public boolean isFavourite;
-    public ArrayList<Ingredient> ingredientList; //TODO: find a way to store List of ingredients into database
+    //public ArrayList<Ingredient> ingredientList;
     public String description;
     public String instructions;
     //public ArrayList<String> keywords; //keywords for search-feature?
@@ -26,7 +32,7 @@ public class Recipe {
     Bitmap headerImage; //TODO: implement header photo for recipes
 
     //constructor
-    public Recipe(int id,
+    public Recipe(int recipeId,
                   String name,
                   int calories,
                   boolean isFavourite,
@@ -35,19 +41,19 @@ public class Recipe {
                   String instructions,
                   Bitmap headerImage)
     {
-        setId(id);
+        setId(recipeId);
         setName(name);
         setCalories(calories);
         setFavourite(isFavourite);
-        setIngredientList(ingredientList);
+        //setIngredientList(ingredientList);
         setDescription(description);
         setInstructions(instructions);
         setHeaderImage(headerImage);
     }
 
     //getter, setter
-    public int getId() {return id;}
-    private void setId(int id) {this.id = id;}
+    public int getRecipeIdId() {return recipeId;}
+    private void setId(int recipeId) {this.recipeId = recipeId;}
 
     public String getName() {return name;}
     private void setName(String name) {this.name = name;}
@@ -55,8 +61,8 @@ public class Recipe {
     public int getCalories() {return calories;}
     private void setCalories(int calories) {this.calories = calories;}
 
-    public List<Ingredient> getIngredientList() {return ingredientList;}
-    private void setIngredientList(ArrayList<Ingredient> ingredientList) {this.ingredientList = ingredientList;}
+    //public List<Ingredient> getIngredientList() {return ingredientList;}
+    //private void setIngredientList(ArrayList<Ingredient> ingredientList) {this.ingredientList = ingredientList;}
 
     public boolean isFavourite() {
         return isFavourite;

@@ -25,7 +25,7 @@ public class Recipe {
     public boolean isFavourite;
     public String description;
     public String instructions;
-    //public ArrayList<String> keywords; //keywords for search-feature?
+    //TODO: keywords list for search-feature?
 
     @Ignore
     Bitmap headerImage = null; //TODO: implement header photo for recipes

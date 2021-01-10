@@ -11,6 +11,7 @@ import de.prog3.proj2021.db.Ingredient;
 import de.prog3.proj2021.db.IngredientDao;
 import de.prog3.proj2021.db.RecipeDao;
 import de.prog3.proj2021.db.ShoppingListDao;
+import de.prog3.proj2021.db.User;
 import de.prog3.proj2021.db.UserDao;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
         //create an instance of the database and preload with data
         //TODO: create preloaded database asset or file to insert data
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Sample.db")
+                //choose how to prepopulate database
                 //.createFromAsset("database/myapp.db")
+                //.createFromFile("database/myapp")
                 .build();
 
         //instantiation of the Data Access Objects
@@ -33,7 +36,10 @@ public class MainActivity extends AppCompatActivity {
         IngredientDao ingredientDao = db.ingredientDao();
         ShoppingListDao shoppingListDao = db.shoppingListDao();
 
-        //userDao.getUsername(); //example usage of database interaction
+        //example usage of database interaction
+        User fritz = new User(1,"fritz");
+        userDao.insertUser(fritz);
+        userDao.deleteUser(fritz);
 
     }
 }

@@ -20,6 +20,7 @@ public class Ingredient {
     public int numToBuy;            //for shopping list
     public boolean isCheckedOnShoppingList;
 
+    //TODO: find solution for enums Unit and Type (Converters?)
     /*
     public Unit unit;
     public Type type;

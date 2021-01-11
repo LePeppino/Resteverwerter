@@ -21,6 +21,7 @@ public class Ingredient {
     public boolean isCheckedOnShoppingList;
 
     //TODO: find solution for enums Unit and Type (Converters?)
+
     /*
     public Unit unit;
     public Type type;
@@ -45,6 +46,7 @@ public class Ingredient {
         BEVERAGES
     }
     */
+
 
     //constructor
     public Ingredient(int ingredientId,

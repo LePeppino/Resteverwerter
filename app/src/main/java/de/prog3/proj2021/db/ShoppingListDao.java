@@ -9,15 +9,17 @@ import androidx.room.Update;
 
 import java.util.List;
 
+import io.reactivex.Completable;
+
 @Dao
 public interface ShoppingListDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertShoppingList(ShoppingList shoppingList);
+    Completable insertShoppingList(ShoppingList shoppingList);
 
     @Update
-    void updateShoppingList(ShoppingList shoppingList);
+    Completable updateShoppingList(ShoppingList shoppingList);
 
     @Delete
-    void deleteShoppingList(ShoppingList shoppingList);
+    Completable deleteShoppingList(ShoppingList shoppingList);
 
 }

@@ -16,4 +16,12 @@ public class FavouriteList {
 
     public int userOwnerId; //for reference to parent entity
 
+    //constructor
+    public FavouriteList(int favouriteListId){
+        setFavouriteListId(favouriteListId);
+    }
+
+    //getter, setter
+    public int getFavouriteListId(){ return favouriteListId;}
+    public void setFavouriteListId(int favouriteListId){ this.favouriteListId = favouriteListId;}
 }

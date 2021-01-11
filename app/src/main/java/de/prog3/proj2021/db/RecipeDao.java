@@ -10,19 +10,22 @@ import androidx.room.Update;
 
 import java.util.List;
 
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
+
 @Dao
 public interface RecipeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertRecipe(Recipe recipe);
+    Completable insertRecipe(Recipe recipe);
 
     @Update
-    void updateRecipe(Recipe recipe);
+    Completable updateRecipe(Recipe recipe);
 
     @Delete
-    void deleteRecipe(Recipe... recipes);
+    Completable deleteRecipe(Recipe... recipes);
 
     @Transaction
     @Query("SELECT * FROM Recipe")
-    public List<RecipeWithIngredients> getRecipeWithIngredients();
+    Flowable<List<RecipeWithIngredients>> getRecipeWithIngredients();
 
 }

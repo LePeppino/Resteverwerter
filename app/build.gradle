@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "de.prog3.proj2021"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -37,9 +37,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation "androidx.concurrent:concurrent-futures:1.1.0"
 
-    /*
-    * room components
-    * */
+    /**
+     * room components
+     */
     def room_version = "2.2.6"
 
     implementation "androidx.room:room-runtime:$room_version"
@@ -51,9 +51,9 @@ dependencies {
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
 
-    /*
-    * lifecycle components
-    * */
+    /**
+     * lifecycle components
+     */
     def lifecycle_version = "2.2.0"
     def arch_version = "2.1.0"
 
@@ -65,9 +65,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
     // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
-    // Annotation processor
-    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
-    // alternately - if using Java8, use the following instead of lifecycle-compiler
+    // Annotation processor - if using Java8, use the following instead of lifecycle-compiler
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     // optional - helpers for implementing LifecycleOwner in a Service
     implementation "androidx.lifecycle:lifecycle-service:$lifecycle_version"
@@ -78,4 +76,17 @@ dependencies {
     // optional - Test helpers for LiveData
     testImplementation "androidx.arch.core:core-testing:$arch_version"
 
+    /**
+     * recyclerview components
+     */
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc03"
+
+    /*
+    * Glide components
+    * */
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    
 }

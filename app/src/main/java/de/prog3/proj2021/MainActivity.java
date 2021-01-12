@@ -13,10 +13,15 @@ package de.prog3.proj2021;
 * */
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.os.Bundle;
 
+import java.util.ArrayList;
+
+import de.prog3.proj2021.adapters.RecipeRecyclerViewAdapter;
 import de.prog3.proj2021.db.AppDatabase;
 import de.prog3.proj2021.db.FavouriteList;
 import de.prog3.proj2021.db.FavouriteListDao;
@@ -30,6 +35,10 @@ import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ArrayList<String> mRecipeNames = new ArrayList<>();
+    private ArrayList<String> mRecipeDescriptions = new ArrayList<>();
+    private ArrayList<String> mImageUrls = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,18 +59,36 @@ public class MainActivity extends AppCompatActivity {
         IngredientDao ingredientDao = db.ingredientDao();
         ShoppingListDao shoppingListDao = db.shoppingListDao();
 
-        //example usage of database interaction
-        User fritz = new User(1,"fritz");
-        FavouriteList fav = new FavouriteList(1);
+        //RecipeRecyclerViewAdapter
+        initRecipeList();
 
-        userDao.insertUser(fritz);
-        favouriteListDao.insertFavouriteList(fav);
+    }
 
-        Single<User> user = userDao.getUserById(fritz.getUserId());
+    /*
+    * Queries recipes from database and passes data to RecipeRecyclerViewAdapter
+    * */
+    private void initRecipeList(){
+        //TODO: Query database
 
+        //example data
+        mImageUrls.add("");
+        mRecipeNames.add("Rezept #1");
+        mRecipeDescriptions.add("lorem ipsum");
 
-        userDao.deleteUser(fritz);
-        favouriteListDao.deleteFavouriteList(fav);
+        mImageUrls.add("");
+        mRecipeNames.add("Rezept #2");
+        mRecipeDescriptions.add("lorem ipsum 2");
 
+        initRecyclerView();
+    }
+
+    /*
+    * initialise RecipeRecyclerView with Adapter
+    * */
+    private void initRecyclerView(){
+        RecyclerView recipeRecyclerView = findViewById(R.id.recipeRecyclerView);
+        RecipeRecyclerViewAdapter adapter = new RecipeRecyclerViewAdapter(this, mRecipeNames, mRecipeDescriptions, mImageUrls);
+        recipeRecyclerView.setAdapter(adapter);
+        recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

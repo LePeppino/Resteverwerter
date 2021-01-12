@@ -26,6 +26,6 @@ public interface RecipeDao {
 
     @Transaction
     @Query("SELECT * FROM Recipe")
-    Flowable<List<RecipeWithIngredients>> getRecipeWithIngredients();
+    Flowable<List<RecipeWithIngredients>> getRecipesWithIngredients();
 
 }

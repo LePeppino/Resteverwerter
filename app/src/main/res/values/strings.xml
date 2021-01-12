@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Resteverwerter</string>
+    <string name="app_name">Food Scout</string>
+    <string name="author_name">Giuseppe Buccellato, Eric Walter</string>
+
+    <!-- recipe list -->
+    <string name="recipe_placeholder">Recipe Name</string>
+    <string name="recipe_desc_placeholder">Recipe Description</string>
+
 </resources>

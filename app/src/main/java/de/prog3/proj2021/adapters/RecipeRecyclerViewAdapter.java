@@ -18,8 +18,10 @@ import com.bumptech.glide.Glide;
 import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.List;
 
 import de.prog3.proj2021.R;
+import de.prog3.proj2021.db.Recipe;
 
 /*
 * RecyclerViewAdapter holds all the ViewHolders filled
@@ -31,15 +33,11 @@ import de.prog3.proj2021.R;
 public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecyclerViewAdapter.ViewHolder>{
 
     private final Context mContext;
-    private ArrayList<String> mRecipeNames = new ArrayList<>();
-    private ArrayList<String> mRecipeDescriptions = new ArrayList<>();
-    private ArrayList<String> mImageSources = new ArrayList<>();
+    private List<Recipe> mRecipes;
 
-    public RecipeRecyclerViewAdapter(Context mContext, ArrayList<String> mRecipeNames, ArrayList<String> mRecipeDescriptions, ArrayList<String> mImageSources) {
+    public RecipeRecyclerViewAdapter(Context mContext, List<Recipe> mRecipes) {
         this.mContext = mContext;
-        this.mRecipeNames = mRecipeNames;
-        this.mRecipeDescriptions = mRecipeDescriptions;
-        this.mImageSources = mImageSources;
+        this.mRecipes = mRecipes;
     }
 
     @NonNull
@@ -52,17 +50,17 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //set recipe title from resource
-        holder.name.setText(mRecipeNames.get(position));
+        holder.name.setText(mRecipes.get(position).name);
 
         //set recipe description from resource
-        holder.description.setText(mRecipeDescriptions.get(position));
+        holder.description.setText(mRecipes.get(position).description);
 
         //set main image from resource with Glide
         Glide.with(mContext)
                 .asBitmap()
-                .load(mImageSources.get(position))
-                .error(R.mipmap.ic_launcher) // on error display placeholder
-                .placeholder(R.mipmap.ic_launcher)
+                .load(mRecipes.get(position).getHeaderImageUrl())
+                .error(R.mipmap.ic_launcher)        // on error display placeholder
+                .placeholder(R.mipmap.ic_launcher)  // placeholder image
                 .into(holder.image);
 
         //set onClickListener for recipe layout
@@ -80,7 +78,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
     // return number of items. if this returns 0, nothing will display
     @Override
     public int getItemCount() {
-        return mImageSources.size();
+        return mRecipes.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

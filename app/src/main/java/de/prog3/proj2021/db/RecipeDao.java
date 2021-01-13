@@ -11,7 +11,6 @@ import androidx.room.Update;
 import java.util.List;
 
 import io.reactivex.Completable;
-import io.reactivex.Flowable;
 
 @Dao
 public interface RecipeDao {
@@ -26,6 +25,6 @@ public interface RecipeDao {
 
     @Transaction
     @Query("SELECT * FROM Recipe")
-    Flowable<List<RecipeWithIngredients>> getRecipesWithIngredients();
+    List<Recipe> getRecipes(); //TODO: google for n:m queries!!!
 
 }

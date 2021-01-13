@@ -25,10 +25,8 @@ public class Recipe {
     public boolean isFavourite;
     public String description;
     public String instructions;
+    public String headerImageUrl;
     //TODO: keywords list for search-feature?
-
-    @Ignore
-    Bitmap headerImage = null; //TODO: implement header photo for recipes
 
     //constructor
     public Recipe(int recipeId,
@@ -36,7 +34,8 @@ public class Recipe {
                   int calories,
                   boolean isFavourite,
                   String description,
-                  String instructions)
+                  String instructions,
+                  String headerImageUrl)
     {
         setId(recipeId);
         setName(name);
@@ -44,7 +43,7 @@ public class Recipe {
         setFavourite(isFavourite);
         setDescription(description);
         setInstructions(instructions);
-        //setHeaderImage(headerImage);
+        setHeaderImageUrl(headerImageUrl);
     }
 
     //getter, setter
@@ -78,10 +77,10 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public Bitmap getHeaderImage() {
-        return headerImage;
+    public String getHeaderImageUrl() {
+        return headerImageUrl;
     }
-    public void setHeaderImage(Bitmap headerImage) {
-        this.headerImage = headerImage;
+    public void setHeaderImageUrl(String headerImageUrl) {
+        this.headerImageUrl = headerImageUrl;
     }
 }

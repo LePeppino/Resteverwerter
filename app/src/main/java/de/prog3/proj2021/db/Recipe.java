@@ -26,6 +26,7 @@ public class Recipe {
     public String description;
     public String instructions;
     public String headerImageUrl;
+
     //TODO: keywords list for search-feature?
 
     //constructor
@@ -37,7 +38,7 @@ public class Recipe {
                   String instructions,
                   String headerImageUrl)
     {
-        setId(recipeId);
+        setRecipeId(recipeId);
         setName(name);
         setCalories(calories);
         setFavourite(isFavourite);
@@ -48,7 +49,7 @@ public class Recipe {
 
     //getter, setter
     public int getRecipeIdId() {return recipeId;}
-    private void setId(int recipeId) {this.recipeId = recipeId;}
+    private void setRecipeId(int recipeId) {this.recipeId = recipeId;}
 
     public String getName() {return name;}
     private void setName(String name) {this.name = name;}
@@ -59,28 +60,29 @@ public class Recipe {
     public boolean isFavourite() {
         return isFavourite;
     }
-    public void setFavourite(boolean favourite) {
+    private void setFavourite(boolean favourite) {
         isFavourite = favourite;
     }
 
     public String getDescription() {
         return description;
     }
-    public void setDescription(String description) {
+    private void setDescription(String description) {
         this.description = description;
     }
 
     public String getInstructions() {
         return instructions;
     }
-    public void setInstructions(String instructions) {
+    private void setInstructions(String instructions) {
         this.instructions = instructions;
     }
 
     public String getHeaderImageUrl() {
         return headerImageUrl;
     }
-    public void setHeaderImageUrl(String headerImageUrl) {
+    private void setHeaderImageUrl(String headerImageUrl) {
         this.headerImageUrl = headerImageUrl;
     }
+
 }

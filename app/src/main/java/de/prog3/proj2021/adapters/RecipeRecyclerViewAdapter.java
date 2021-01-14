@@ -33,7 +33,7 @@ import de.prog3.proj2021.db.Recipe;
 public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecyclerViewAdapter.ViewHolder>{
 
     private final Context mContext;
-    private List<Recipe> mRecipes;
+    private final List<Recipe> mRecipes;
 
     public RecipeRecyclerViewAdapter(Context mContext, List<Recipe> mRecipes) {
         this.mContext = mContext;
@@ -81,7 +81,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         return mRecipes.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView image;
         TextView name;

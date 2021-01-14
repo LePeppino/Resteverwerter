@@ -31,7 +31,6 @@ public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance;
 
     //create an instance of the database and preload with data
-    //TODO: create preloaded database asset or file to insert data
 //    AppDatabase db = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "Sample.db")
 //            //.createFromAsset("database/myapp.db")
 //            //.createFromFile("database/myapp")

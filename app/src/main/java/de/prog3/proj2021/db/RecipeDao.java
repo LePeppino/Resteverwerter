@@ -11,6 +11,7 @@ import androidx.room.Update;
 import java.util.List;
 
 import io.reactivex.Completable;
+import io.reactivex.Flowable;
 
 @Dao
 public interface RecipeDao {
@@ -23,8 +24,11 @@ public interface RecipeDao {
     @Delete
     Completable deleteRecipe(Recipe... recipes);
 
+    @Query("SELECT * FROM Recipe")
+    List<Recipe> getRecipes();
+
     @Transaction
     @Query("SELECT * FROM Recipe")
-    List<Recipe> getRecipes(); //TODO: google for n:m queries!!!
+    List<RecipeWithIngredients> getRecipesWithIngredients(); //TODO: google for n:m queries!!!
 
 }

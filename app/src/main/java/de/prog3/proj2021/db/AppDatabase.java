@@ -1,14 +1,15 @@
 package de.prog3.proj2021.db;
 
-import android.app.Application;
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
-//https://stackoverflow.com/questions/52187050/android-multiple-database-one-project
-//https://stackoverflow.com/questions/57473172/android-room-one-database-with-multiple-tables
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 @Database(entities = {
         User.class,
@@ -28,32 +29,33 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract RecipeDao recipeDao();
     public abstract IngredientDao ingredientDao();
     public abstract ShoppingListDao shoppingListDao();
+
     private static AppDatabase instance;
 
     //create an instance of the database and preload with data
-//    AppDatabase db = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "Sample.db")
-//            //.createFromAsset("database/myapp.db")
-//            //.createFromFile("database/myapp")
-//            .build();
-
-    public static AppDatabase getDatabase(Context context) {
+    public static synchronized AppDatabase getInstance(Context context) {
         if (instance == null) {
-            instance = Room.databaseBuilder(
-                    context.getApplicationContext(),
-                    AppDatabase.class, "AppDatabase.db")
-                    .build();
+            synchronized (AppDatabase.class) {
+                if (instance == null) {
+                    instance = Room.databaseBuilder(
+                            context.getApplicationContext(),
+                            AppDatabase.class, "AppDatabase")
+                            .fallbackToDestructiveMigration()
+                            //.addCallback(roomCallback)
+                            //.createFromAsset("database/food_scout.db")
+                            .build();
+                }
+            }
         }
         return instance;
     }
 
-    //Queries:
-    //AppDatabase.getDatabase(getApplicationContext()).UserDao().getAll();
-
-    //instantiation of the Data Access Objects
-//    UserDao userDao = db.userDao();
-//    FavouriteListDao favouriteListDao = db.favouriteListDao();
-//    RecipeDao recipeDao = db.recipeDao();
-//    IngredientDao ingredientDao = db.ingredientDao();
-//    ShoppingListDao shoppingListDao = db.shoppingListDao();
+//    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
+//        @Override
+//        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+//            super.onCreate(db);
+//
+//        }
+//    };
 
 }

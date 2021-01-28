@@ -15,9 +15,9 @@ import java.util.List;
 *
 * */
 
-@Entity
+@Entity(tableName = "recipe_table")
 public class Recipe {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int recipeId;
 
     public String name;
@@ -30,15 +30,13 @@ public class Recipe {
     //TODO: keywords list for search-feature?
 
     //constructor
-    public Recipe(int recipeId,
-                  String name,
+    public Recipe(String name,
                   int calories,
                   boolean isFavourite,
                   String description,
                   String instructions,
                   String headerImageUrl)
     {
-        setRecipeId(recipeId);
         setName(name);
         setCalories(calories);
         setFavourite(isFavourite);

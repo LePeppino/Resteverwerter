@@ -12,12 +12,12 @@ import io.reactivex.Completable;
 @Dao
 public interface IngredientDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    Completable insertIngredient(Ingredient ingredient);
+    void insertIngredient(Ingredient ingredient);
 
     @Update
-    Completable updateIngredient(Ingredient ingredient);
+    void updateIngredient(Ingredient ingredient);
 
     @Delete
-    Completable deleteIngredient(Ingredient... ingredients); //attempts to delete one or more ingredients
+    void deleteIngredient(Ingredient... ingredients); //attempts to delete one or more ingredients
 
 }

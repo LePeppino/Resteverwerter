@@ -15,9 +15,9 @@ import java.util.List;
 *
 * */
 
-@Entity
+@Entity(tableName = "user_table")
 public class User {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int userId;
 
     public String username;
@@ -26,8 +26,7 @@ public class User {
     public FavouriteList favouriteList;
 
     //constructor
-    public User(int userId, String username) {
-        setUserId(userId);
+    public User(String username) {
         setUsername(username);
     }
 

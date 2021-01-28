@@ -9,9 +9,9 @@ import androidx.room.PrimaryKey;
  *
  * */
 
-@Entity
+@Entity(tableName = "ingredient_table")
 public class Ingredient {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int ingredientId;
 
     public String name;
@@ -49,14 +49,12 @@ public class Ingredient {
 
 
     //constructor
-    public Ingredient(int ingredientId,
-                      String name,
+    public Ingredient(String name,
                       int numAvailable,
                       int numRequired,
                       int numToBuy,
                       boolean isCheckedOnShoppingList)
     {
-        setId(ingredientId);
         setName(name);
         setNumAvailable(numAvailable);
         setNumRequired(numRequired);

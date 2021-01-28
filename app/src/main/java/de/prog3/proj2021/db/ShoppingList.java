@@ -9,9 +9,9 @@ import androidx.room.PrimaryKey;
 * ShoppingList has n:m relation to Ingredient class.
 * */
 
-@Entity
+@Entity(tableName = "shoppingList_table")
 public class ShoppingList {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int shoppingListId;
 
     public int userCreatorId; //for reference to parent entity
@@ -20,11 +20,9 @@ public class ShoppingList {
     public int numUncheckedItems;
 
     //constructor
-    public ShoppingList(int shoppingListId,
-                        String name,
+    public ShoppingList(String name,
                         int numUncheckedItems)
     {
-        setShoppingListId(shoppingListId);
         setName(name);
         setNumUncheckedItems(numUncheckedItems);
     }

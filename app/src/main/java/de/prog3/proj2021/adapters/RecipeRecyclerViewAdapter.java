@@ -33,11 +33,11 @@ import de.prog3.proj2021.db.Recipe;
 public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecyclerViewAdapter.ViewHolder>{
 
     private final Context mContext;
-    private final List<Recipe> mRecipes;
+    private List<Recipe> mRecipes;
 
     public RecipeRecyclerViewAdapter(Context mContext, List<Recipe> mRecipes) {
         this.mContext = mContext;
-        this.mRecipes = mRecipes;
+        setmRecipes(mRecipes);
     }
 
     @NonNull
@@ -67,9 +67,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 //TODO: open up recipe details
-
 
             }
         });
@@ -79,6 +77,11 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
     @Override
     public int getItemCount() {
         return mRecipes.size();
+    }
+
+    public void setmRecipes(List<Recipe> mRecipes){
+        this.mRecipes = mRecipes;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

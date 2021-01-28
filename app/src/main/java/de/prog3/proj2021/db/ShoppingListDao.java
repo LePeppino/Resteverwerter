@@ -14,12 +14,12 @@ import io.reactivex.Completable;
 @Dao
 public interface ShoppingListDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    Completable insertShoppingList(ShoppingList shoppingList);
+    void insertShoppingList(ShoppingList shoppingList);
 
     @Update
-    Completable updateShoppingList(ShoppingList shoppingList);
+    void updateShoppingList(ShoppingList shoppingList);
 
     @Delete
-    Completable deleteShoppingList(ShoppingList shoppingList);
+    void deleteShoppingList(ShoppingList shoppingList);
 
 }

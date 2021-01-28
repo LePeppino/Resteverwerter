@@ -9,17 +9,15 @@ import androidx.room.PrimaryKey;
 *
 * */
 
-@Entity
+@Entity(tableName = "favouriteList_table")
 public class FavouriteList {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int favouriteListId;
 
     public int userOwnerId; //for reference to parent entity
 
     //constructor
-    public FavouriteList(int favouriteListId){
-        setFavouriteListId(favouriteListId);
-    }
+    public FavouriteList(int favouriteListId){}
 
     //getter, setter
     public int getFavouriteListId(){ return favouriteListId;}

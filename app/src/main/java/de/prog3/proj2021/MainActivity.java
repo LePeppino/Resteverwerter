@@ -12,37 +12,27 @@ package de.prog3.proj2021;
 *
 * */
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.prog3.proj2021.adapters.RecipeRecyclerViewAdapter;
-import de.prog3.proj2021.db.AppDatabase;
-import de.prog3.proj2021.db.FavouriteList;
-import de.prog3.proj2021.db.FavouriteListDao;
-import de.prog3.proj2021.db.Ingredient;
-import de.prog3.proj2021.db.IngredientDao;
 import de.prog3.proj2021.db.Recipe;
-import de.prog3.proj2021.db.RecipeDao;
-import de.prog3.proj2021.db.ShoppingListDao;
-import de.prog3.proj2021.db.User;
-import de.prog3.proj2021.db.UserDao;
 import de.prog3.proj2021.viewmodels.MainActivityViewModel;
-import io.reactivex.Flowable;
-import io.reactivex.Single;
+import io.github.mthli.sugartask.SugarTask;
 
 public class MainActivity extends AppCompatActivity {
 
     private MainActivityViewModel mMainActivityViewModel;
-    RecipeRecyclerViewAdapter mAdapter;
+    RecipeRecyclerViewAdapter recipeRecyclerViewAdapter;
     RecyclerView recipeRecyclerView;
 
     @Override
@@ -50,21 +40,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //ViewModels
+        //instantiate ViewModels
         mMainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        //initiate ViewModel
-        mMainActivityViewModel.initRecipe();
+        //initiate ViewModels
+        mMainActivityViewModel.initRecipes();
         //Observe ViewModel for changes
-        mMainActivityViewModel.getmRecipes().observe(this, new Observer<List<Recipe>>() {
-            @Override
-            public void onChanged(List<Recipe> recipes) {
-                mAdapter.notifyDataSetChanged();
-            }
+        mMainActivityViewModel.getmRecipes().observe(this, recipes -> { //Observable lambda expression
+            recipeRecyclerViewAdapter.setmRecipes(recipes);
+            //recipeRecyclerViewAdapter.notifyDataSetChanged();
+            Toast.makeText(MainActivity.this, "Recipe View Model changed", Toast.LENGTH_SHORT).show();
         });
 
-        /*
-         * Queries recipes from database and passes data to RecipeRecyclerViewAdapter
-         * */
+        // Passes LiveData from MainActivityViewModel to RecipeRecyclerViewAdapter
         initRecyclerView();
 
     }
@@ -75,8 +62,12 @@ public class MainActivity extends AppCompatActivity {
     * */
     private void initRecyclerView(){
         recipeRecyclerView = findViewById(R.id.recipeRecyclerView);
-        mAdapter = new RecipeRecyclerViewAdapter(this, mMainActivityViewModel.getmRecipes().getValue());
-        recipeRecyclerView.setAdapter(mAdapter);
         recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //recipeRecyclerView.setHasFixedSize(true);
+
+        //TODO: getValue always returns null, even if data is there. WHY.
+        recipeRecyclerViewAdapter = new RecipeRecyclerViewAdapter(this, mMainActivityViewModel.getmRecipes().getValue());
+        recipeRecyclerView.setAdapter(recipeRecyclerViewAdapter);
+
     }
 }

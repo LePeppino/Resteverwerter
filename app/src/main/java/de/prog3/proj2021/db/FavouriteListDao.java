@@ -1,5 +1,6 @@
 package de.prog3.proj2021.db;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -17,17 +18,17 @@ import io.reactivex.Single;
 @Dao
 public interface FavouriteListDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    Completable insertFavouriteList(FavouriteList favouriteList);
+    void insertFavouriteList(FavouriteList favouriteList);
 
     @Update
-    Completable updateFavouriteListInfo(FavouriteList favouriteList);
+    void updateFavouriteListInfo(FavouriteList favouriteList);
 
     @Delete
-    Completable deleteFavouriteList(FavouriteList favouriteList);
+    void deleteFavouriteList(FavouriteList favouriteList);
 
     // Transaction to return all instances for the relation
     // FavouritesWithRecipes atomically
     @Transaction
-    @Query("SELECT * FROM FavouriteList")
-    Flowable<List<FavouritesWithRecipes>> getFavouritesWithRecipes();
+    @Query("SELECT * FROM favouriteList_table")
+    LiveData<List<FavouritesWithRecipes>> getFavouritesWithRecipes();
 }

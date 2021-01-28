@@ -1,5 +1,6 @@
 package de.prog3.proj2021.db;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -23,24 +24,24 @@ import io.reactivex.Single;
 @Dao
 public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    Completable insertUser(User user);
+    void insertUser(User user);
 
     @Update
-    Completable updateUserInfo(User user);
+    void updateUserInfo(User user);
 
     @Delete
-    Completable deleteUser(User user);
+    void deleteUser(User user);
 
     // Transaction to return all instances for the relation
     // UserWithFavouriteList atomically
     @Transaction
-    @Query("SELECT * FROM User")
-    Single<List<UserWithFavouriteList>> getUsersWithFavouriteLists();
+    @Query("SELECT * FROM user_table")
+    LiveData<List<UserWithFavouriteList>> getUsersWithFavouriteLists();
 
     @Transaction
-    @Query("SELECT * FROM User")
-    Single<List<UserWithShoppingLists>> getUserWithShoppingLists();
+    @Query("SELECT * FROM user_table")
+    LiveData<List<UserWithShoppingLists>> getUserWithShoppingLists();
 
-    @Query("SELECT * FROM User WHERE userId = :userId")
-    Single<User> getUserById(int userId);
+    @Query("SELECT * FROM user_table WHERE userId = :userId")
+    LiveData<User> getUserById(int userId);
 }

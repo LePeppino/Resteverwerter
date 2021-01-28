@@ -42,17 +42,19 @@ public class MainActivity extends AppCompatActivity {
 
         //instantiate ViewModels
         mMainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
         //initiate ViewModels
         mMainActivityViewModel.initRecipes();
+
+        // Passes LiveData from MainActivityViewModel to RecipeRecyclerViewAdapter
+        initRecyclerView();
+
         //Observe ViewModel for changes
         mMainActivityViewModel.getmRecipes().observe(this, recipes -> { //Observable lambda expression
             recipeRecyclerViewAdapter.setmRecipes(recipes);
             //recipeRecyclerViewAdapter.notifyDataSetChanged();
             Toast.makeText(MainActivity.this, "Recipe View Model changed", Toast.LENGTH_SHORT).show();
         });
-
-        // Passes LiveData from MainActivityViewModel to RecipeRecyclerViewAdapter
-        initRecyclerView();
 
     }
 

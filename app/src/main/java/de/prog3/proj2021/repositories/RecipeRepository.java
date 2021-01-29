@@ -26,7 +26,6 @@ public class RecipeRepository {
     //private static RecipeRepository instance;
     private LiveData<List<Recipe>> dataSet;
     private final RecipeDao recipeDao;
-    private final Executor executor = Executors.newSingleThreadExecutor();
 
     //constructors
     public RecipeRepository(Application application){
@@ -37,7 +36,6 @@ public class RecipeRepository {
 
     //getter and updater for recipe set
     public LiveData<List<Recipe>> getRecipes(){
-        updateRecipes();
         return dataSet;
     }
 
@@ -46,43 +44,47 @@ public class RecipeRepository {
         dataSet = recipeDao.getRecipes();
     }
 
-    private void setExampleRecipe(){
-        Recipe doener = new Recipe("döner", 100, true, "legga", "machen und essen", "no url");
-        Recipe pizza = new Recipe("pizza", 1200, true, "legga2", "machen und auch essen", "no url");
-        insert(doener);
-        insert(pizza);
-    }
-
     /*
      * database operations communicating with the DAO
      * in asynchronous threads and update dataSet
      */
-
-    //Test with THREAD
     public void insert(Recipe recipe){
         Runnable runnable = () -> {
             recipeDao.insertRecipe(recipe);
             System.out.println("recipe inserted");
         };
         new Thread(runnable).start();
-
-//        executor.execute(() -> { //Runnable lambda expression
-//            recipeDao.insertRecipe(recipe);
-//            System.out.println("recipe inserted");
-//        });
     }
 
-    //Test with EXECUTOR
     public void update(Recipe recipe){
-        executor.execute(() -> {
+        Runnable runnable = () -> {
             recipeDao.updateRecipe(recipe);
-        });
+            System.out.println("recipe updated");
+        };
+        new Thread(runnable).start();
     }
 
     public void delete(Recipe recipe){
-        executor.execute(() -> {
+        Runnable runnable = () -> {
             recipeDao.deleteRecipe(recipe);
-        });
+            System.out.println("recipe deleted");
+        };
+        new Thread(runnable).start();
+    }
+
+    public void deleteAllRecipes(){
+        recipeDao.deleteAllRecipes();
+        System.out.println("all recipes deleted");
+    }
+
+    private void setExampleRecipe(){
+        deleteAllRecipes();
+        Recipe doener = new Recipe("döner", 100, true, "legga", "machen und essen", "no url");
+        Recipe pizza = new Recipe("pizza", 1200, true, "legga2", "machen und auch essen", "no url");
+        Recipe burrito = new Recipe("burrito", 120034, false, "legga3", "ebenfalls machen und auch essen", "no url");
+        insert(doener);
+        insert(pizza);
+        insert(burrito);
     }
 
     /*

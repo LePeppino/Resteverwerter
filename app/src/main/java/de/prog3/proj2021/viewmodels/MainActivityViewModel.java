@@ -5,10 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.prog3.proj2021.db.Recipe;
@@ -16,20 +13,25 @@ import de.prog3.proj2021.repositories.RecipeRepository;
 
 public class MainActivityViewModel extends AndroidViewModel {
 
-    private final RecipeRepository recipeRepository;
+    private RecipeRepository recipeRepository;
     private LiveData<List<Recipe>> mRecipes;
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
         recipeRepository = new RecipeRepository(application);
+        mRecipes = recipeRepository.getRecipes();
     }
 
-    //fetch recipe LiveData from recipeRepository
-    public void initRecipes(){
-        if(mRecipes != null){
-            return;
-        }
-        mRecipes = recipeRepository.getRecipes();
+    public void insert(Recipe recipe){
+        recipeRepository.insert(recipe);
+    }
+
+    public void update(Recipe recipe){
+        recipeRepository.update(recipe);
+    }
+
+    public void delete(Recipe recipe){
+        recipeRepository.delete(recipe);
     }
 
     public LiveData<List<Recipe>> getmRecipes(){

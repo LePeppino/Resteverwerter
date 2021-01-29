@@ -1,22 +1,19 @@
 package de.prog3.proj2021.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.io.File;
-import java.net.URI;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,35 +27,34 @@ import de.prog3.proj2021.db.Recipe;
 * File author: Giuseppe Buccellato
 * */
 
-public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecyclerViewAdapter.ViewHolder>{
+public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecyclerViewAdapter.RecipeHolder>{
 
     private final Context mContext;
-    private List<Recipe> mRecipes;
+    private List<Recipe> mRecipes = new ArrayList<>();
 
-    public RecipeRecyclerViewAdapter(Context mContext, List<Recipe> mRecipes) {
+    public RecipeRecyclerViewAdapter(Context mContext) {
         this.mContext = mContext;
-        setmRecipes(mRecipes);
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_recipe_listitem, parent, false);
-        return new ViewHolder(view);
+    public RecipeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.layout_recipe_listitem, parent, false);
+        return new RecipeHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //set recipe title from resource
-        holder.name.setText(mRecipes.get(position).name);
-
-        //set recipe description from resource
-        holder.description.setText(mRecipes.get(position).description);
+    public void onBindViewHolder(@NonNull RecipeHolder holder, int position) {
+        Recipe currentRecipe = mRecipes.get(position);
+        //set recipe info from resource
+        holder.name.setText(currentRecipe.getName());
+        holder.description.setText(currentRecipe.getDescription());
 
         //set main image from resource with Glide
         Glide.with(mContext)
                 .asBitmap()
-                .load(mRecipes.get(position).getHeaderImageUrl())
+                .load(currentRecipe.getHeaderImageUrl())
                 .error(R.mipmap.ic_launcher)        // on error display placeholder
                 .placeholder(R.mipmap.ic_launcher)  // placeholder image
                 .into(holder.image);
@@ -81,17 +77,15 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
 
     public void setmRecipes(List<Recipe> mRecipes){
         this.mRecipes = mRecipes;
-        notifyDataSetChanged();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
-
-        ImageView image;
-        TextView name;
-        TextView description;
+    public static class RecipeHolder extends RecyclerView.ViewHolder{
+        private ImageView image;
+        private TextView name;
+        private TextView description;
         RelativeLayout parentLayout;
 
-        public ViewHolder(@NonNull View itemView) {
+        public RecipeHolder(@NonNull View itemView) {
             super(itemView);
 
             image = itemView.findViewById(R.id.recipeImageId);

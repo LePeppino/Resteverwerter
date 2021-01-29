@@ -40,20 +40,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Passes LiveData from MainActivityViewModel to RecipeRecyclerViewAdapter
+        initRecyclerView();
+
         //instantiate ViewModels
         mMainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         //initiate ViewModels
-        mMainActivityViewModel.initRecipes();
-
-        // Passes LiveData from MainActivityViewModel to RecipeRecyclerViewAdapter
-        initRecyclerView();
 
         //Observe ViewModel for changes
         mMainActivityViewModel.getmRecipes().observe(this, recipes -> { //Observable lambda expression
             recipeRecyclerViewAdapter.setmRecipes(recipes);
-            //recipeRecyclerViewAdapter.notifyDataSetChanged();
-            Toast.makeText(MainActivity.this, "Recipe View Model changed", Toast.LENGTH_SHORT).show();
+            recipeRecyclerViewAdapter.notifyDataSetChanged();
+            Toast.makeText(MainActivity.this, "observed onChanged", Toast.LENGTH_SHORT).show();
         });
 
     }
@@ -65,11 +64,9 @@ public class MainActivity extends AppCompatActivity {
     private void initRecyclerView(){
         recipeRecyclerView = findViewById(R.id.recipeRecyclerView);
         recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //recipeRecyclerView.setHasFixedSize(true);
+        recipeRecyclerView.setHasFixedSize(true);
 
-        //TODO: getValue always returns null, even if data is there. WHY.
-        recipeRecyclerViewAdapter = new RecipeRecyclerViewAdapter(this, mMainActivityViewModel.getmRecipes().getValue());
+        recipeRecyclerViewAdapter = new RecipeRecyclerViewAdapter(this);
         recipeRecyclerView.setAdapter(recipeRecyclerViewAdapter);
-
     }
 }

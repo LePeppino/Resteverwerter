@@ -22,6 +22,9 @@ public interface RecipeDao {
     @Delete
     void deleteRecipe(Recipe... recipes);
 
+    @Query("DELETE FROM recipe_table")
+    void deleteAllRecipes();
+
     @Query("SELECT * FROM recipe_table")
     LiveData<List<Recipe>> getRecipes();
 

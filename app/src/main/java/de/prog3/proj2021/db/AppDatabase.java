@@ -1,5 +1,11 @@
 package de.prog3.proj2021.db;
 
+/*
+* Database class for App
+*
+* File author: Giuseppe Buccellato
+*/
+
 import android.content.Context;
 
 import androidx.room.Database;
@@ -23,7 +29,7 @@ import de.prog3.proj2021.models.User;
         Ingredient.class,
         ShoppingList.class,
         ShoppingListIngredientCrossRef.class},
-        version = 1,
+        version = 3,
         exportSchema = false)
 
 @TypeConverters({DataConverter.class})

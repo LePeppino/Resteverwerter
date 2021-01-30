@@ -13,6 +13,8 @@ import java.util.List;
 * Recipe has n:m relation to FavouriteList class.
 * Recipe has n:m relation to Ingredient class.
 *
+* File author: Giuseppe Buccellato
+*
 * */
 
 @Entity(tableName = "recipe_table")

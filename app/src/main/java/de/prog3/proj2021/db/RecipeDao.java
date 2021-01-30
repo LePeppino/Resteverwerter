@@ -1,5 +1,11 @@
 package de.prog3.proj2021.db;
 
+/*
+ * Data Access Object for Recipe Model
+ *
+ * File author: Giuseppe Buccellato
+ */
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -30,8 +36,11 @@ public interface RecipeDao {
     @Query("SELECT * FROM recipe_table")
     LiveData<List<Recipe>> getRecipes();
 
+    @Query("SELECT * FROM recipe_table ORDER BY name ASC")
+    LiveData<List<Recipe>> getRecipesASC();
+
     @Query("SELECT * FROM recipe_table ORDER BY name DESC")
-    LiveData<List<Recipe>> getRecipesAlphabetical();
+    LiveData<List<Recipe>> getRecipesDESC();
 
     @Transaction
     @Query("SELECT * FROM recipe_table")

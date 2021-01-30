@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 * FavouriteList has 1:1 relation to User class.
 * FavouriteList has n:m relation to Recipe class.
 *
+* File author: Giuseppe Buccellato
 * */
 
 @Entity(tableName = "favouriteList_table")
@@ -14,12 +15,20 @@ public class FavouriteList {
     @PrimaryKey(autoGenerate = true)
     public int favouriteListId;
 
-    public int userOwnerId; //for reference to parent entity
+    private int numOfFavourites;
+
+    //for reference to parent entity
+    public int userOwnerId;
 
     //constructor
-    public FavouriteList(int favouriteListId){}
+    public FavouriteList(int numOfFavourites){
+        setNumOfFavourites(numOfFavourites);
+    }
 
     //getter, setter
     public int getFavouriteListId(){ return favouriteListId;}
     public void setFavouriteListId(int favouriteListId){ this.favouriteListId = favouriteListId;}
+
+    public int getNumOfFavourites(){return numOfFavourites;}
+    private void setNumOfFavourites(int numOfFavourites){this.numOfFavourites = numOfFavourites;}
 }

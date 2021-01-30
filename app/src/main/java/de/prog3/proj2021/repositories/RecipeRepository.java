@@ -13,6 +13,8 @@ import de.prog3.proj2021.db.RecipeDao;
 /*
 * This class interacts with the Recipe DAO
 * to retrieve and cache recipes from database
+*
+* File author: Giuseppe Buccellato
 * */
 
 public class RecipeRepository {
@@ -25,45 +27,43 @@ public class RecipeRepository {
     public RecipeRepository(Application application){
         AppDatabase recipeDB = AppDatabase.getInstance(application);
         recipeDao = recipeDB.recipeDao();
+        setExampleRecipe(); //TODO: to be removed later
         updateRecipes();
     }
 
-    //getter and updater for recipe set
+    //getter and setter for recipe dataSet
     public LiveData<List<Recipe>> getRecipes(){
         return dataSet;
     }
 
     private void updateRecipes(){
-        setExampleRecipe();
         dataSet = recipeDao.getRecipes();
     }
 
+    //getters for different orders
+    public LiveData<List<Recipe>> getRecipesAlphabetical() {
+        return dataSet = recipeDao.getRecipesASC();
+    }
+    public LiveData<List<Recipe>> getRecipesReverseAlphabetical() {
+        return dataSet = recipeDao.getRecipesDESC();
+    }
+
     /*
-     * database operations communicating with the DAO
-     * in asynchronous threads and update dataSet
+     * database operations communicating with RecipeDao
      */
     public void insert(Recipe recipe){
-        Runnable runnable = () -> {
-            recipeDao.insertRecipe(recipe);
-            System.out.println("recipe inserted");
-        };
-        new Thread(runnable).start();
+        recipeDao.insertRecipe(recipe);
+        System.out.println("recipe inserted");
     }
 
     public void update(Recipe recipe){
-        Runnable runnable = () -> {
-            recipeDao.updateRecipe(recipe);
-            System.out.println("recipe updated");
-        };
-        new Thread(runnable).start();
+        recipeDao.updateRecipe(recipe);
+        System.out.println("recipe updated");
     }
 
     public void delete(Recipe recipe){
-        Runnable runnable = () -> {
-            recipeDao.deleteRecipe(recipe);
-            System.out.println("recipe deleted");
-        };
-        new Thread(runnable).start();
+        recipeDao.deleteRecipe(recipe);
+        System.out.println("recipe deleted");
     }
 
     public void deleteAllRecipes(){
@@ -71,6 +71,19 @@ public class RecipeRepository {
         System.out.println("all recipes deleted");
     }
 
+    /*
+     * Usage of threads may not be necessary as query is quick enough.
+     * Also the results were not always correct, like wrong order.
+     */
+//    public void insert(Recipe recipe){
+//        Runnable runnable = () -> {
+//            recipeDao.insertRecipe(recipe);
+//            System.out.println("recipe inserted");
+//        };
+//        new Thread(runnable).start();
+//    }
+
+    //TODO: remove once database is pre-populated
     private void setExampleRecipe(){
         deleteAllRecipes();
         Recipe doener = new Recipe("döner", 100, true, "legga", "machen und essen", "no url");

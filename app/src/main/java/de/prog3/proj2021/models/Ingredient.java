@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey;
  * Ingredient has n:m relation to Recipe class.
  * Ingredient has n:m relation to ShoppingList class.
  *
+ * File author: Giuseppe Buccellato
+ *
  * */
 
 @Entity(tableName = "ingredient_table")

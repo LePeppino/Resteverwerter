@@ -53,9 +53,9 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         //set main image from resource with Glide
         Glide.with(mContext)
                 .asBitmap()
-                .load(currentRecipe.getHeaderImageUrl())
-                .error(R.mipmap.ic_launcher)        // on error display placeholder
-                .placeholder(R.mipmap.ic_launcher)  // placeholder image
+                .load(currentRecipe.getHeaderImageUrl())    // gets headerImageUrl as String
+                .error(R.mipmap.ic_launcher)                // on error display placeholder
+                .placeholder(R.mipmap.ic_launcher)          // placeholder image
                 .into(holder.image);
 
         //set onClickListener for recipe layout

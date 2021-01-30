@@ -5,6 +5,7 @@ import androidx.room.Entity;
 /*
  * n:m Relation cross reference class for FavouriteList and Recipe
  *
+ * File author: Giuseppe Buccellato
  * */
 
 @Entity(primaryKeys = {"favouriteListId", "recipeId"})

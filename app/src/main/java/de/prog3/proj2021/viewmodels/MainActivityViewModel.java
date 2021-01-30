@@ -1,5 +1,13 @@
 package de.prog3.proj2021.viewmodels;
 
+/*
+ * This ViewModel class retrieves recipe data from
+ * RecipeRepository and passes it to
+ * the UI in FragmentHome
+ *
+ * File author: Giuseppe Buccellato
+ */
+
 import android.app.Application;
 
 import androidx.annotation.NonNull;
@@ -13,13 +21,13 @@ import de.prog3.proj2021.repositories.RecipeRepository;
 
 public class MainActivityViewModel extends AndroidViewModel {
 
-    private RecipeRepository recipeRepository;
-    private LiveData<List<Recipe>> mRecipes;
+    private final RecipeRepository recipeRepository;
+    private final LiveData<List<Recipe>> mRecipes;
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
         recipeRepository = new RecipeRepository(application);
-        mRecipes = recipeRepository.getRecipes();
+        mRecipes = recipeRepository.getRecipesAlphabetical();
     }
 
     public void insert(Recipe recipe){

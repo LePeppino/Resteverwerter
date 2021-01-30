@@ -14,6 +14,12 @@ import java.util.List;
 import de.prog3.proj2021.models.FavouriteList;
 import de.prog3.proj2021.models.Recipe;
 
+/*
+ * n:m Relation cross reference class for FavouriteList and Recipe
+ *
+ * File author: Giuseppe Buccellato
+ * */
+
 public class FavouritesWithRecipes {
     @Embedded
     public FavouriteList favouriteList;

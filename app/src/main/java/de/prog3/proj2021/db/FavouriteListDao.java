@@ -1,5 +1,11 @@
 package de.prog3.proj2021.db;
 
+/*
+ * Data Access Object for FavouriteList Model
+ *
+ * File author: Giuseppe Buccellato
+ */
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -12,6 +18,7 @@ import androidx.room.Update;
 import java.util.List;
 
 import de.prog3.proj2021.models.FavouriteList;
+import de.prog3.proj2021.models.Recipe;
 
 @Dao
 public interface FavouriteListDao {
@@ -24,8 +31,10 @@ public interface FavouriteListDao {
     @Delete
     void deleteFavouriteList(FavouriteList favouriteList);
 
-    // Transaction to return all instances for the relation
-    // FavouritesWithRecipes atomically
+//    @Query("SELECT * FROM favouriteList_table")
+//    LiveData<List<Recipe>> getFavouriteRecipes();
+
+    // Transaction to return all instances for the relation atomically
     @Transaction
     @Query("SELECT * FROM favouriteList_table")
     LiveData<List<FavouritesWithRecipes>> getFavouritesWithRecipes();

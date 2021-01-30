@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey;
 * User has 1:1 relation to FavouriteList class.
 * User has 1:n relation to ShoppingList class.
 *
+* File author: Giuseppe Buccellato
 * */
 
 @Entity(tableName = "user_table")
@@ -16,9 +17,6 @@ public class User {
     public int userId;
 
     public String username;
-
-    @Embedded
-    public FavouriteList favouriteList;
 
     //constructor
     public User(String username) {

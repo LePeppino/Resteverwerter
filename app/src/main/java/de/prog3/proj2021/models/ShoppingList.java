@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey;
 /*
 * ShoppingList has 1:n relation to User class.
 * ShoppingList has n:m relation to Ingredient class.
+*
+* File author: Giuseppe Buccellato
 * */
 
 @Entity(tableName = "shoppingList_table")

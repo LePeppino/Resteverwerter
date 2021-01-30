@@ -1,5 +1,11 @@
 package de.prog3.proj2021.fragments;
 
+/*
+ * UI Favourites Fragment of MainActivity
+ *
+ * File authors: Eric Walter, Giuseppe Buccellato
+ */
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +22,8 @@ public class FragmentFavorites extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_favorites, container, false);
+        View root = inflater.inflate(R.layout.fragment_favorites, container, false);
+
+        return root;
     }
 }

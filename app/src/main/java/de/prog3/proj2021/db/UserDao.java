@@ -1,5 +1,11 @@
 package de.prog3.proj2021.db;
 
+/*
+ * Data Access Object for User Model
+ *
+ * File author: Giuseppe Buccellato
+ */
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -13,12 +19,6 @@ import java.util.List;
 
 import de.prog3.proj2021.models.User;
 
-/*
-* UserDao uses RxJava framework for asynchronous queries
-* with return types Completable and Single<T>
-
-* */
-
 @Dao
 public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -30,8 +30,7 @@ public interface UserDao {
     @Delete
     void deleteUser(User user);
 
-    // Transaction to return all instances for the relation
-    // UserWithFavouriteList atomically
+    // Transaction to return all instances for the relation atomically
     @Transaction
     @Query("SELECT * FROM user_table")
     LiveData<List<UserWithFavouriteList>> getUsersWithFavouriteLists();

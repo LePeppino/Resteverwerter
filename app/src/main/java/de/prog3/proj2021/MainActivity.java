@@ -15,6 +15,7 @@ package de.prog3.proj2021;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+    @SuppressLint("NonConstantResourceId")
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> { //OnNavigationItemSelectedListener lambda expression
                 Fragment selectedFragment = null;
 

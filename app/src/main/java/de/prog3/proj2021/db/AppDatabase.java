@@ -2,18 +2,17 @@ package de.prog3.proj2021.db;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
-import androidx.sqlite.db.SupportSQLiteDatabase;
-
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import de.prog3.proj2021.converters.DataConverter;
+import de.prog3.proj2021.models.FavouriteList;
+import de.prog3.proj2021.models.Ingredient;
+import de.prog3.proj2021.models.Recipe;
+import de.prog3.proj2021.models.ShoppingList;
+import de.prog3.proj2021.models.User;
 
 @Database(entities = {
         User.class,

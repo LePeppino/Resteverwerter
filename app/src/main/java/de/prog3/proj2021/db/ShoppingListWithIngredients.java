@@ -6,6 +6,9 @@ import androidx.room.Relation;
 
 import java.util.List;
 
+import de.prog3.proj2021.models.Ingredient;
+import de.prog3.proj2021.models.ShoppingList;
+
 /*
  * n:m Relation class for queries for ShoppingLists containing Ingredients.
  *

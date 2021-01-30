@@ -11,6 +11,8 @@ import androidx.room.Update;
 
 import java.util.List;
 
+import de.prog3.proj2021.models.Recipe;
+
 @Dao
 public interface RecipeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

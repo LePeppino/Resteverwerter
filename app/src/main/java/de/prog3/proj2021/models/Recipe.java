@@ -1,4 +1,4 @@
-package de.prog3.proj2021.db;
+package de.prog3.proj2021.models;
 
 import android.graphics.Bitmap;
 

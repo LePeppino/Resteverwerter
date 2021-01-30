@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import de.prog3.proj2021.db.Recipe;
+import de.prog3.proj2021.models.Recipe;
 import de.prog3.proj2021.repositories.RecipeRepository;
 
 public class MainActivityViewModel extends AndroidViewModel {

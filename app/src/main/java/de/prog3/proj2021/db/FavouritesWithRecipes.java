@@ -11,6 +11,9 @@ import androidx.room.Relation;
 
 import java.util.List;
 
+import de.prog3.proj2021.models.FavouriteList;
+import de.prog3.proj2021.models.Recipe;
+
 public class FavouritesWithRecipes {
     @Embedded
     public FavouriteList favouriteList;

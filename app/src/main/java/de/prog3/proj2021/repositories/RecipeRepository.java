@@ -1,20 +1,14 @@
 package de.prog3.proj2021.repositories;
 
-import android.app.ActivityManager;
 import android.app.Application;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
-import de.prog3.proj2021.MainActivity;
 import de.prog3.proj2021.db.AppDatabase;
-import de.prog3.proj2021.db.Recipe;
+import de.prog3.proj2021.models.Recipe;
 import de.prog3.proj2021.db.RecipeDao;
-import io.github.mthli.sugartask.SugarTask;
 
 /*
 * This class interacts with the Recipe DAO

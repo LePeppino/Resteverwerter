@@ -1,13 +1,8 @@
-package de.prog3.proj2021.db;
-
-import android.widget.ArrayAdapter;
+package de.prog3.proj2021.models;
 
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /*
 * User has 1:1 relation to FavouriteList class.

@@ -12,61 +12,53 @@ package de.prog3.proj2021;
 *
 * */
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
-import java.util.List;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import de.prog3.proj2021.adapters.RecipeRecyclerViewAdapter;
-import de.prog3.proj2021.db.Recipe;
-import de.prog3.proj2021.viewmodels.MainActivityViewModel;
-import io.github.mthli.sugartask.SugarTask;
+import de.prog3.proj2021.fragments.FragmentFavorites;
+import de.prog3.proj2021.fragments.FragmentHome;
+import de.prog3.proj2021.fragments.FragmentPicker;
+import de.prog3.proj2021.fragments.FragmentShoppingList;
 
 public class MainActivity extends AppCompatActivity {
-
-    private MainActivityViewModel mMainActivityViewModel;
-    RecipeRecyclerViewAdapter recipeRecyclerViewAdapter;
-    RecyclerView recipeRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Passes LiveData from MainActivityViewModel to RecipeRecyclerViewAdapter
-        initRecyclerView();
-
-        //instantiate ViewModels
-        mMainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-
-        //initiate ViewModels
-
-        //Observe ViewModel for changes
-        mMainActivityViewModel.getmRecipes().observe(this, recipes -> { //Observable lambda expression
-            recipeRecyclerViewAdapter.setmRecipes(recipes);
-            recipeRecyclerViewAdapter.notifyDataSetChanged();
-            Toast.makeText(MainActivity.this, "observed onChanged", Toast.LENGTH_SHORT).show();
-        });
+        //initiate BottomNavBar
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
     }
 
-    /*
-    * initialise RecipeRecyclerView with Adapter
-    * Queries recipes from RecipeRepository and passes data to RecipeRecyclerViewAdapter
-    * */
-    private void initRecyclerView(){
-        recipeRecyclerView = findViewById(R.id.recipeRecyclerView);
-        recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recipeRecyclerView.setHasFixedSize(true);
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            item -> { //OnNavigationItemSelectedListener lambda expression
+                Fragment selectedFragment = null;
 
-        recipeRecyclerViewAdapter = new RecipeRecyclerViewAdapter(this);
-        recipeRecyclerView.setAdapter(recipeRecyclerViewAdapter);
-    }
+                switch(item.getItemId()){
+                    case R.id.nav_home:
+                        selectedFragment = new FragmentHome();
+                        break;
+                    case R.id.nav_picker:
+                        selectedFragment = new FragmentPicker();
+                        break;
+                    case R.id.nav_shopping_list:
+                        selectedFragment = new FragmentShoppingList();
+                        break;
+                    case R.id.nav_favourites:
+                        selectedFragment = new FragmentFavorites();
+                }
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        selectedFragment).commit();
+
+                return true;
+            };
+
+
 }

@@ -11,9 +11,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import io.reactivex.Completable;
-import io.reactivex.Flowable;
-import io.reactivex.Single;
+import de.prog3.proj2021.models.User;
 
 /*
 * UserDao uses RxJava framework for asynchronous queries

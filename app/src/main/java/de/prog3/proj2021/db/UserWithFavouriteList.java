@@ -3,6 +3,9 @@ package de.prog3.proj2021.db;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
+import de.prog3.proj2021.models.FavouriteList;
+import de.prog3.proj2021.models.User;
+
 /*
 * 1:1 Relation reference class for User and FavouriteList
 *

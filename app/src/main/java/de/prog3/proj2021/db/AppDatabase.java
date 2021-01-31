@@ -53,7 +53,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             .fallbackToDestructiveMigration()
                             .allowMainThreadQueries()
                             //.addCallback(roomCallback)
-                            //.createFromAsset("database/food_scout.db")
+                            .createFromAsset("database/food_scout.db")
                             .build();
                 }
             }

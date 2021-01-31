@@ -31,9 +31,6 @@ public interface FavouriteListDao {
     @Delete
     void deleteFavouriteList(FavouriteList favouriteList);
 
-//    @Query("SELECT * FROM favouriteList_table")
-//    LiveData<List<Recipe>> getFavouriteRecipes();
-
     // Transaction to return all instances for the relation atomically
     @Transaction
     @Query("SELECT * FROM favouriteList_table")

@@ -4,11 +4,9 @@
     android:background="@android:color/holo_orange_dark">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Picker Fragment"
-        android:textSize="50sp"
-        android:layout_centerInParent="true"
+        android:id="@+id/pickerFragmentTitle"
+        android:text="@string/title_picker"
+        style="@style/FragmentTitleText"
         />
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package de.prog3.proj2021.db;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 
 /*

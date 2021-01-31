@@ -24,17 +24,15 @@ public class Recipe {
 
     public String name;
     public int calories;
-    public boolean isFavourite;
+    public int isFavourite; //bool value: 0 = false, 1 = true
     public String description;
     public String instructions;
     public String headerImageUrl;
 
-    //TODO: keywords list for search-feature?
-
     //constructor
     public Recipe(String name,
                   int calories,
-                  boolean isFavourite,
+                  int isFavourite,
                   String description,
                   String instructions,
                   String headerImageUrl)
@@ -57,10 +55,10 @@ public class Recipe {
     public int getCalories() {return calories;}
     private void setCalories(int calories) {this.calories = calories;}
 
-    public boolean isFavourite() {
+    public int isFavourite() {
         return isFavourite;
     }
-    private void setFavourite(boolean favourite) {
+    private void setFavourite(int favourite) {
         isFavourite = favourite;
     }
 

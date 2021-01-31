@@ -8,7 +8,7 @@
         />
 
     <item
-        android:title="@string/picker"
+        android:title="@string/title_picker"
         android:id="@+id/nav_picker"
         android:icon="@drawable/ic_baseline_search_24"
         />

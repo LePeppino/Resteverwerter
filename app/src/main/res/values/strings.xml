@@ -5,12 +5,15 @@
     <!-- recipe list -->
     <string name="recipe_placeholder">Recipe Name</string>
     <string name="recipe_desc_placeholder">Recipe Description</string>
+    <string name="home_searchView_placeholder">Search recipe</string>
+    <string name="recipe_recyclerView_title">Available recipes</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_home">Home</string>
     <string name="title_search">Picker</string>
     <string name="title_favorites">Favorites</string>
-    <string name="picker">Ingredient Picker</string>
+    <string name="title_picker">Ingredient Picker</string>
     <string name="title_shopping_list">Shopping List</string>
 
 </resources>

@@ -20,7 +20,7 @@ public class Ingredient {
     public int numAvailable;        //for pantry function
     public int numRequired;         //for recipes
     public int numToBuy;            //for shopping list
-    public boolean isCheckedOnShoppingList;
+    public int isCheckedOnShoppingList; //bool value: 0 = false, 1 = true
 
     //TODO: find solution for enums Unit and Type (Converters?)
 
@@ -55,7 +55,7 @@ public class Ingredient {
                       int numAvailable,
                       int numRequired,
                       int numToBuy,
-                      boolean isCheckedOnShoppingList)
+                      int isCheckedOnShoppingList)
     {
         setName(name);
         setNumAvailable(numAvailable);
@@ -80,7 +80,7 @@ public class Ingredient {
     public int getNumToBuy() {
         return numToBuy;
     }
-    public boolean isCheckedOnShoppingList(){
+    public int isCheckedOnShoppingList(){
         return isCheckedOnShoppingList;
     }
 
@@ -100,7 +100,7 @@ public class Ingredient {
     public void setNumToBuy(int numToBuy) {
         this.numToBuy = numToBuy;
     }
-    public void setCheckedOnShoppingList(boolean isCheckedOnShoppingList){
+    public void setCheckedOnShoppingList(int isCheckedOnShoppingList){
         this.isCheckedOnShoppingList = isCheckedOnShoppingList;
     }
 

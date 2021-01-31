@@ -27,7 +27,8 @@ public class RecipeRepository {
     public RecipeRepository(Application application){
         AppDatabase recipeDB = AppDatabase.getInstance(application);
         recipeDao = recipeDB.recipeDao();
-        setExampleRecipe(); //TODO: to be removed later
+        //deleteAllRecipes();
+        //setExampleRecipe(); //TODO: to be removed later
         updateRecipes();
     }
 
@@ -86,9 +87,9 @@ public class RecipeRepository {
     //TODO: remove once database is pre-populated
     private void setExampleRecipe(){
         deleteAllRecipes();
-        Recipe doener = new Recipe("döner", 100, true, "legga", "machen und essen", "no url");
-        Recipe pizza = new Recipe("pizza", 1200, true, "legga2", "machen und auch essen", "no url");
-        Recipe burrito = new Recipe("burrito", 120034, false, "legga3", "ebenfalls machen und auch essen", "no url");
+        Recipe doener = new Recipe("döner", 100, 1, "legga", "machen und essen", "no url");
+        Recipe pizza = new Recipe("pizza", 1200, 1, "legga2", "machen und auch essen", "no url");
+        Recipe burrito = new Recipe("burrito", 120034, 0, "legga3", "ebenfalls machen und auch essen", "no url");
         insert(doener);
         insert(pizza);
         insert(burrito);

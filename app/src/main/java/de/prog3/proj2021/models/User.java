@@ -1,5 +1,6 @@
 package de.prog3.proj2021.models;
 
+import androidx.annotation.NonNull;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -16,7 +17,8 @@ public class User {
     @PrimaryKey(autoGenerate = true)
     public int userId;
 
-    public String username;
+    @NonNull
+    public String username = "";
 
     //constructor
     public User(String username) {
@@ -28,6 +30,6 @@ public class User {
     private void setUserId(int id) {this.userId = id;}
 
     public String username() {return username;}
-    private void setUsername(String username) {this.username = username;}
+    private void setUsername(@NonNull String username) {this.username = username;}
 
 }

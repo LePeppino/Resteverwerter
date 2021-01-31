@@ -1,5 +1,6 @@
 package de.prog3.proj2021.models;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -16,10 +17,11 @@ public class ShoppingList {
     @PrimaryKey(autoGenerate = true)
     public int shoppingListId;
 
-    public int userCreatorId; //for reference to parent entity
-
-    public String name;
+    @NonNull
+    public String name = "";
     public int numUncheckedItems;
+
+    public int userCreatorId; //for reference to parent entity
 
     //constructor
     public ShoppingList(String name,
@@ -33,7 +35,7 @@ public class ShoppingList {
     public int getShoppingListId() {
         return shoppingListId;
     }
-    public String getName() {
+    public @NonNull String getName() {
         return name;
     }
     public int getNumUncheckedItems() {
@@ -43,7 +45,7 @@ public class ShoppingList {
     public void setShoppingListId(int shoppingListId) {
         this.shoppingListId = shoppingListId;
     }
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         this.name = name;
     }
     public void setNumUncheckedItems(int numUncheckedItems) {

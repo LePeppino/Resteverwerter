@@ -29,7 +29,7 @@ import de.prog3.proj2021.models.User;
         Ingredient.class,
         ShoppingList.class,
         ShoppingListIngredientCrossRef.class},
-        version = 3,
+        version = 4,
         exportSchema = false)
 
 @TypeConverters({DataConverter.class})

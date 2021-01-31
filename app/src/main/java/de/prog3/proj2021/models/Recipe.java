@@ -2,6 +2,7 @@ package de.prog3.proj2021.models;
 
 import android.graphics.Bitmap;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -22,12 +23,16 @@ public class Recipe {
     @PrimaryKey(autoGenerate = true)
     public int recipeId;
 
-    public String name;
+    @NonNull
+    public String name = "";
     public int calories;
-    public int isFavourite; //bool value: 0 = false, 1 = true
-    public String description;
-    public String instructions;
-    public String headerImageUrl;
+    public int isFavourite;             //bool value: 0 = false, 1 = true
+    @NonNull
+    public String description = "";
+    @NonNull
+    public String instructions = "";
+    @NonNull
+    public String headerImageUrl = "";  //TODO: implement directory and methods for image resources
 
     //constructor
     public Recipe(String name,
@@ -49,8 +54,8 @@ public class Recipe {
     public int getRecipeIdId() {return recipeId;}
     private void setRecipeId(int recipeId) {this.recipeId = recipeId;}
 
-    public String getName() {return name;}
-    private void setName(String name) {this.name = name;}
+    public @NonNull String getName() {return name;}
+    private void setName(@NonNull String name) {this.name = name;}
 
     public int getCalories() {return calories;}
     private void setCalories(int calories) {this.calories = calories;}
@@ -62,24 +67,24 @@ public class Recipe {
         isFavourite = favourite;
     }
 
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return description;
     }
-    private void setDescription(String description) {
+    private void setDescription(@NonNull String description) {
         this.description = description;
     }
 
-    public String getInstructions() {
+    public @NonNull String getInstructions() {
         return instructions;
     }
-    private void setInstructions(String instructions) {
+    private void setInstructions(@NonNull String instructions) {
         this.instructions = instructions;
     }
 
-    public String getHeaderImageUrl() {
+    public @NonNull String getHeaderImageUrl() {
         return headerImageUrl;
     }
-    private void setHeaderImageUrl(String headerImageUrl) {
+    private void setHeaderImageUrl(@NonNull String headerImageUrl) {
         this.headerImageUrl = headerImageUrl;
     }
 

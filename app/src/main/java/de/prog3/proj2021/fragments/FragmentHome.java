@@ -1,7 +1,9 @@
 package de.prog3.proj2021.fragments;
 
 /*
- * UI Home Fragment of MainActivity
+ * UI Home Fragment of MainActivity.
+ * Instantiates a ViewModel to retrieve data from repository.
+ * Initiates a RecyclerView to display queried recipe data.
  *
  * File authors: Eric Walter, Giuseppe Buccellato
  */
@@ -66,7 +68,7 @@ public class FragmentHome extends Fragment {
         mMainActivityViewModel.getmRecipes().observe(getViewLifecycleOwner(), recipes -> { //Observable lambda expression
             recipeRecyclerViewAdapter.setmRecipes(recipes);
             recipeRecyclerViewAdapter.notifyDataSetChanged();
-            Toast.makeText(getContext(), "observed onChanged", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "observed onChanged RecyclerView", Toast.LENGTH_SHORT).show();
         });
     }
 }

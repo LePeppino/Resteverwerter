@@ -22,16 +22,15 @@ import de.prog3.proj2021.models.Recipe;
 
 @Dao
 public interface FavouriteListDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertFavouriteList(FavouriteList favouriteList);
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insertFavouritesWithRecipes(FavouriteRecipeCrossRef favouriteRecipeCrossRef);
 
     @Update
-    void updateFavouriteListInfo(FavouriteList favouriteList);
+    void updateFavouritesWithRecipes(FavouriteRecipeCrossRef favouriteRecipeCrossRef);
 
     @Delete
-    void deleteFavouriteList(FavouriteList favouriteList);
+    void deleteFavouritesWithRecipes(FavouriteRecipeCrossRef favouriteRecipeCrossRef);
 
-    // Transaction to return all instances for the relation atomically
     @Transaction
     @Query("SELECT * FROM favouriteList_table")
     LiveData<List<FavouritesWithRecipes>> getFavouritesWithRecipes();

@@ -29,7 +29,7 @@ import de.prog3.proj2021.models.User;
         Ingredient.class,
         ShoppingList.class,
         ShoppingListIngredientCrossRef.class},
-        version = 4,
+        version = 5, //TODO: needs to be incremented every time the db schema is altered
         exportSchema = false)
 
 @TypeConverters({DataConverter.class})

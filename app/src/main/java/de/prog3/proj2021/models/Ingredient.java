@@ -1,9 +1,5 @@
 package de.prog3.proj2021.models;
 
-import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
 /*
  * Ingredient has n:m relation to Recipe class.
  * Ingredient has n:m relation to ShoppingList class.
@@ -11,6 +7,10 @@ import androidx.room.PrimaryKey;
  * File author: Giuseppe Buccellato
  *
  * */
+
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "ingredient_table")
 public class Ingredient {

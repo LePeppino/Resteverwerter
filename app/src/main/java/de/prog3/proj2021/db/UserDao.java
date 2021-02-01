@@ -25,7 +25,7 @@ public interface UserDao {
     void insertUser(User user);
 
     @Update
-    void updateUserInfo(User user);
+    void updateUser(User user);
 
     @Delete
     void deleteUser(User user);
@@ -39,6 +39,9 @@ public interface UserDao {
     @Query("SELECT * FROM user_table")
     LiveData<List<UserWithShoppingLists>> getUserWithShoppingLists();
 
+    @Query("SELECT * FROM user_table")
+    LiveData<List<User>> getUsers();
+
     @Query("SELECT * FROM user_table WHERE userId = :userId")
-    LiveData<User> getUserById(int userId);
+    LiveData<List<User>> getUserById(int userId);
 }

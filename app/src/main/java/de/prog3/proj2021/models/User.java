@@ -1,33 +1,27 @@
-package de.prog3.proj2021.db;
+package de.prog3.proj2021.models;
 
-import android.widget.ArrayAdapter;
-
+import androidx.annotation.NonNull;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /*
 * User has 1:1 relation to FavouriteList class.
 * User has 1:n relation to ShoppingList class.
 *
+* File author: Giuseppe Buccellato
 * */
 
-@Entity
+@Entity(tableName = "user_table")
 public class User {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int userId;
 
-    public String username;
-
-    @Embedded
-    public FavouriteList favouriteList;
+    @NonNull
+    public String username = "";
 
     //constructor
-    public User(int userId, String username) {
-        setUserId(userId);
+    public User(String username) {
         setUsername(username);
     }
 
@@ -36,6 +30,6 @@ public class User {
     private void setUserId(int id) {this.userId = id;}
 
     public String username() {return username;}
-    private void setUsername(String username) {this.username = username;}
+    private void setUsername(@NonNull String username) {this.username = username;}
 
 }

@@ -1,18 +1,30 @@
 package de.prog3.proj2021;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
+/*
+*
+* Abschlussprojekt Programmierung III WiSe 2020/21
+* Prüfer:   Prof. Dr.-Ing. Rainer Roosmann
+*
+* Autoren:  Giuseppe Buccellato,    MatNr. 889000
+*           Eric Walter,            MatNr. 883921
+*
+* Titel:    Food Scout - Resteverwerter App
+*
+* */
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
-import de.prog3.proj2021.db.AppDatabase;
-import de.prog3.proj2021.db.FavouriteListDao;
-import de.prog3.proj2021.db.Ingredient;
-import de.prog3.proj2021.db.IngredientDao;
-import de.prog3.proj2021.db.RecipeDao;
-import de.prog3.proj2021.db.ShoppingListDao;
-import de.prog3.proj2021.db.User;
-import de.prog3.proj2021.db.UserDao;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import de.prog3.proj2021.fragments.FragmentFavorites;
+import de.prog3.proj2021.fragments.FragmentHome;
+import de.prog3.proj2021.fragments.FragmentPicker;
+import de.prog3.proj2021.fragments.FragmentShoppingList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,25 +33,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //create an instance of the database and preload with data
-        //TODO: create preloaded database asset or file to insert data
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Sample.db")
-                //choose how to prepopulate database
-                //.createFromAsset("database/myapp.db")
-                //.createFromFile("database/myapp")
-                .build();
-
-        //instantiation of the Data Access Objects
-        UserDao userDao = db.userDao();
-        FavouriteListDao favouriteListDao = db.favouriteListDao();
-        RecipeDao recipeDao = db.recipeDao();
-        IngredientDao ingredientDao = db.ingredientDao();
-        ShoppingListDao shoppingListDao = db.shoppingListDao();
-
-        //example usage of database interaction
-        User fritz = new User(1,"fritz");
-        userDao.insertUser(fritz);
-        userDao.deleteUser(fritz);
+        //initiate BottomNavBar
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
     }
+
+    @SuppressLint("NonConstantResourceId")
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            item -> { //OnNavigationItemSelectedListener lambda expression
+                Fragment selectedFragment = null;
+
+                switch(item.getItemId()){
+                    case R.id.nav_home:
+                        selectedFragment = new FragmentHome();
+                        break;
+                    case R.id.nav_picker:
+                        selectedFragment = new FragmentPicker();
+                        break;
+                    case R.id.nav_shopping_list:
+                        selectedFragment = new FragmentShoppingList();
+                        break;
+                    case R.id.nav_favourites:
+                        selectedFragment = new FragmentFavorites();
+                }
+                assert selectedFragment != null;
+                getSupportFragmentManager().beginTransaction()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE) //for switching animation
+                        .replace(R.id.fragment_container, selectedFragment)
+                        .commit();
+
+                return true;
+            };
+
+
 }

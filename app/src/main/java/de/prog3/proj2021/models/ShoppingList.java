@@ -1,5 +1,6 @@
-package de.prog3.proj2021.db;
+package de.prog3.proj2021.models;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -7,24 +8,25 @@ import androidx.room.PrimaryKey;
 /*
 * ShoppingList has 1:n relation to User class.
 * ShoppingList has n:m relation to Ingredient class.
+*
+* File author: Giuseppe Buccellato
 * */
 
-@Entity
+@Entity(tableName = "shoppingList_table")
 public class ShoppingList {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int shoppingListId;
+
+    @NonNull
+    public String name = "";
+    public int numUncheckedItems;
 
     public int userCreatorId; //for reference to parent entity
 
-    public String name;
-    public int numUncheckedItems;
-
     //constructor
-    public ShoppingList(int shoppingListId,
-                        String name,
+    public ShoppingList(String name,
                         int numUncheckedItems)
     {
-        setShoppingListId(shoppingListId);
         setName(name);
         setNumUncheckedItems(numUncheckedItems);
     }
@@ -33,7 +35,7 @@ public class ShoppingList {
     public int getShoppingListId() {
         return shoppingListId;
     }
-    public String getName() {
+    public @NonNull String getName() {
         return name;
     }
     public int getNumUncheckedItems() {
@@ -43,7 +45,7 @@ public class ShoppingList {
     public void setShoppingListId(int shoppingListId) {
         this.shoppingListId = shoppingListId;
     }
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         this.name = name;
     }
     public void setNumUncheckedItems(int numUncheckedItems) {

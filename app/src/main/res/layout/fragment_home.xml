@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/holo_blue_bright">
+
+    <TextView
+        android:id="@+id/appTitleId"
+        android:text="@string/app_name"
+        style="@style/FragmentTitleText"
+        />
+
+    <androidx.appcompat.widget.SearchView
+        style="@style/searchViewStyle"
+        android:id="@+id/homeFragmentSearchView"
+        android:layout_below="@+id/appTitleId"
+        app:queryHint="@string/home_searchView_placeholder"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RecipeRecyclerViewTitle"
+        android:layout_below="@+id/homeFragmentSearchView"
+        android:text="@string/recipe_recyclerView_title"
+        android:textSize="20sp"
+        android:textColor="@color/colorTextPrimary"
+        android:layout_marginStart="10dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/RecipeRecyclerViewTitle"
+        android:id="@+id/recipeRecyclerView"
+        tools:listitem="@layout/layout_recipe_listitem"/>
+
+</RelativeLayout>

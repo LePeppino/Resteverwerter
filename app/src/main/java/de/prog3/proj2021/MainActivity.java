@@ -14,6 +14,7 @@ package de.prog3.proj2021;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -56,8 +57,11 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_favourites:
                         selectedFragment = new FragmentFavorites();
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        selectedFragment).commit();
+                assert selectedFragment != null;
+                getSupportFragmentManager().beginTransaction()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE) //for switching animation
+                        .replace(R.id.fragment_container, selectedFragment)
+                        .commit();
 
                 return true;
             };

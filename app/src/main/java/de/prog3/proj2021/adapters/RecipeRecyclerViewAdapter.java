@@ -1,6 +1,7 @@
 package de.prog3.proj2021.adapters;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,12 +51,16 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         holder.name.setText(currentRecipe.getName());
         holder.description.setText(currentRecipe.getDescription());
 
+        //For conversion to webp format: https://medium.com/android-core/usage-of-image-resource-files-in-android-studio-263305c8f4db
+        //For usage of images from assets: https://stackoverflow.com/questions/29982341/using-glide-for-android-how-do-i-load-images-from-asset-and-resources
+        String pathUri = "file:///android_asset/" + currentRecipe.getHeaderImageUrl();
+
         //set main image from resource with Glide
         Glide.with(mContext)
                 .asBitmap()
-                .load(currentRecipe.getHeaderImageUrl())    // gets headerImageUrl as String
-                .error(R.mipmap.ic_launcher)                // on error display placeholder
-                .placeholder(R.mipmap.ic_launcher)          // placeholder image
+                .load(Uri.parse(pathUri))               // gets headerImageUrl as String
+                .error(R.mipmap.ic_launcher)            // on error display placeholder
+                .placeholder(R.mipmap.ic_launcher)      // placeholder image
                 .into(holder.image);
 
         //set onClickListener for recipe layout

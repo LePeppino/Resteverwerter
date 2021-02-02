@@ -131,7 +131,8 @@ public class Ingredient {
         CONDIMENTS(9),
         DAIRY_ALTERNATES(10),
         SWEETS(11),
-        BEVERAGES(12);
+        BEVERAGES(12),
+        BAKING(13);
 
         public final int typeValue;
 

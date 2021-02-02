@@ -32,7 +32,9 @@ public class FavouriteRecipeRepository {
     }
 
     //getter and setter for favouriteList dataSet
-    public LiveData<List<FavouritesWithRecipes>> getFavouritesWithRecipes() { return dataSet;}
+    public LiveData<List<FavouritesWithRecipes>> getFavouritesWithRecipes() {
+        return dataSet;
+    }
 
     private void updateFavouritesWithRecipes(){
         dataSet = favouriteListDao.getFavouritesWithRecipes();

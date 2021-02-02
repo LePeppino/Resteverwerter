@@ -12,6 +12,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 import java.util.List;
@@ -23,13 +24,23 @@ public interface ShoppingListDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertShoppingList(ShoppingList shoppingList);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertShoppingListWithIngredients(ShoppingListIngredientCrossRef shoppingListIngredientCrossRef);
+
     @Update
     void updateShoppingList(ShoppingList shoppingList);
+
+    @Update
+    void updateShoppingListWithIngredients(ShoppingListIngredientCrossRef shoppingListIngredientCrossRef);
 
     @Delete
     void deleteShoppingList(ShoppingList shoppingList);
 
+    @Delete
+    void deleteShoppingListWithIngredients(ShoppingListIngredientCrossRef shoppingListIngredientCrossRef);
+
+    @Transaction
     @Query("SELECT * FROM shoppingList_table")
-    LiveData<List<ShoppingList>> getAllShoppingLists();
+    LiveData<List<ShoppingListWithIngredients>> getShoppingListWithIngredients();
 
 }

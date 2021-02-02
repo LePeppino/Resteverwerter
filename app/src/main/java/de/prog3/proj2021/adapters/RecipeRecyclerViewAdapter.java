@@ -1,6 +1,14 @@
 package de.prog3.proj2021.adapters;
 
+/*
+ * RecyclerViewAdapter holds all the ViewHolders filled
+ * with the Views to display the recipes on home screen.
+ *
+ * File author: Giuseppe Buccellato
+ * */
+
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,15 +25,10 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.prog3.proj2021.MainActivity;
 import de.prog3.proj2021.R;
 import de.prog3.proj2021.models.Recipe;
-
-/*
-* RecyclerViewAdapter holds all the ViewHolders filled
-* with the Views to display the recipes on home screen.
-*
-* File author: Giuseppe Buccellato
-* */
+import de.prog3.proj2021.ui.RecipeDetailActivity;
 
 public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecyclerViewAdapter.RecipeHolder>{
 
@@ -67,8 +70,12 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: open up recipe details
+                //get ID of currentRecipe and pass to new Activity
+                int currentRecipeId = currentRecipe.getRecipeIdId();
 
+                Intent intent = new Intent(mContext, RecipeDetailActivity.class);
+                intent.putExtra("currentRecipeId", currentRecipeId);
+                mContext.startActivity(intent);
             }
         });
     }
@@ -84,9 +91,9 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
     }
 
     public static class RecipeHolder extends RecyclerView.ViewHolder{
-        private ImageView image;
-        private TextView name;
-        private TextView description;
+        private final ImageView image;
+        private final TextView name;
+        private final TextView description;
         RelativeLayout parentLayout;
 
         public RecipeHolder(@NonNull View itemView) {

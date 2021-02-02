@@ -29,9 +29,6 @@ public interface IngredientDao {
     @Delete
     void deleteIngredient(Ingredient... ingredients); //attempts to delete one or more ingredients
 
-    @Query("DELETE FROM ingredient_table")
-    void deleteAllIngredients();
-
     @Query("SELECT * FROM ingredient_table")
     LiveData<List<Ingredient>> getIngredients();
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.RecipeDetailActivity"
+    android:background="@android:color/holo_blue_bright">
+
+    <TextView
+        style="@style/FragmentTitleText"
+        android:text="@string/title_recipe_detail"/>
+
+</RelativeLayout>

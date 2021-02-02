@@ -30,10 +30,9 @@ public interface UserDao {
     @Delete
     void deleteUser(User user);
 
-    // Transaction to return all instances for the relation atomically
     @Transaction
     @Query("SELECT * FROM user_table")
-    LiveData<List<UserWithFavouriteList>> getUsersWithFavouriteLists();
+    LiveData<List<UserWithFavouriteList>> getUserWithFavouriteList();
 
     @Transaction
     @Query("SELECT * FROM user_table")

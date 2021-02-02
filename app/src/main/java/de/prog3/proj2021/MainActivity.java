@@ -37,8 +37,17 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
+        //set starting fragment as home
+        Fragment startingFragment = new FragmentHome();
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, startingFragment)
+                .commit();
     }
 
+    /*
+    * BottomNavBar Listener with fragment switcher
+    * */
     @SuppressLint("NonConstantResourceId")
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> { //OnNavigationItemSelectedListener lambda expression

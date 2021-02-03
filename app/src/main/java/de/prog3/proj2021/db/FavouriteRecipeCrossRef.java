@@ -12,14 +12,19 @@ import androidx.room.ForeignKey;
 import de.prog3.proj2021.models.FavouriteList;
 import de.prog3.proj2021.models.Recipe;
 
-@Entity(primaryKeys = {"favouriteListId", "recipeId"},
+import static androidx.room.ForeignKey.CASCADE;
+
+@Entity(tableName = "favouriteRecipeCrossRef_table",
+        primaryKeys = {"favouriteListId", "recipeId"},
         foreignKeys = {
         @ForeignKey(entity = FavouriteList.class,
-                parentColumns = "favouriteListId",
-                childColumns = "favouriteListId"),
+                parentColumns = "id",
+                childColumns = "favouriteListId",
+                onDelete = CASCADE),
         @ForeignKey(entity = Recipe.class,
-                parentColumns = "recipeId",
-                childColumns = "recipeId")})
+                parentColumns = "id",
+                childColumns = "recipeId",
+                onDelete = CASCADE)})
 public class FavouriteRecipeCrossRef {
     public int favouriteListId;
     public int recipeId;

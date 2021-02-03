@@ -15,7 +15,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "ingredient_table")
 public class Ingredient {
     @PrimaryKey(autoGenerate = true)
-    public int ingredientId;
+    public int id;
 
     @NonNull
     public String name = "";
@@ -45,8 +45,8 @@ public class Ingredient {
     }
 
     //getter, setter
-    public int getIngredientId() {
-        return ingredientId;
+    public int getId() {
+        return id;
     }
     public @NonNull String getName() {
         return name;
@@ -72,7 +72,7 @@ public class Ingredient {
 
 
     public void setId(int ingredientId) {
-        this.ingredientId = ingredientId;
+        this.id = ingredientId;
     }
     public void setName(@NonNull String name) {
         this.name = name;

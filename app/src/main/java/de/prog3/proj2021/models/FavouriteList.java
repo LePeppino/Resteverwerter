@@ -14,13 +14,14 @@ import androidx.room.PrimaryKey;
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName = "favouriteList_table",
-        foreignKeys = @ForeignKey(entity = User.class,
-        parentColumns = "userId",
+        foreignKeys =
+        @ForeignKey(entity = User.class,
+        parentColumns = "id",
         childColumns = "userOwnerId",
         onDelete = CASCADE))
 public class FavouriteList {
     @PrimaryKey(autoGenerate = true)
-    public int favouriteListId;
+    public int id;
 
     private int numOfFavourites;
 
@@ -33,8 +34,8 @@ public class FavouriteList {
     }
 
     //getter, setter
-    public int getFavouriteListId(){ return favouriteListId;}
-    public void setFavouriteListId(int favouriteListId){ this.favouriteListId = favouriteListId;}
+    public int getId(){ return id;}
+    public void setId(int id){ this.id = id;}
 
     public int getNumOfFavourites(){return numOfFavourites;}
     private void setNumOfFavourites(int numOfFavourites){this.numOfFavourites = numOfFavourites;}

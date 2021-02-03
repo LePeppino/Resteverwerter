@@ -12,14 +12,19 @@ import androidx.room.ForeignKey;
 import de.prog3.proj2021.models.Ingredient;
 import de.prog3.proj2021.models.Recipe;
 
-@Entity(primaryKeys = {"recipeId", "ingredientId"},
+import static androidx.room.ForeignKey.CASCADE;
+
+@Entity(tableName = "recipeIngredientCrossRef_table",
+        primaryKeys = {"recipeId", "ingredientId"},
         foreignKeys = {
         @ForeignKey(entity = Recipe.class,
-                parentColumns = "recipeId",
-                childColumns = "recipeId"),
+                parentColumns = "id",
+                childColumns = "recipeId",
+                onDelete = CASCADE),
         @ForeignKey(entity = Ingredient.class,
-                parentColumns = "ingredientId",
-                childColumns = "ingredientId")})
+                parentColumns = "id",
+                childColumns = "ingredientId",
+                onDelete = CASCADE)})
 public class RecipeIngredientCrossRef {
     public int recipeId;
     public int ingredientId;

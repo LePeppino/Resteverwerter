@@ -27,7 +27,6 @@ import de.prog3.proj2021.viewmodels.RecipeViewModel;
 
 public class FragmentHome extends Fragment {
 
-    private RecipeViewModel mRecipeViewModel;
     RecipeRecyclerViewAdapter recipeRecyclerViewAdapter;
     RecyclerView recipeRecyclerView;
 
@@ -62,7 +61,7 @@ public class FragmentHome extends Fragment {
      * RecipeRepository and pass data to RecipeRecyclerViewAdapter
      */
     private void initViewModel(){
-        mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
+        RecipeViewModel mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
         mRecipeViewModel.getmRecipes().observe(getViewLifecycleOwner(), recipes -> { //Observable lambda expression
             recipeRecyclerViewAdapter.setmRecipes(recipes);

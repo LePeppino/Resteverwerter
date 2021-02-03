@@ -11,26 +11,30 @@ package de.prog3.proj2021.ui;
  */
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+
+import java.util.List;
 
 import de.prog3.proj2021.R;
 import de.prog3.proj2021.adapters.RecipeDetailRecyclerViewAdapter;
-import de.prog3.proj2021.adapters.RecipeRecyclerViewAdapter;
 import de.prog3.proj2021.db.RecipeWithIngredients;
 import de.prog3.proj2021.viewmodels.RecipeViewModel;
 
 public class RecipeDetailActivity extends AppCompatActivity {
 
-    private RecipeViewModel mRecipeViewModel;
     RecipeDetailRecyclerViewAdapter recipeDetailRecyclerViewAdapter;
     RecyclerView recipeDetailRecyclerView;
+    RecipeWithIngredients currentRecipe = new RecipeWithIngredients();
 
     int currentRecipeId = 1;
 
@@ -50,7 +54,35 @@ public class RecipeDetailActivity extends AppCompatActivity {
         initRecyclerView();
         //instantiate ViewModel and Observer
         initViewModel();
+        //assign Views
+        initViews();
 
+    }
+
+    private void initViews(){
+        final ImageView headerImage;
+        final TextView recipeTitle;
+        final TextView description;
+        final TextView instructions;
+
+        headerImage = findViewById(R.id.detailHeaderImage);
+        recipeTitle = findViewById(R.id.recipeDetailTitleText);
+        description = findViewById(R.id.recipeDetailDescriptionText);
+        instructions = findViewById(R.id.recipeDetailInstructions);
+
+        //pass chosen recipe details to layout
+        recipeTitle.setText(currentRecipe.recipe.getName());
+        description.setText(currentRecipe.recipe.getDescription());
+        instructions.setText(currentRecipe.recipe.getInstructions());
+
+        //set header image uri from resource with Glide
+        String headerUri = "file:///android_asset/" + currentRecipe.recipe.getHeaderImageUrl();
+        Glide.with(this)
+                .asBitmap()
+                .load(Uri.parse(headerUri))             // takes String from above
+                .error(R.mipmap.ic_launcher)            // on error placeholder
+                .placeholder(R.mipmap.ic_launcher)      // placeholder image
+                .into(headerImage);              // destination View
     }
 
     /*
@@ -67,18 +99,30 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
     /*
      * Observe ViewModel for changes, query recipes from
-     * RecipeRepository and pass data to RecipeRecyclerViewAdapter
+     * RecipeRepository and pass data
+     * to RecipeRecyclerViewAdapter and Activity
      */
     private void initViewModel(){
-        mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
+        RecipeViewModel mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
-        mRecipeViewModel.getmRecipesWithIngredients().observe(this, recipesWithIngredients -> {
+        mRecipeViewModel.getmRecipesWithIngredients().observe(this, recipeList -> {
+            //update currentRecipe in RecipeDetailActivity
+            setRecipes(recipeList, currentRecipeId);
             //update currentRecipe list data in RecyclerView
-            recipeDetailRecyclerViewAdapter.setRecipes(recipesWithIngredients, currentRecipeId);
+            recipeDetailRecyclerViewAdapter.setRecipes(recipeList, currentRecipeId);
             recipeDetailRecyclerViewAdapter.notifyDataSetChanged();
             Toast.makeText(RecipeDetailActivity.this, "observed onChanged RecyclerView", Toast.LENGTH_SHORT).show();
         });
 
+    }
+
+    //set currentRecipe for this Activity
+    private void setRecipes(List<RecipeWithIngredients> recipeList, int currentRecipeId){
+        for(RecipeWithIngredients recipe : recipeList){
+            if(recipe.recipe.getId() == currentRecipeId){
+                currentRecipe = recipe;
+            }
+        }
     }
 
 }

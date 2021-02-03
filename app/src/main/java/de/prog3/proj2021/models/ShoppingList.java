@@ -16,13 +16,14 @@ import static androidx.room.ForeignKey.CASCADE;
 * */
 
 @Entity(tableName = "shoppingList_table",
-        foreignKeys = @ForeignKey(entity = User.class,
-        parentColumns = "userId",
+        foreignKeys =
+        @ForeignKey(entity = User.class,
+        parentColumns = "id",
         childColumns = "userCreatorId",
         onDelete = CASCADE))
 public class ShoppingList {
     @PrimaryKey(autoGenerate = true)
-    public int shoppingListId;
+    public int id;
 
     @NonNull
     public String name = "";
@@ -39,8 +40,8 @@ public class ShoppingList {
     }
 
     //getter, setter
-    public int getShoppingListId() {
-        return shoppingListId;
+    public int getId() {
+        return id;
     }
     public @NonNull String getName() {
         return name;
@@ -49,8 +50,8 @@ public class ShoppingList {
         return numUncheckedItems;
     }
 
-    public void setShoppingListId(int shoppingListId) {
-        this.shoppingListId = shoppingListId;
+    public void setId(int id) {
+        this.id = id;
     }
     public void setName(@NonNull String name) {
         this.name = name;

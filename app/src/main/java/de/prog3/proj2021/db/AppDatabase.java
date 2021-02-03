@@ -52,7 +52,6 @@ public abstract class AppDatabase extends RoomDatabase {
                             AppDatabase.class, "AppDatabase")
                             .fallbackToDestructiveMigration()
                             .allowMainThreadQueries()
-                            //.addCallback(roomCallback)
                             .createFromAsset("database/food_scout.db")
                             .build();
                 }
@@ -60,19 +59,5 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return instance;
     }
-
-    /*
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            //new thread
-            Runnable runnable = () -> {
-
-            };
-            new Thread(runnable).start();
-        }
-    };
-    */
 
 }

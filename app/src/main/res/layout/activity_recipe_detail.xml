@@ -6,8 +6,50 @@
     tools:context=".ui.RecipeDetailActivity"
     android:background="@android:color/holo_blue_bright">
 
+    <!-- Title -->
     <TextView
         style="@style/FragmentTitleText"
+        android:id="@+id/recipeDetailTitleText"
         android:text="@string/title_recipe_detail"/>
+
+    <!-- Header Image -->
+    <androidx.appcompat.widget.AppCompatImageView
+        style="@style/detailHeaderImageStyle"
+        android:id="@+id/detailHeaderImage"
+        />
+
+    <!-- Recipe Info -->
+    <TextView
+        style="@style/recipeDetailDescriptionTextStyle"
+        android:id="@+id/recipeDetailDescriptionText"
+        />
+
+    <!-- Ingredient list -->
+    <TextView
+        style="@style/recipeDetailIngredientsTitleStyle"
+        android:id="@+id/recipeDetailIngredientsTitle"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recipeDetailIngredientsRecyclerView"
+        android:layout_below="@+id/recipeDetailIngredientsTitle"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        tools:listitem="@layout/layout_recipedetail_ingredient_listitem"
+        />
+
+
+    <!-- Instructions -->
+    <TextView
+        style="@style/recipeDetailInstructionsTitleStyle"
+        android:id="@+id/recipeDetailInstructionsTitle"
+        />
+
+    <TextView
+        style="@style/recipeDetailInstructionsStyle"
+        android:id="@+id/recipeDetailInstructions"
+        />
 
 </RelativeLayout>

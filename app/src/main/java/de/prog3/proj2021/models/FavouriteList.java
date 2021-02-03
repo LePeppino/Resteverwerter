@@ -8,9 +8,16 @@ package de.prog3.proj2021.models;
  * */
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "favouriteList_table")
+import static androidx.room.ForeignKey.CASCADE;
+
+@Entity(tableName = "favouriteList_table",
+        foreignKeys = @ForeignKey(entity = User.class,
+        parentColumns = "userId",
+        childColumns = "userOwnerId",
+        onDelete = CASCADE))
 public class FavouriteList {
     @PrimaryKey(autoGenerate = true)
     public int favouriteListId;

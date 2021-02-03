@@ -52,6 +52,10 @@ public interface RecipeDao {
 
     @Transaction
     @Query("SELECT * FROM recipe_table")
-    LiveData<List<RecipeWithIngredients>> getRecipesWithIngredients(); //TODO: google for n:m queries!!!
+    LiveData<List<RecipeWithIngredients>> getRecipesWithIngredients();
+
+    @Transaction
+    @Query("SELECT * FROM recipe_table WHERE recipeId = :recipeId")
+    LiveData<RecipeWithIngredients> getRecipeWithIngredientsById(int recipeId);
 
 }

@@ -7,9 +7,19 @@ package de.prog3.proj2021.db;
  * */
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 
-@Entity(tableName = "favouriteRecipeCrossRef_table",
-        primaryKeys = {"favouriteListId", "recipeId"})
+import de.prog3.proj2021.models.FavouriteList;
+import de.prog3.proj2021.models.Recipe;
+
+@Entity(primaryKeys = {"favouriteListId", "recipeId"},
+        foreignKeys = {
+        @ForeignKey(entity = FavouriteList.class,
+                parentColumns = "favouriteListId",
+                childColumns = "favouriteListId"),
+        @ForeignKey(entity = Recipe.class,
+                parentColumns = "recipeId",
+                childColumns = "recipeId")})
 public class FavouriteRecipeCrossRef {
     public int favouriteListId;
     public int recipeId;

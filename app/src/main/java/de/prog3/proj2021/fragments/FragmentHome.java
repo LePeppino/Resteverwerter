@@ -23,12 +23,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import de.prog3.proj2021.R;
 import de.prog3.proj2021.adapters.RecipeRecyclerViewAdapter;
-import de.prog3.proj2021.repositories.RecipeRepository;
-import de.prog3.proj2021.viewmodels.MainActivityViewModel;
+import de.prog3.proj2021.viewmodels.RecipeViewModel;
 
 public class FragmentHome extends Fragment {
 
-    private MainActivityViewModel mMainActivityViewModel;
+    private RecipeViewModel mRecipeViewModel;
     RecipeRecyclerViewAdapter recipeRecyclerViewAdapter;
     RecyclerView recipeRecyclerView;
 
@@ -63,9 +62,9 @@ public class FragmentHome extends Fragment {
      * RecipeRepository and pass data to RecipeRecyclerViewAdapter
      */
     private void initViewModel(){
-        mMainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
-        mMainActivityViewModel.getmRecipes().observe(getViewLifecycleOwner(), recipes -> { //Observable lambda expression
+        mRecipeViewModel.getmRecipes().observe(getViewLifecycleOwner(), recipes -> { //Observable lambda expression
             recipeRecyclerViewAdapter.setmRecipes(recipes);
             recipeRecyclerViewAdapter.notifyDataSetChanged();
             Toast.makeText(getContext(), "observed onChanged RecyclerView", Toast.LENGTH_SHORT).show();

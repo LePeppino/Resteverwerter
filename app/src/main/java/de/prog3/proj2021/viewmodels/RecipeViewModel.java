@@ -16,18 +16,22 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import de.prog3.proj2021.db.RecipeIngredientCrossRef;
+import de.prog3.proj2021.db.RecipeWithIngredients;
 import de.prog3.proj2021.models.Recipe;
 import de.prog3.proj2021.repositories.RecipeRepository;
 
-public class MainActivityViewModel extends AndroidViewModel {
+public class RecipeViewModel extends AndroidViewModel {
 
     private final RecipeRepository recipeRepository;
     private final LiveData<List<Recipe>> mRecipes;
+    private final LiveData<List<RecipeWithIngredients>> mRecipeWithIngredients;
 
-    public MainActivityViewModel(@NonNull Application application) {
+    public RecipeViewModel(@NonNull Application application) {
         super(application);
         recipeRepository = new RecipeRepository(application);
         mRecipes = recipeRepository.getRecipesAlphabetical();
+        mRecipeWithIngredients = recipeRepository.getRecipesWithIngredients();
     }
 
     public void insert(Recipe recipe){
@@ -42,7 +46,17 @@ public class MainActivityViewModel extends AndroidViewModel {
         recipeRepository.delete(recipe);
     }
 
+    //getters for cached repository LiveData
     public LiveData<List<Recipe>> getmRecipes(){
         return mRecipes;
     }
+
+    public LiveData<List<RecipeWithIngredients>> getmRecipeWithIngredients() {
+        return mRecipeWithIngredients;
+    }
+
+    public LiveData<RecipeWithIngredients> getmRecipeWithIngredientsById(int recipeId){
+        return recipeRepository.getRecipeWithIngredientsById(recipeId);
+    }
+
 }

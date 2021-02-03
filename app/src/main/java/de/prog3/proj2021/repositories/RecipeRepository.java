@@ -85,18 +85,8 @@ public class RecipeRepository {
     public LiveData<List<Recipe>> getRecipesReverseAlphabetical() {
         return dataSet = recipeDao.getRecipesDESC();
     }
-
-
-    /*
-     * Usage of threads may not be necessary as query is quick enough.
-     * Also the results were not always correct, like wrong order.
-     */
-//    public void insert(Recipe recipe){
-//        Runnable runnable = () -> {
-//            recipeDao.insertRecipe(recipe);
-//            System.out.println("recipe inserted");
-//        };
-//        new Thread(runnable).start();
-//    }
+    public LiveData<RecipeWithIngredients> getRecipeWithIngredientsById(int recipeId){
+        return recipeDao.getRecipeWithIngredientsById(recipeId);
+    }
 
 }

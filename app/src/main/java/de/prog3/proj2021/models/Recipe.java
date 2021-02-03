@@ -32,7 +32,7 @@ public class Recipe {
     @NonNull
     public String instructions = "";
     @NonNull
-    public String headerImageUrl = "";  //TODO: implement directory and methods for image resources
+    public String headerImageUrl = "";
 
     //constructor
     public Recipe(String name,
@@ -51,7 +51,7 @@ public class Recipe {
     }
 
     //getter, setter
-    public int getRecipeIdId() {return recipeId;}
+    public int getRecipeId() {return recipeId;}
     private void setRecipeId(int recipeId) {this.recipeId = recipeId;}
 
     public @NonNull String getName() {return name;}

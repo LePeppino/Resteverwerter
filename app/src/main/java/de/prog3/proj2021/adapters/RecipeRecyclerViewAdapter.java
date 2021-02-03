@@ -25,7 +25,6 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.prog3.proj2021.MainActivity;
 import de.prog3.proj2021.R;
 import de.prog3.proj2021.models.Recipe;
 import de.prog3.proj2021.ui.RecipeDetailActivity;
@@ -35,6 +34,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
     private final Context mContext;
     private List<Recipe> mRecipes = new ArrayList<>();
 
+    //constructor
     public RecipeRecyclerViewAdapter(Context mContext) {
         this.mContext = mContext;
     }
@@ -66,12 +66,12 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
                 .placeholder(R.mipmap.ic_launcher)      // placeholder image
                 .into(holder.image);
 
-        //set onClickListener for recipe layout
+        //set onClickListener for recipe list item
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //get ID of currentRecipe and pass to new Activity
-                int currentRecipeId = currentRecipe.getRecipeIdId();
+                int currentRecipeId = currentRecipe.getRecipeId();
 
                 Intent intent = new Intent(mContext, RecipeDetailActivity.class);
                 intent.putExtra("currentRecipeId", currentRecipeId);
@@ -96,6 +96,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         private final TextView description;
         RelativeLayout parentLayout;
 
+        //constructor
         public RecipeHolder(@NonNull View itemView) {
             super(itemView);
 

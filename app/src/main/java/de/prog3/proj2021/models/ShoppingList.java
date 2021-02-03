@@ -2,7 +2,10 @@ package de.prog3.proj2021.models;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+
+import static androidx.room.ForeignKey.CASCADE;
 
 
 /*
@@ -12,7 +15,11 @@ import androidx.room.PrimaryKey;
 * File author: Giuseppe Buccellato
 * */
 
-@Entity(tableName = "shoppingList_table")
+@Entity(tableName = "shoppingList_table",
+        foreignKeys = @ForeignKey(entity = User.class,
+        parentColumns = "userId",
+        childColumns = "userCreatorId",
+        onDelete = CASCADE))
 public class ShoppingList {
     @PrimaryKey(autoGenerate = true)
     public int shoppingListId;

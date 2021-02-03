@@ -12,11 +12,13 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 import java.util.List;
 
 import de.prog3.proj2021.models.Ingredient;
+import de.prog3.proj2021.models.Recipe;
 
 @Dao
 public interface IngredientDao {
@@ -34,5 +36,9 @@ public interface IngredientDao {
 
     @Query("SELECT * FROM ingredient_table ORDER BY name ASC")
     LiveData<List<Ingredient>> getIngredientsASC();
+
+    @Transaction
+    @Query("SELECT * FROM ingredient_table")
+    LiveData<List<IngredientWithRecipes>> getIngredientWithRecipes();
 
 }

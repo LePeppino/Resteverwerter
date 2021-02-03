@@ -54,8 +54,4 @@ public interface RecipeDao {
     @Query("SELECT * FROM recipe_table")
     LiveData<List<RecipeWithIngredients>> getRecipesWithIngredients();
 
-    @Transaction
-    @Query("SELECT * FROM recipe_table WHERE recipeId = :recipeId")
-    LiveData<RecipeWithIngredients> getRecipeWithIngredientsById(int recipeId);
-
 }

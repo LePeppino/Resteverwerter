@@ -85,8 +85,8 @@ public class RecipeRepository {
     public LiveData<List<Recipe>> getRecipesReverseAlphabetical() {
         return dataSet = recipeDao.getRecipesDESC();
     }
-    public LiveData<RecipeWithIngredients> getRecipeWithIngredientsById(int recipeId){
-        return recipeDao.getRecipeWithIngredientsById(recipeId);
-    }
+//    public LiveData<RecipeWithIngredients> getRecipeWithIngredientsById(int recipeId){
+//        return recipeDao.getRecipeWithIngredientsById(recipeId);
+//    }
 
 }

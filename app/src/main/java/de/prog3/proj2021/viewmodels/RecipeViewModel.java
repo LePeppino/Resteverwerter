@@ -25,13 +25,13 @@ public class RecipeViewModel extends AndroidViewModel {
 
     private final RecipeRepository recipeRepository;
     private final LiveData<List<Recipe>> mRecipes;
-    private final LiveData<List<RecipeWithIngredients>> mRecipeWithIngredients;
+    private final LiveData<List<RecipeWithIngredients>> mRecipesWithIngredients;
 
     public RecipeViewModel(@NonNull Application application) {
         super(application);
         recipeRepository = new RecipeRepository(application);
         mRecipes = recipeRepository.getRecipesAlphabetical();
-        mRecipeWithIngredients = recipeRepository.getRecipesWithIngredients();
+        mRecipesWithIngredients = recipeRepository.getRecipesWithIngredients();
     }
 
     public void insert(Recipe recipe){
@@ -51,12 +51,12 @@ public class RecipeViewModel extends AndroidViewModel {
         return mRecipes;
     }
 
-    public LiveData<List<RecipeWithIngredients>> getmRecipeWithIngredients() {
-        return mRecipeWithIngredients;
+    public LiveData<List<RecipeWithIngredients>> getmRecipesWithIngredients() {
+        return mRecipesWithIngredients;
     }
 
-    public LiveData<RecipeWithIngredients> getmRecipeWithIngredientsById(int recipeId){
-        return recipeRepository.getRecipeWithIngredientsById(recipeId);
-    }
+//    public LiveData<RecipeWithIngredients> getmRecipeWithIngredientsById(int recipeId){
+//        return recipeRepository.getRecipeWithIngredientsById(recipeId);
+//    }
 
 }

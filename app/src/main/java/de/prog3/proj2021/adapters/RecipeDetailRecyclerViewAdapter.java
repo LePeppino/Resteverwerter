@@ -34,6 +34,7 @@ import de.prog3.proj2021.ui.RecipeDetailActivity;
 public class RecipeDetailRecyclerViewAdapter  extends RecyclerView.Adapter<RecipeDetailRecyclerViewAdapter.RecipeDetailHolder>{
 
     private final Context mContext;
+    private List<RecipeWithIngredients> recipesWithIngredients;
     private RecipeWithIngredients currentRecipe = new RecipeWithIngredients();
 
     //constructor
@@ -94,12 +95,21 @@ public class RecipeDetailRecyclerViewAdapter  extends RecyclerView.Adapter<Recip
     //return number of items. if this returns 0, nothing will display
     @Override
     public int getItemCount() {
-        return currentRecipe.ingredients.size();
+        if(currentRecipe.ingredients == null){
+            System.out.println("currentRecipe.ingredients does not exist.");
+            return 0;
+        }else{
+            return currentRecipe.ingredients.size();
+        }
     }
 
     //setter
-    public void setCurrentRecipe(RecipeWithIngredients recipeWithIngredients){
-        this.currentRecipe = recipeWithIngredients;
+    public void setRecipes(List<RecipeWithIngredients> recipeList, int chosenRecipeId){
+        for(RecipeWithIngredients recipeWithIngredients : recipeList){
+            if(recipeWithIngredients.recipe.getRecipeId() == chosenRecipeId){
+                currentRecipe = recipeWithIngredients;
+            }
+        }
     }
 
     /*

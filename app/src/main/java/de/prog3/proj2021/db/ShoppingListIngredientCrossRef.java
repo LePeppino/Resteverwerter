@@ -4,7 +4,6 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
 import de.prog3.proj2021.models.Ingredient;
-import de.prog3.proj2021.models.Recipe;
 import de.prog3.proj2021.models.ShoppingList;
 
 /*

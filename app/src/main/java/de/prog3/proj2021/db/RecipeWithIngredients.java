@@ -20,8 +20,11 @@ public class RecipeWithIngredients {
     public Recipe recipe;
     @Relation(
             parentColumn = "recipeId",
+            entity = Ingredient.class,
             entityColumn = "ingredientId",
-            associateBy = @Junction(RecipeIngredientCrossRef.class)
+            associateBy = @Junction(value = RecipeIngredientCrossRef.class,
+                    parentColumn = "recipeId",
+                    entityColumn = "ingredientId")
     )
     public List<Ingredient> ingredients;
 }

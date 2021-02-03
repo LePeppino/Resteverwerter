@@ -72,9 +72,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
     private void initViewModel(){
         mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
-        mRecipeViewModel.getmRecipeWithIngredientsById(currentRecipeId).observe(this, recipeWithIngredients -> {
+        mRecipeViewModel.getmRecipesWithIngredients().observe(this, recipesWithIngredients -> {
             //update currentRecipe list data in RecyclerView
-            recipeDetailRecyclerViewAdapter.setCurrentRecipe(recipeWithIngredients);
+            recipeDetailRecyclerViewAdapter.setRecipes(recipesWithIngredients, currentRecipeId);
             recipeDetailRecyclerViewAdapter.notifyDataSetChanged();
             Toast.makeText(RecipeDetailActivity.this, "observed onChanged RecyclerView", Toast.LENGTH_SHORT).show();
         });

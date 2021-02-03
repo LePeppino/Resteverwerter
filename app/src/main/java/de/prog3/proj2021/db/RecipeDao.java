@@ -52,6 +52,6 @@ public interface RecipeDao {
 
     @Transaction
     @Query("SELECT * FROM recipe_table")
-    LiveData<List<RecipeWithIngredients>> getRecipesWithIngredients();
+    List<RecipeWithIngredients> getRecipesWithIngredients();
 
 }

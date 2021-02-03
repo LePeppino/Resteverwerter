@@ -11,6 +11,7 @@ package de.prog3.proj2021.ui;
  */
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.prog3.proj2021.R;
@@ -82,7 +84,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 .load(Uri.parse(headerUri))             // takes String from above
                 .error(R.mipmap.ic_launcher)            // on error placeholder
                 .placeholder(R.mipmap.ic_launcher)      // placeholder image
-                .into(headerImage);              // destination View
+                .into(headerImage);                     // destination View
     }
 
     /*
@@ -105,15 +107,10 @@ public class RecipeDetailActivity extends AppCompatActivity {
     private void initViewModel(){
         RecipeViewModel mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
-        mRecipeViewModel.getmRecipesWithIngredients().observe(this, recipeList -> {
-            //update currentRecipe in RecipeDetailActivity
-            setRecipes(recipeList, currentRecipeId);
-            //update currentRecipe list data in RecyclerView
-            recipeDetailRecyclerViewAdapter.setRecipes(recipeList, currentRecipeId);
-            recipeDetailRecyclerViewAdapter.notifyDataSetChanged();
-            Toast.makeText(RecipeDetailActivity.this, "observed onChanged RecyclerView", Toast.LENGTH_SHORT).show();
-        });
+        List<RecipeWithIngredients> recipeList = mRecipeViewModel.getmRecipesWithIngredients();
 
+        setRecipes(recipeList, currentRecipeId);
+        recipeDetailRecyclerViewAdapter.setRecipes(recipeList, currentRecipeId);
     }
 
     //set currentRecipe for this Activity

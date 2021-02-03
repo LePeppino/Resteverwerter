@@ -23,7 +23,7 @@ import de.prog3.proj2021.db.RecipeDao;
 public class RecipeRepository {
 
     private LiveData<List<Recipe>> dataSet;
-    private LiveData<List<RecipeWithIngredients>> crossRefDataSet;
+    private List<RecipeWithIngredients> crossRefDataSet;
     private final RecipeDao recipeDao;
 
     //constructor
@@ -38,9 +38,10 @@ public class RecipeRepository {
     public LiveData<List<Recipe>> getRecipes(){
         return dataSet;
     }
-    public LiveData<List<RecipeWithIngredients>> getRecipesWithIngredients(){
+    public List<RecipeWithIngredients> getRecipesWithIngredients(){
         return crossRefDataSet;
     }
+
     private void updateRecipes(){
         dataSet = recipeDao.getRecipes();
     }
@@ -85,8 +86,5 @@ public class RecipeRepository {
     public LiveData<List<Recipe>> getRecipesReverseAlphabetical() {
         return dataSet = recipeDao.getRecipesDESC();
     }
-//    public LiveData<RecipeWithIngredients> getRecipeWithIngredientsById(int recipeId){
-//        return recipeDao.getRecipeWithIngredientsById(recipeId);
-//    }
 
 }

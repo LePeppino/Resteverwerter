@@ -55,6 +55,7 @@
         <item name="android:text">@string/title_recipe_ingredients</item>
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="fontFamily">casual</item>
         <item name="android:layout_below">@+id/recipeDetailDescriptionText</item>
         <item name="android:layout_margin">10dp</item>
     </style>
@@ -66,6 +67,7 @@
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="android:layout_below">@+id/recipeDetailIngredientsRecyclerView</item>
+        <item name="fontFamily">casual</item>
         <item name="android:layout_margin">10dp</item>
     </style>
 
@@ -78,6 +80,7 @@
         <item name="android:layout_below">@+id/recipeDetailInstructionsTitle</item>
         <item name="android:layout_marginStart">10dp</item>
         <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
     </style>
 
 </resources>

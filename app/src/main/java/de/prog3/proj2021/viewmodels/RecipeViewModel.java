@@ -25,7 +25,7 @@ public class RecipeViewModel extends AndroidViewModel {
 
     private final RecipeRepository recipeRepository;
     private final LiveData<List<Recipe>> mRecipes;
-    private final LiveData<List<RecipeWithIngredients>> mRecipesWithIngredients;
+    private final List<RecipeWithIngredients> mRecipesWithIngredients;
 
     public RecipeViewModel(@NonNull Application application) {
         super(application);
@@ -51,12 +51,8 @@ public class RecipeViewModel extends AndroidViewModel {
         return mRecipes;
     }
 
-    public LiveData<List<RecipeWithIngredients>> getmRecipesWithIngredients() {
+    public List<RecipeWithIngredients> getmRecipesWithIngredients() {
         return mRecipesWithIngredients;
     }
-
-//    public LiveData<RecipeWithIngredients> getmRecipeWithIngredientsById(int recipeId){
-//        return recipeRepository.getRecipeWithIngredientsById(recipeId);
-//    }
 
 }

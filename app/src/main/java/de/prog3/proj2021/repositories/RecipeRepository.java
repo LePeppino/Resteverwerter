@@ -64,16 +64,16 @@ public class RecipeRepository {
         System.out.println("recipe deleted");
     }
 
-    public void insertCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
-        recipeDao.insertRecipeWithIngredients(recipeIngredientCrossRef);
+    public void insertRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
+        recipeDao.insertRecipeIngredientCrossRef(recipeIngredientCrossRef);
         System.out.println("recipeIngredientCrossRef inserted");
     }
-    public void updateCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
-        recipeDao.updateRecipeWithIngredients(recipeIngredientCrossRef);
+    public void updateRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
+        recipeDao.updateRecipeIngredientCrossRef(recipeIngredientCrossRef);
         System.out.println("recipeIngredientCrossRef updated");
     }
-    public void deleteCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
-        recipeDao.deleteRecipeWithIngredients(recipeIngredientCrossRef);
+    public void deleteRecipeIngredientCrossRef(RecipeIngredientCrossRef... recipeIngredientCrossRef){
+        recipeDao.deleteRecipeIngredientCrossRef(recipeIngredientCrossRef);
         System.out.println("recipeIngredientCrossRef deleted");
     }
 

@@ -1,9 +1,8 @@
 package de.prog3.proj2021.viewmodels;
 
 /*
- * This ViewModel class retrieves recipe data from
- * RecipeRepository and passes it to
- * the UI in FragmentHome
+ * This ViewModel class retrieves data from
+ * RecipeRepository and passes it to the UI
  *
  * File author: Giuseppe Buccellato
  */
@@ -46,12 +45,24 @@ public class RecipeViewModel extends AndroidViewModel {
         recipeRepository.delete(recipe);
     }
 
+    public void insertRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
+        recipeRepository.insertRecipeIngredientCrossRef(recipeIngredientCrossRef);
+    }
+
+    public void updateRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
+        recipeRepository.updateRecipeIngredientCrossRef(recipeIngredientCrossRef);
+    }
+
+    public void deleteRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
+        recipeRepository.deleteRecipeIngredientCrossRef(recipeIngredientCrossRef);
+    }
+
     //getters for cached repository LiveData
-    public LiveData<List<Recipe>> getmRecipes(){
+    public LiveData<List<Recipe>> getMRecipes(){
         return mRecipes;
     }
 
-    public List<RecipeWithIngredients> getmRecipesWithIngredients() {
+    public List<RecipeWithIngredients> getMRecipesWithIngredients() {
         return mRecipesWithIngredients;
     }
 

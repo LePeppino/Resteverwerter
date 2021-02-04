@@ -57,7 +57,7 @@ public class Recipe {
     public int isFavourite() {
         return isFavourite;
     }
-    private void setFavourite(int favourite) {
+    public void setFavourite(int favourite) {
         isFavourite = favourite;
     }
 

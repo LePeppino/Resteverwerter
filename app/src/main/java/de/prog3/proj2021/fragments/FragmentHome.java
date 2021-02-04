@@ -63,8 +63,8 @@ public class FragmentHome extends Fragment {
     private void initViewModel(){
         RecipeViewModel mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
-        mRecipeViewModel.getmRecipes().observe(getViewLifecycleOwner(), recipes -> { //Observable lambda expression
-            recipeRecyclerViewAdapter.setmRecipes(recipes);
+        mRecipeViewModel.getMRecipes().observe(getViewLifecycleOwner(), recipes -> { //Observable lambda expression
+            recipeRecyclerViewAdapter.setMRecipes(recipes);
             recipeRecyclerViewAdapter.notifyDataSetChanged();
             Toast.makeText(getContext(), "observed onChanged RecyclerView", Toast.LENGTH_SHORT).show();
         });

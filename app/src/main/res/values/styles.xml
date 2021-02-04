@@ -12,6 +12,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">44sp</item>
+        <item name="android:layout_margin">10dp</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="fontFamily">casual</item>
@@ -42,11 +43,11 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_below">@id/detailHeaderImage</item>
+        <item name="android:textAlignment">center</item>
         <item name="android:text">@string/description_recipe_detail</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/colorTextSecondary</item>
-        <item name="android:layout_marginStart">10dp</item>
-        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:layout_margin">20dp</item>
     </style>
 
     <style name="recipeDetailIngredientsTitleStyle">

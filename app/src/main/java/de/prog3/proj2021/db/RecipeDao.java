@@ -25,21 +25,20 @@ public interface RecipeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertRecipe(Recipe recipe);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertRecipeWithIngredients(RecipeIngredientCrossRef recipeIngredientCrossRef);
-
     @Update
     void updateRecipe(Recipe recipe);
-
-    @Update
-    void updateRecipeWithIngredients(RecipeIngredientCrossRef recipeIngredientCrossRef);
 
     @Delete
     void deleteRecipe(Recipe... recipes);
 
-    @Delete
-    void deleteRecipeWithIngredients(RecipeIngredientCrossRef... recipeIngredientCrossRefs);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef);
 
+    @Update
+    void updateRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef);
+
+    @Delete
+    void deleteRecipeIngredientCrossRef(RecipeIngredientCrossRef... recipeIngredientCrossRef);
 
     @Query("SELECT * FROM recipe_table")
     LiveData<List<Recipe>> getRecipes();

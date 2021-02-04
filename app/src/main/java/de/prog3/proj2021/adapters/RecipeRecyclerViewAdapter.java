@@ -86,7 +86,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         return mRecipes.size();
     }
 
-    public void setmRecipes(List<Recipe> mRecipes){
+    public void setMRecipes(List<Recipe> mRecipes){
         this.mRecipes = mRecipes;
     }
 

@@ -30,7 +30,18 @@
                 android:id="@+id/detailHeaderImage"
                 />
 
-            <!-- Recipe Info -->
+            <!-- Favourite Button -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/toggleFavouriteButtonId"
+                android:src="@drawable/heart_empty"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:onClick="toggleFavourite"
+                />
+
+            <!-- Recipe Description -->
             <TextView
                 style="@style/recipeDetailDescriptionTextStyle"
                 android:id="@+id/recipeDetailDescriptionText"

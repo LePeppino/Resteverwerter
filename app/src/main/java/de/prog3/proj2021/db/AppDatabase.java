@@ -50,7 +50,12 @@ public abstract class AppDatabase extends RoomDatabase {
                     instance = Room.databaseBuilder(
                             context.getApplicationContext(),
                             AppDatabase.class, "AppDatabase")
-                            .fallbackToDestructiveMigration()
+                            /*
+                             * destructive migration permanently deletes
+                             * all previous data when updating database
+                             * version number due to changes to database schema!
+                             */
+                            //.fallbackToDestructiveMigration()
                             .allowMainThreadQueries()
                             .createFromAsset("database/food_scout.db")
                             .build();

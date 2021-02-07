@@ -28,4 +28,10 @@ import static androidx.room.ForeignKey.CASCADE;
 public class RecipeIngredientCrossRef {
     public int recipeId;
     public int ingredientId;
+
+    //constructor for database insertion
+    public RecipeIngredientCrossRef(int recipeId, int ingredientId){
+        this.recipeId = recipeId;
+        this.ingredientId = ingredientId;
+    }
 }

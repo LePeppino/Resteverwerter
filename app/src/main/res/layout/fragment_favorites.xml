@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/holo_purple">
 
     <TextView
-        android:id="@+id/favouriteFragmentTitle"
+        android:id="@+id/favouriteTitleId"
         android:text="@string/title_favorites"
         style="@style/FragmentTitleText"
         />
+
+    <androidx.appcompat.widget.SearchView
+        style="@style/searchViewStyle"
+        android:id="@+id/favouriteFragmentSearchView"
+        android:layout_below="@+id/favouriteTitleId"
+        app:queryHint="@string/recipe_searchView_placeholder"
+        />
+
+    <TextView
+        style="@style/favouriteRecyclerViewTitleStyle"
+        android:id="@+id/FavouriteRecyclerViewTitle"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/FavouriteRecyclerViewTitle"
+        android:id="@+id/favouriteRecyclerView"
+        tools:listitem="@layout/layout_recipe_listitem"/>
 
 </RelativeLayout>

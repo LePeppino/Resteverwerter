@@ -38,7 +38,7 @@ public class FavouritesViewModel extends AndroidViewModel {
     }
 
     //getters for cached repository data
-    public List<FavouritesWithRecipes> getMFavouriteRecipes() {
+    public List<FavouritesWithRecipes> getAllFavouriteListsWithRecipes() {
         return mFavouriteRecipes;
     }
 

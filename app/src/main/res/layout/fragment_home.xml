@@ -16,18 +16,12 @@
         style="@style/searchViewStyle"
         android:id="@+id/homeFragmentSearchView"
         android:layout_below="@+id/appTitleId"
-        app:queryHint="@string/home_searchView_placeholder"
+        app:queryHint="@string/recipe_searchView_placeholder"
         />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/homeRecyclerViewTitleStyle"
         android:id="@+id/RecipeRecyclerViewTitle"
-        android:layout_below="@+id/homeFragmentSearchView"
-        android:text="@string/recipe_recyclerView_title"
-        android:textSize="20sp"
-        android:textColor="@color/colorTextPrimary"
-        android:layout_marginStart="10dp"
         />
 
     <androidx.recyclerview.widget.RecyclerView

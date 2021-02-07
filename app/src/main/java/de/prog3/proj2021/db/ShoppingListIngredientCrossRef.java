@@ -27,4 +27,10 @@ import static androidx.room.ForeignKey.CASCADE;
 public class ShoppingListIngredientCrossRef {
     public int shoppingListId;
     public int ingredientId;
+
+    //constructor for database insertion
+    public ShoppingListIngredientCrossRef(int shoppingListId, int ingredientId){
+        this.shoppingListId = shoppingListId;
+        this.ingredientId = ingredientId;
+    }
 }

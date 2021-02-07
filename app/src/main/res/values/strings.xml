@@ -5,8 +5,9 @@
     <!-- recipe list -->
     <string name="recipe_placeholder">Recipe Name</string>
     <string name="recipe_desc_placeholder">Recipe Description</string>
-    <string name="home_searchView_placeholder">Search recipe</string>
+    <string name="recipe_searchView_placeholder">Search recipe</string>
     <string name="recipe_recyclerView_title">Available recipes</string>
+    <string name="favourite_recyclerView_title">Your favourites</string>
 
     <!-- NavBar -->
     <string name="title_home">Home</string>

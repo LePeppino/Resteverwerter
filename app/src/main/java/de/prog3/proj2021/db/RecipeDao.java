@@ -49,6 +49,9 @@ public interface RecipeDao {
     @Query("SELECT * FROM recipe_table ORDER BY name DESC")
     LiveData<List<Recipe>> getRecipesDESC();
 
+    @Query("SELECT * FROM recipe_table WHERE name LIKE :query")
+    LiveData<List<Recipe>> getRecipesByQuery(String query);
+
     @Transaction
     @Query("SELECT * FROM recipe_table")
     List<RecipeWithIngredients> getRecipesWithIngredients();

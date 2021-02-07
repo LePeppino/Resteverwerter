@@ -66,4 +66,8 @@ public class RecipeViewModel extends AndroidViewModel {
         return mRecipesWithIngredients;
     }
 
+    public LiveData<List<Recipe>> getMRecipesByQuery(String query){
+        return recipeRepository.getRecipesByQuery(query);
+    }
+
 }

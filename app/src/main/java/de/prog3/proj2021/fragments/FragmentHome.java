@@ -29,6 +29,7 @@ public class FragmentHome extends Fragment {
 
     RecipeRecyclerViewAdapter recipeRecyclerViewAdapter;
     RecyclerView recipeRecyclerView;
+    RecipeViewModel mRecipeViewModel;
 
     @Nullable
     @Override
@@ -61,7 +62,7 @@ public class FragmentHome extends Fragment {
      * RecipeRepository and pass data to RecipeRecyclerViewAdapter
      */
     private void initViewModel(){
-        RecipeViewModel mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
+        mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
         mRecipeViewModel.getMRecipes().observe(getViewLifecycleOwner(), recipes -> { //Observable lambda expression
             recipeRecyclerViewAdapter.setMRecipes(recipes);
@@ -69,4 +70,5 @@ public class FragmentHome extends Fragment {
             Toast.makeText(getContext(), "observed onChanged RecyclerView", Toast.LENGTH_SHORT).show();
         });
     }
+
 }

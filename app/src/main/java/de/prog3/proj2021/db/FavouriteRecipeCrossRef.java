@@ -28,4 +28,10 @@ import static androidx.room.ForeignKey.CASCADE;
 public class FavouriteRecipeCrossRef {
     public int favouriteListId;
     public int recipeId;
+
+    //constructor for database insertion
+    public FavouriteRecipeCrossRef(int favouriteListId, int recipeId){
+        this.favouriteListId = favouriteListId;
+        this.recipeId = recipeId;
+    }
 }

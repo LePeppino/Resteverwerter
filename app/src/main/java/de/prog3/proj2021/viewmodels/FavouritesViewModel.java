@@ -28,11 +28,22 @@ public class FavouritesViewModel extends AndroidViewModel {
 
     private final FavouriteRecipeRepository favouriteRecipeRepository;
     private final List<FavouritesWithRecipes> mFavouriteRecipes;
+    private final FavouritesWithRecipes mFavouriteList;
 
     public FavouritesViewModel(@NonNull Application application) {
         super(application);
         favouriteRecipeRepository = new FavouriteRecipeRepository(application);
         mFavouriteRecipes = favouriteRecipeRepository.getFavouritesWithRecipes();
+        mFavouriteList = favouriteRecipeRepository.getFavouriteList();
+    }
+
+    //getters for cached repository data
+    public List<FavouritesWithRecipes> getMFavouriteRecipes() {
+        return mFavouriteRecipes;
+    }
+
+    public FavouritesWithRecipes getMFavouriteList(){
+        return mFavouriteList;
     }
 
     public void update(FavouriteList favouriteList){
@@ -49,11 +60,6 @@ public class FavouritesViewModel extends AndroidViewModel {
 
     public void deleteFavouriteCrossRef(FavouriteRecipeCrossRef favouriteRecipeCrossRef){
         favouriteRecipeRepository.deleteCrossRef(favouriteRecipeCrossRef);
-    }
-
-    //getters for cached repository LiveData
-    public List<FavouritesWithRecipes> getMFavouriteRecipes() {
-        return mFavouriteRecipes;
     }
 
 }

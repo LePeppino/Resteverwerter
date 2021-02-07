@@ -28,6 +28,7 @@ import java.util.List;
 
 import de.prog3.proj2021.R;
 import de.prog3.proj2021.adapters.RecipeDetailRecyclerViewAdapter;
+import de.prog3.proj2021.db.FavouriteRecipeCrossRef;
 import de.prog3.proj2021.db.FavouritesWithRecipes;
 import de.prog3.proj2021.db.RecipeWithIngredients;
 import de.prog3.proj2021.viewmodels.FavouritesViewModel;
@@ -45,7 +46,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
     //Recipe data
     RecipeWithIngredients currentRecipe = new RecipeWithIngredients();
-    int currentRecipeId = 1;
+    int currentRecipeId = 1; // gets updated in onCreate
 
     //Recipe Info Views
     ImageView headerImage;
@@ -72,7 +73,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
         initRecyclerView();
         //instantiate ViewModel
         initRecipeViewModel();
-        initFavouritesViewModel();
         //assign Views
         initViews();
 
@@ -127,12 +127,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
         recipeDetailRecyclerViewAdapter.setRecipes(recipeList, currentRecipeId);
     }
 
-    private void initFavouritesViewModel(){
-        mFavouritesViewModel = new ViewModelProvider(this).get(FavouritesViewModel.class);
-
-        List<FavouritesWithRecipes> favouriteList = mFavouritesViewModel.getMFavouriteRecipes();
-    }
-
     //set currentRecipe for this Activity
     private void setRecipes(List<RecipeWithIngredients> recipeList, int currentRecipeId){
         for(RecipeWithIngredients recipe : recipeList){
@@ -151,27 +145,58 @@ public class RecipeDetailActivity extends AppCompatActivity {
             }
     }
 
-    //toggleFavouriteButton onClick
-    //0 = false, 1 = true
+    /*
+     * toggleFavouriteButton onClick
+     * 0 = false, 1 = true
+     */
     public void toggleFavourite(View view) {
         //do when clicked and not yet favourite
         if(currentRecipe.recipe.isFavourite() != 1){
-            currentRecipe.recipe.setFavourite(1);
+            addFavourite(currentRecipe);
             toggleFavouriteButton.setImageResource(R.drawable.heart_full);
             Toast.makeText(this, "Added to favourite list!", Toast.LENGTH_SHORT).show();
         }else{
-            currentRecipe.recipe.setFavourite(0);
+            removeFavourite(currentRecipe);
             toggleFavouriteButton.setImageResource(R.drawable.heart_empty);
             Toast.makeText(this, "Removed from favourite list.", Toast.LENGTH_SHORT).show();
         }
-        //update recipe and favouriteList database entry
+        //update recipe database entry
         mRecipeViewModel.update(currentRecipe.recipe);
-        updateFavouriteList(currentRecipe);
     }
 
-    private void updateFavouriteList(RecipeWithIngredients recipe){
-        //TODO: call mFavouritesViewModel to add favourite + crossRef to db
-        // and increment numOfFavourites
+    /*
+     * call mFavouritesViewModel to add favourite + crossRef to db
+     * and increment numOfFavourites
+     */
+    private void addFavourite(RecipeWithIngredients currentRecipe){
+        mFavouritesViewModel = new ViewModelProvider(this).get(FavouritesViewModel.class);
+        FavouritesWithRecipes favouriteList = mFavouritesViewModel.getMFavouriteList();
+        FavouriteRecipeCrossRef crossRef = new FavouriteRecipeCrossRef(
+                favouriteList.favouriteList.getId(), currentRecipeId);
 
+        //update CrossRef table
+        mFavouritesViewModel.insertFavouriteCrossRef(crossRef);
+        //increment numOfFavourites
+        favouriteList.favouriteList.setNumOfFavourites(favouriteList.favouriteList.getNumOfFavourites() + 1);
+        //set favourite status in recipe
+        currentRecipe.recipe.setFavourite(1);
+    }
+
+    /*
+     * call mFavouritesViewModel to remove favourite + crossRef from db
+     * and decrease numOfFavourites
+     */
+    private void removeFavourite(RecipeWithIngredients currentRecipe){
+        mFavouritesViewModel = new ViewModelProvider(this).get(FavouritesViewModel.class);
+        FavouritesWithRecipes favouriteList = mFavouritesViewModel.getMFavouriteList();
+        FavouriteRecipeCrossRef crossRef = new FavouriteRecipeCrossRef(
+                favouriteList.favouriteList.getId(), currentRecipeId);
+
+        //update CrossRef table
+        mFavouritesViewModel.deleteFavouriteCrossRef(crossRef);
+        //decrease numOfFavourites
+        favouriteList.favouriteList.setNumOfFavourites(favouriteList.favouriteList.getNumOfFavourites() - 1);
+        //set favourite status in recipe
+        currentRecipe.recipe.setFavourite(0);
     }
 }

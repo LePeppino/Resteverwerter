@@ -37,4 +37,8 @@ public interface FavouriteListDao {
     @Transaction
     @Query("SELECT * FROM favouriteList_table")
     List<FavouritesWithRecipes> getFavouritesWithRecipes();
+
+    @Transaction
+    @Query("SELECT * FROM favouriteList_table WHERE id = 1 AND userOwnerId = 1")
+    FavouritesWithRecipes getFavouritesWithRecipesById();
 }

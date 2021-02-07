@@ -23,6 +23,7 @@ import de.prog3.proj2021.models.FavouriteList;
 public class FavouriteRecipeRepository {
 
     private List<FavouritesWithRecipes> dataSet;
+    private FavouritesWithRecipes favouriteList;
     private final FavouriteListDao favouriteListDao;
 
     //constructor
@@ -32,13 +33,18 @@ public class FavouriteRecipeRepository {
         updateFavouritesWithRecipes();
     }
 
-    //getter and setter for favouriteList dataSet
+    //getter and setter for dataSet and favouriteList by id
     public List<FavouritesWithRecipes> getFavouritesWithRecipes() {
         return dataSet;
     }
 
+    public FavouritesWithRecipes getFavouriteList(){
+        return favouriteList;
+    }
+
     private void updateFavouritesWithRecipes(){
         dataSet = favouriteListDao.getFavouritesWithRecipes();
+        favouriteList = favouriteListDao.getFavouritesWithRecipesById();
     }
 
     /*

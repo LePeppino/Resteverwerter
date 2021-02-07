@@ -34,7 +34,6 @@
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="fontFamily">casual</item>
-        <item name="android:layout_below">@+id/homeFragmentSearchView</item>
         <item name="android:layout_margin">10dp</item>
     </style>
 
@@ -102,7 +101,6 @@
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="fontFamily">casual</item>
-        <item name="android:layout_below">@+id/favouriteFragmentSearchView</item>
         <item name="android:layout_margin">10dp</item>
     </style>
 

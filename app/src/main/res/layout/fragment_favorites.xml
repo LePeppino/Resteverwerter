@@ -15,20 +15,33 @@
     <androidx.appcompat.widget.SearchView
         style="@style/searchViewStyle"
         android:id="@+id/favouriteFragmentSearchView"
-        android:layout_below="@+id/favouriteTitleId"
         app:queryHint="@string/recipe_searchView_placeholder"
+        android:layout_below="@+id/favouriteTitleId"
         />
 
-    <TextView
-        style="@style/favouriteRecyclerViewTitleStyle"
-        android:id="@+id/FavouriteRecyclerViewTitle"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
+    <!-- Scrolling list -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/FavouriteRecyclerViewTitle"
-        android:id="@+id/favouriteRecyclerView"
-        tools:listitem="@layout/layout_recipe_listitem"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/RecipeDetailScrollViewId"
+        android:layout_below="@+id/favouriteFragmentSearchView">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/favouriteRecyclerViewTitleStyle"
+                android:id="@+id/FavouriteRecyclerViewTitle"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/favouriteRecyclerView"
+                tools:listitem="@layout/layout_recipe_listitem"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

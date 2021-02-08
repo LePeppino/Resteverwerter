@@ -22,6 +22,9 @@ import de.prog3.proj2021.models.Recipe;
 
 @Dao
 public interface FavouriteListDao {
+    @Update
+    void update(FavouriteList favouriteList);
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertFavouritesWithRecipes(FavouriteRecipeCrossRef favouriteRecipeCrossRef);
 
@@ -33,5 +36,9 @@ public interface FavouriteListDao {
 
     @Transaction
     @Query("SELECT * FROM favouriteList_table")
-    LiveData<List<FavouritesWithRecipes>> getFavouritesWithRecipes();
+    List<FavouritesWithRecipes> getFavouritesWithRecipes();
+
+    @Transaction
+    @Query("SELECT * FROM favouriteList_table WHERE id = 1 AND userOwnerId = 1")
+    FavouritesWithRecipes getFavouritesWithRecipesById();
 }

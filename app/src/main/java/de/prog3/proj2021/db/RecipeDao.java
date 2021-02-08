@@ -2,6 +2,7 @@ package de.prog3.proj2021.db;
 
 /*
  * Data Access Object for Recipe Model
+ * and for RecipeWithIngredientCrossRef
  *
  * File author: Giuseppe Buccellato
  */
@@ -30,8 +31,14 @@ public interface RecipeDao {
     @Delete
     void deleteRecipe(Recipe... recipes);
 
-    @Query("DELETE FROM recipe_table")
-    void deleteAllRecipes();
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef);
+
+    @Update
+    void updateRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef);
+
+    @Delete
+    void deleteRecipeIngredientCrossRef(RecipeIngredientCrossRef... recipeIngredientCrossRef);
 
     @Query("SELECT * FROM recipe_table")
     LiveData<List<Recipe>> getRecipes();
@@ -42,8 +49,11 @@ public interface RecipeDao {
     @Query("SELECT * FROM recipe_table ORDER BY name DESC")
     LiveData<List<Recipe>> getRecipesDESC();
 
+    @Query("SELECT * FROM recipe_table WHERE name LIKE :query")
+    LiveData<List<Recipe>> getRecipesByQuery(String query);
+
     @Transaction
     @Query("SELECT * FROM recipe_table")
-    LiveData<List<RecipeWithIngredients>> getRecipesWithIngredients(); //TODO: google for n:m queries!!!
+    List<RecipeWithIngredients> getRecipesWithIngredients();
 
 }

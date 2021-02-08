@@ -1,7 +1,6 @@
 package de.prog3.proj2021.models;
 
 import androidx.annotation.NonNull;
-import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -15,7 +14,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "user_table")
 public class User {
     @PrimaryKey(autoGenerate = true)
-    public int userId;
+    public int id;
 
     @NonNull
     public String username = "";
@@ -26,8 +25,8 @@ public class User {
     }
 
     //getter, setter
-    public int getUserId() {return userId;}
-    private void setUserId(int id) {this.userId = id;}
+    public int getId() {return id;}
+    private void setId(int id) {this.id = id;}
 
     public String username() {return username;}
     private void setUsername(@NonNull String username) {this.username = username;}

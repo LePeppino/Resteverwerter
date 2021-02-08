@@ -12,15 +12,19 @@ import de.prog3.proj2021.models.ShoppingList;
 /*
  * n:m Relation class for queries for ShoppingLists containing Ingredients.
  *
+ * File author: Giuseppe Buccellato
  * */
 
 public class ShoppingListWithIngredients {
     @Embedded
     public ShoppingList shoppingList;
     @Relation(
-            parentColumn = "shoppingListId",
-            entityColumn = "ingredientId",
-            associateBy = @Junction(ShoppingListIngredientCrossRef.class)
+            parentColumn = "id",
+            entity = Ingredient.class,
+            entityColumn = "id",
+            associateBy = @Junction(value = ShoppingListIngredientCrossRef.class,
+                    parentColumn = "shoppingListId",
+                    entityColumn = "ingredientId")
     )
     public List<Ingredient> ingredients;
 }

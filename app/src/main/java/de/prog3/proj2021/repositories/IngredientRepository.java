@@ -42,20 +42,13 @@ public class IngredientRepository {
         ingredientDao.insertIngredient(ingredient);
         System.out.println("ingredient inserted");
     }
-
     public void update(Ingredient ingredient){
         ingredientDao.updateIngredient(ingredient);
         System.out.println("ingredient updated");
     }
-
     public void delete(Ingredient ingredient){
         ingredientDao.deleteIngredient(ingredient);
         System.out.println("ingredient deleted");
-    }
-
-    public void deleteAllIngredients(){
-        ingredientDao.deleteAllIngredients();
-        System.out.println("all recipes deleted");
     }
 
     /*

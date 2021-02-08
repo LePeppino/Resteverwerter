@@ -2,7 +2,7 @@ package de.prog3.proj2021.adapters;
 
 /*
  * RecyclerViewAdapter holds all the ViewHolders filled
- * with the Views to display the recipes on home screen.
+ * with the Views to display the recipes on favourite screen.
  *
  * File author: Giuseppe Buccellato
  * */
@@ -13,8 +13,6 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,19 +24,19 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import de.prog3.proj2021.R;
+import de.prog3.proj2021.db.FavouritesWithRecipes;
 import de.prog3.proj2021.models.Recipe;
 import de.prog3.proj2021.ui.RecipeDetailActivity;
 
-public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecyclerViewAdapter.RecipeHolder> {
+public class FavouriteRecyclerViewAdapter extends RecyclerView.Adapter<FavouriteRecyclerViewAdapter.RecipeHolder>{
 
     private final Context mContext;
     private List<Recipe> mRecipes = new ArrayList<>();
 
     //constructor
-    public RecipeRecyclerViewAdapter(Context mContext) {
+    public FavouriteRecyclerViewAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
@@ -47,7 +45,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
     public RecipeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.layout_recipe_listitem, parent, false);
-        return new RecipeHolder(itemView);
+        return new FavouriteRecyclerViewAdapter.RecipeHolder(itemView);
     }
 
     @Override
@@ -89,8 +87,8 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         return mRecipes.size();
     }
 
-    public void setMRecipes(List<Recipe> mRecipes){
-        this.mRecipes = mRecipes;
+    public void setMFavourites(FavouritesWithRecipes favouriteRecipes){
+        this.mRecipes = favouriteRecipes.recipes;
     }
 
     public static class RecipeHolder extends RecyclerView.ViewHolder{

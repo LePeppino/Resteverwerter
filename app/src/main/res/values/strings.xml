@@ -5,15 +5,26 @@
     <!-- recipe list -->
     <string name="recipe_placeholder">Recipe Name</string>
     <string name="recipe_desc_placeholder">Recipe Description</string>
-    <string name="home_searchView_placeholder">Search recipe</string>
+    <string name="recipe_searchView_placeholder">Search recipe</string>
     <string name="recipe_recyclerView_title">Available recipes</string>
+    <string name="favourite_recyclerView_title">Your favourites</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- NavBar -->
     <string name="title_home">Home</string>
     <string name="title_search">Picker</string>
     <string name="title_favorites">Favorites</string>
     <string name="title_picker">Ingredient Picker</string>
     <string name="title_shopping_list">Shopping List</string>
+    <string name="search_bar_title">Search</string>
+
+    <!-- Recipe Detail -->
+    <string name="title_recipe_detail">Recipe Detail</string>
+    <string name="description_recipe_detail">Recipe Description</string>
+    <string name="title_recipe_instructions">"How it's made:"</string>
+    <string name="instructions_recipe_detail">Recipe Instructions</string>
+    <string name="title_recipe_ingredients">"What you'll need:"</string>
+    <string name="ingredient_placeholder">Ingredient Name</string>
+    <string name="ingredient_unit_amount">0</string>
+    <string name="ingredient_unit_placeholder">units</string>
 
 </resources>

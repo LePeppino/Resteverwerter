@@ -15,8 +15,8 @@ public class UserWithFavouriteList {
     @Embedded
     public User user;
     @Relation(
-            parentColumn = "userId", //primary key for parent entity User
-            entityColumn = "userOwnerId" //primary key reference from child entity FavouriteList
+            parentColumn = "id",            //primary key for parent entity User
+            entityColumn = "userOwnerId"    //primary key reference from child entity FavouriteList
     )
     public FavouriteList favouriteList;
 }

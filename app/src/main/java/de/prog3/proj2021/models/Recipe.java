@@ -1,14 +1,8 @@
 package de.prog3.proj2021.models;
 
-import android.graphics.Bitmap;
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /*
 * Recipe has n:m relation to FavouriteList class.
@@ -21,7 +15,7 @@ import java.util.List;
 @Entity(tableName = "recipe_table")
 public class Recipe {
     @PrimaryKey(autoGenerate = true)
-    public int recipeId;
+    public int id;
 
     @NonNull
     public String name = "";
@@ -32,7 +26,7 @@ public class Recipe {
     @NonNull
     public String instructions = "";
     @NonNull
-    public String headerImageUrl = "";  //TODO: implement directory and methods for image resources
+    public String headerImageUrl = "";
 
     //constructor
     public Recipe(String name,
@@ -51,8 +45,8 @@ public class Recipe {
     }
 
     //getter, setter
-    public int getRecipeIdId() {return recipeId;}
-    private void setRecipeId(int recipeId) {this.recipeId = recipeId;}
+    public int getId() {return id;}
+    private void setId(int id) {this.id = id;}
 
     public @NonNull String getName() {return name;}
     private void setName(@NonNull String name) {this.name = name;}
@@ -63,7 +57,7 @@ public class Recipe {
     public int isFavourite() {
         return isFavourite;
     }
-    private void setFavourite(int favourite) {
+    public void setFavourite(int favourite) {
         isFavourite = favourite;
     }
 

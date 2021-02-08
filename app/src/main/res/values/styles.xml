@@ -12,6 +12,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">44sp</item>
+        <item name="android:layout_margin">10dp</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="fontFamily">casual</item>
@@ -24,6 +25,83 @@
         <item name="iconifiedByDefault">false</item>
         <item name="android:background">#fff</item>
         <item name="android:layout_margin">15dp</item>
+    </style>
+
+    <style name="homeRecyclerViewTitleStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/recipe_recyclerView_title</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="fontFamily">casual</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="detailHeaderImageStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">300dp</item>
+        <item name="android:background">#fff</item>
+        <item name="android:src">@mipmap/ic_launcher</item>
+        <item name="android:layout_below">@+id/recipeDetailTitleText</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="elevation">6dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="recipeDetailDescriptionTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@id/detailHeaderImage</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:text">@string/description_recipe_detail</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:layout_margin">20dp</item>
+    </style>
+
+    <style name="recipeDetailIngredientsTitleStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/title_recipe_ingredients</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="fontFamily">casual</item>
+        <item name="android:layout_below">@+id/recipeDetailDescriptionText</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="recipeDetailInstructionsTitleStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/title_recipe_instructions</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:layout_below">@+id/recipeDetailIngredientsRecyclerView</item>
+        <item name="fontFamily">casual</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="recipeDetailInstructionsStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/instructions_recipe_detail</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:layout_below">@+id/recipeDetailInstructionsTitle</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+    </style>
+
+    <style name="favouriteRecyclerViewTitleStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/favourite_recyclerView_title</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="fontFamily">casual</item>
+        <item name="android:layout_margin">10dp</item>
     </style>
 
 </resources>

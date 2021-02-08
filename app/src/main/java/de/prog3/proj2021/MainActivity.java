@@ -33,12 +33,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //TODO: check all recipe data behind splash screen
+        // and configure if necessary
+
         //initiate BottomNavBar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
+        //set starting fragment as home
+        Fragment startingFragment = new FragmentHome();
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, startingFragment)
+                .commit();
     }
 
+    /*
+    * BottomNavBar Listener with fragment switcher
+    * */
     @SuppressLint("NonConstantResourceId")
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> { //OnNavigationItemSelectedListener lambda expression

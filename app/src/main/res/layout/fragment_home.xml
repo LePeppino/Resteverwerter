@@ -16,25 +16,33 @@
         style="@style/searchViewStyle"
         android:id="@+id/homeFragmentSearchView"
         android:layout_below="@+id/appTitleId"
-        app:queryHint="@string/home_searchView_placeholder"
+        app:queryHint="@string/recipe_searchView_placeholder"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/RecipeRecyclerViewTitle"
-        android:layout_below="@+id/homeFragmentSearchView"
-        android:text="@string/recipe_recyclerView_title"
-        android:textSize="20sp"
-        android:textColor="@color/colorTextPrimary"
-        android:layout_marginStart="10dp"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
+    <!-- Scrolling list -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/RecipeRecyclerViewTitle"
-        android:id="@+id/recipeRecyclerView"
-        tools:listitem="@layout/layout_recipe_listitem"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/RecipeDetailScrollViewId"
+        android:layout_below="@+id/homeFragmentSearchView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/homeRecyclerViewTitleStyle"
+                android:id="@+id/RecipeRecyclerViewTitle"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/recipeRecyclerView"
+                tools:listitem="@layout/layout_recipe_listitem"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

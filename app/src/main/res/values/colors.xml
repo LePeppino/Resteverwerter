@@ -9,4 +9,7 @@
     <color name="colorTextSecondary">#555</color>
     <color name="colorTextTertiary">#aaa</color>
 
+    <!-- App color concept -->
+    <color name="colorAppLogo">#a3e993</color>
+
 </resources>

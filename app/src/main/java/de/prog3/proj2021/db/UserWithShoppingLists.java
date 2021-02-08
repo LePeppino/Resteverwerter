@@ -17,7 +17,7 @@ public class UserWithShoppingLists {
     @Embedded
     public User user;
     @Relation(
-            parentColumn = "userId",
+            parentColumn = "id",
             entityColumn = "userCreatorId"
     )
     public List<ShoppingList> shoppingLists;

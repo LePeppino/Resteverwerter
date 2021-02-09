@@ -2,11 +2,16 @@
     <string name="app_name">Food Scout</string>
     <string name="author_name">Giuseppe Buccellato, Eric Walter</string>
 
+    <string name="default_amount">0</string>
+
     <!-- recipe list -->
     <string name="recipe_placeholder">Recipe Name</string>
     <string name="recipe_desc_placeholder">Recipe Description</string>
     <string name="recipe_searchView_placeholder">Search recipe</string>
     <string name="recipe_recyclerView_title">Available recipes</string>
+    <string name="picker_recyclerView_title">Ingredient</string>
+    <string name="picker_num_available_title">Available</string>
+    <string name="picker_type_title">Type</string>
     <string name="favourite_recyclerView_title">Your favourites</string>
 
     <!-- NavBar -->
@@ -24,7 +29,16 @@
     <string name="instructions_recipe_detail">Recipe Instructions</string>
     <string name="title_recipe_ingredients">"What you'll need:"</string>
     <string name="ingredient_placeholder">Ingredient Name</string>
-    <string name="ingredient_unit_amount">0</string>
     <string name="ingredient_unit_placeholder">units</string>
+
+    <!-- Ingredient Detail -->
+    <string name="title_ingredient_detail">Ingredient Detail</string>
+    <string name="title_associated_recipes">Recipes containing this:</string>
+    <string name="title_num_available">"You've got"</string>
+    <string name="title_num_associated">No. of recipes with this</string>
+    <string name="addToShoppingList">Add to shopping list</string>
+    <string name="addToAvailable">Add as owned</string>
+    <string name="ingredient_category_title">Category</string>
+
 
 </resources>

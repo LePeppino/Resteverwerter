@@ -16,11 +16,13 @@ import java.util.List;
 
 import de.prog3.proj2021.db.AppDatabase;
 import de.prog3.proj2021.db.IngredientDao;
+import de.prog3.proj2021.db.IngredientWithRecipes;
 import de.prog3.proj2021.models.Ingredient;
 
 public class IngredientRepository {
 
     private LiveData<List<Ingredient>> dataSet;
+    private List<IngredientWithRecipes> crossRefDataSet;
     private final IngredientDao ingredientDao;
 
     //constructor
@@ -33,7 +35,14 @@ public class IngredientRepository {
     //getter and setter for ingredient dataSet
     public LiveData<List<Ingredient>> getIngredients() { return dataSet; }
 
-    private void updateIngredients() { dataSet = ingredientDao.getIngredients();}
+    public List<IngredientWithRecipes> getIngredientWithRecipes(){
+        return crossRefDataSet;
+    }
+
+    private void updateIngredients() {
+        dataSet = ingredientDao.getIngredientsByTypeASC();
+        crossRefDataSet = ingredientDao.getIngredientWithRecipes();
+    }
 
     /*
      * database operations communicating with IngredientDao
@@ -54,9 +63,6 @@ public class IngredientRepository {
     /*
      * getters for different queries here
      */
-    public LiveData<List<Ingredient>> getIngredientsAlphabetical(){
-        return dataSet = ingredientDao.getIngredientsASC();
-    }
 
 
 }

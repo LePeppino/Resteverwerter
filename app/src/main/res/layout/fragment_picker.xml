@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/holo_orange_dark">
 
     <TextView
@@ -8,5 +11,60 @@
         android:text="@string/title_picker"
         style="@style/FragmentTitleText"
         />
+
+    <androidx.appcompat.widget.SearchView
+        style="@style/searchViewStyle"
+        android:id="@+id/pickerFragmentSearchView"
+        android:layout_below="@+id/pickerFragmentTitle"
+        app:queryHint="@string/recipe_searchView_placeholder"
+        />
+
+    <!-- Ingredient List Title Bar -->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pickerRecyclerViewTitleRow"
+        android:layout_below="@+id/pickerFragmentSearchView">
+            <TextView
+                style="@style/recyclerViewTitleStyle"
+                android:text="@string/picker_type_title"
+                android:id="@+id/pickerRecyclerViewTypeTitle"
+                android:layout_weight="2"
+                />
+            <TextView
+                style="@style/recyclerViewTitleStyle"
+                android:text="@string/picker_recyclerView_title"
+                android:id="@+id/pickerRecyclerViewTitle"
+                android:layout_weight="10"
+                />
+            <TextView
+                style="@style/recyclerViewTitleStyle"
+                android:text="@string/picker_num_available_title"
+                android:id="@+id/pickerRecyclerViewAltTitle"
+                android:layout_weight="0"
+                />
+    </TableRow>
+
+
+    <!-- Scrolling list -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/RecipeDetailScrollViewId"
+        android:layout_below="@+id/pickerRecyclerViewTitleRow">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/ingredientRecyclerView"
+                tools:listitem="@layout/layout_recipedetail_ingredient_listitem"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

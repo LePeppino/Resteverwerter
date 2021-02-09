@@ -2,7 +2,7 @@ package de.prog3.proj2021.adapters;
 
 /*
  * RecyclerViewAdapter holds all the ViewHolders filled
- * with the Views to display the recipe details on RecipeDetailActivity.
+ * with the Views to display the ingredients on FragmentPicker.
  *
  * File author: Giuseppe Buccellato
  * */
@@ -22,42 +22,41 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.prog3.proj2021.R;
-import de.prog3.proj2021.converters.DataConverter;
 import de.prog3.proj2021.db.RecipeWithIngredients;
 import de.prog3.proj2021.models.Ingredient;
 import de.prog3.proj2021.ui.IngredientDetailActivity;
-import de.prog3.proj2021.ui.RecipeDetailActivity;
 
-public class RecipeDetailRecyclerViewAdapter  extends RecyclerView.Adapter<RecipeDetailRecyclerViewAdapter.RecipeDetailHolder>{
+public class PickerRecyclerViewAdapter extends RecyclerView.Adapter<PickerRecyclerViewAdapter.IngredientHolder>{
 
     private final Context mContext;
-    private RecipeWithIngredients currentRecipe = new RecipeWithIngredients();
+    private List<Ingredient> ingredients = new ArrayList<>();
 
     //constructor
-    public RecipeDetailRecyclerViewAdapter(Context mContext){
+    public PickerRecyclerViewAdapter(Context mContext){
         this.mContext = mContext;
     }
 
     @NonNull
     @Override
-    public RecipeDetailHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public IngredientHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.layout_recipedetail_ingredient_listitem, parent, false);
-        return new RecipeDetailHolder(itemView);
+        return new IngredientHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecipeDetailHolder holder, int position) {
+    public void onBindViewHolder(@NonNull IngredientHolder holder, int position) {
         //set current ingredient
-        Ingredient currentIngredient = currentRecipe.ingredients.get(position);
-        //convert ingredient unit from int to actual value
-        String ingredientUnit = fromIntegerToUnit(currentIngredient.unit);
-        String ingredientAmount = "" + currentIngredient.getNumRequired();
+        Ingredient currentIngredient = ingredients.get(position);
+        //convert ingredient params from int to String value
+        String ingredientUnit = fromIntegerToUnitString(currentIngredient.getUnit());
+        String ingredientAmount = "" + currentIngredient.getNumAvailable();
 
-        //pass currentIngredient details to layout via ViewHolder
+        //pass ingredient details to layout via ViewHolder
         holder.ingredientName.setText(currentIngredient.getName());
         holder.ingredientAmount.setText(ingredientAmount);
         holder.ingredientUnit.setText(ingredientUnit);
@@ -90,21 +89,16 @@ public class RecipeDetailRecyclerViewAdapter  extends RecyclerView.Adapter<Recip
     //return number of items. if this returns 0, nothing will display
     @Override
     public int getItemCount() {
-        if(currentRecipe.ingredients == null){
-            System.out.println("currentRecipe.ingredients does not exist.");
-            return 0;
-        }else{
-            return currentRecipe.ingredients.size();
-        }
+        return ingredients.size();
     }
 
     //setter
-    public void setRecipes(RecipeWithIngredients recipeWithIngredients){
-        this.currentRecipe = recipeWithIngredients;
+    public void setIngredients(List<Ingredient> mIngredientList){
+        this.ingredients = mIngredientList;
     }
 
     //Ingredient Unit to String converter
-    public String fromIntegerToUnit(int unitValue){
+    public String fromIntegerToUnitString(int unitValue){
         String unitString;
 
         if(unitValue == 1){unitString = "g";}
@@ -115,11 +109,7 @@ public class RecipeDetailRecyclerViewAdapter  extends RecyclerView.Adapter<Recip
         return unitString;
     }
 
-    /*
-    * ViewHolder class that holds all the views, duh
-    * */
-    public static class RecipeDetailHolder extends RecyclerView.ViewHolder{
-
+    public static class IngredientHolder extends RecyclerView.ViewHolder{
         RelativeLayout parentLayout;
         private final ImageView typeImage;
         private final TextView ingredientName;
@@ -127,7 +117,7 @@ public class RecipeDetailRecyclerViewAdapter  extends RecyclerView.Adapter<Recip
         private final TextView ingredientUnit;
 
         //constructor
-        public RecipeDetailHolder(@NonNull View itemView) {
+        public IngredientHolder(@NonNull View itemView) {
             super(itemView);
 
             parentLayout = itemView.findViewById(R.id.parentLayout);

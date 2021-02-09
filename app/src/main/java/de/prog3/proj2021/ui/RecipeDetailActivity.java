@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -63,7 +64,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
 
-        //get recipeId from chosen recipe
+        //get passed recipeId from chosen recipe
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             currentRecipeId = extras.getInt("currentRecipeId");
@@ -123,12 +124,15 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         List<RecipeWithIngredients> recipeList = mRecipeViewModel.getMRecipesWithIngredients();
 
-        setRecipes(recipeList, currentRecipeId);
-        recipeDetailRecyclerViewAdapter.setRecipes(recipeList, currentRecipeId);
+        //set currentRecipe and pass to RecyclerView
+        setCurrentRecipe(recipeList, currentRecipeId);
+        recipeDetailRecyclerViewAdapter.setRecipes(currentRecipe);
     }
 
-    //set currentRecipe for this Activity
-    private void setRecipes(List<RecipeWithIngredients> recipeList, int currentRecipeId){
+    /*
+     * set currentRecipe for this Activity
+     */
+    private void setCurrentRecipe(List<RecipeWithIngredients> recipeList, int currentRecipeId){
         for(RecipeWithIngredients recipe : recipeList){
             if(recipe.recipe.getId() == currentRecipeId){
                 currentRecipe = recipe;

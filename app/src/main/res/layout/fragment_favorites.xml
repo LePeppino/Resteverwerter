@@ -32,8 +32,9 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/favouriteRecyclerViewTitleStyle"
+                style="@style/recyclerViewTitleStyle"
                 android:id="@+id/FavouriteRecyclerViewTitle"
+                android:text="@string/favourite_recyclerView_title"
                 />
 
             <androidx.recyclerview.widget.RecyclerView

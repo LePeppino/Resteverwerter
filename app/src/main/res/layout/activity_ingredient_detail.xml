@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.IngredientDetailActivity"
+    android:background="@color/colorAppLogo"
+    android:id="@+id/parentLayout">
+
+    <!-- Title -->
+    <TextView
+        style="@style/FragmentTitleText"
+        android:id="@+id/ingredientDetailTitleText"
+        android:text="@string/title_ingredient_detail"/>
+
+    <!-- Scrolling details -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ingredientDetailScrollViewId"
+        android:layout_below="@+id/ingredientDetailTitleText">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Category -->
+                <TableRow
+                    android:layout_margin="10dp"
+                    android:weightSum="2">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="0dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/ingredientDetailTypeImage"
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_weight="1"
+                        />
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            style="@style/tableTitleRow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ingredient_category_title"
+                            />
+                        <TextView
+                            style="@style/tableValueRow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ingredientTypeText"
+                            android:text="@string/ingredient_category_title"
+                            />
+                    </LinearLayout>
+
+                </TableRow>
+
+                <!-- Counters -->
+                <TableRow
+                    android:layout_marginTop="10dp"
+                    android:weightSum="2">
+
+                    <TextView
+                        style="@style/tableTitleRow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/title_num_available"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        style="@style/tableTitleRow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/title_num_associated"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+                <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="2">
+
+                    <TextView
+                        style="@style/tableValueRow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/numAvailableText"
+                        android:text="@string/default_amount"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        style="@style/tableValueRow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/numAssociatedRecipesText"
+                        android:text="@string/default_amount"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <!-- Buttons -->
+                <TableRow
+                    android:layout_margin="10dp"
+                    android:weightSum="2">
+
+                    <Button
+                        style="@style/buttonStyle"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/addToShoppingListButton"
+                        android:drawableTop="@drawable/ic_baseline_shopping_basket_24"
+                        android:text="@string/addToShoppingList"
+                        android:onClick="addToShoppingList"
+                        />
+                    <Button
+                        style="@style/buttonStyle"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/addAsOwnedButton"
+                        android:drawableTop="@drawable/ic_baseline_check_24"
+                        android:text="@string/addToAvailable"
+                        android:onClick="addAsOwned"
+                        />
+
+                </TableRow>
+            </TableLayout>
+
+            <!-- Associated recipe list -->
+            <TextView
+                style="@style/recipeDetailIngredientsTitleStyle"
+                android:id="@+id/associatedRecipesTitle"
+                android:text="@string/title_associated_recipes"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/associatedRecipesRecyclerView"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                tools:listitem="@layout/layout_recipe_listitem"
+                />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

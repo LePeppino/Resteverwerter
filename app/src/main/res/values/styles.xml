@@ -27,10 +27,9 @@
         <item name="android:layout_margin">15dp</item>
     </style>
 
-    <style name="homeRecyclerViewTitleStyle">
+    <style name="recyclerViewTitleStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:text">@string/recipe_recyclerView_title</item>
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="fontFamily">casual</item>
@@ -63,11 +62,9 @@
     <style name="recipeDetailIngredientsTitleStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:text">@string/title_recipe_ingredients</item>
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="fontFamily">casual</item>
-        <item name="android:layout_below">@+id/recipeDetailDescriptionText</item>
         <item name="android:layout_margin">10dp</item>
     </style>
 
@@ -102,6 +99,25 @@
         <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="fontFamily">casual</item>
         <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="tableTitleRow">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:textAlignment">center</item>
+        <item name="fontFamily">casual</item>
+    </style>
+
+    <style name="tableValueRow">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="buttonStyle">
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:padding">15dp</item>
     </style>
 
 </resources>

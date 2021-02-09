@@ -51,6 +51,7 @@
             <TextView
                 style="@style/recipeDetailIngredientsTitleStyle"
                 android:id="@+id/recipeDetailIngredientsTitle"
+                android:text="@string/title_recipe_ingredients"
                 />
 
             <androidx.recyclerview.widget.RecyclerView

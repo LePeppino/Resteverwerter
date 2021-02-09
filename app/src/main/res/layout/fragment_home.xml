@@ -32,8 +32,9 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/homeRecyclerViewTitleStyle"
+                style="@style/recyclerViewTitleStyle"
                 android:id="@+id/RecipeRecyclerViewTitle"
+                android:text="@string/recipe_recyclerView_title"
                 />
 
             <androidx.recyclerview.widget.RecyclerView

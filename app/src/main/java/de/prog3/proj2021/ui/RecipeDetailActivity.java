@@ -175,15 +175,15 @@ public class RecipeDetailActivity extends AppCompatActivity {
     private void addFavourite(RecipeWithIngredients currentRecipe){
         mFavouritesViewModel = new ViewModelProvider(this).get(FavouritesViewModel.class);
         FavouritesWithRecipes favouriteList = mFavouritesViewModel.getMFavouriteList();
-        FavouriteRecipeCrossRef crossRef = new FavouriteRecipeCrossRef(
-                favouriteList.favouriteList.getId(), currentRecipeId);
+            FavouriteRecipeCrossRef crossRef = new FavouriteRecipeCrossRef(
+                    favouriteList.favouriteList.getId(), currentRecipeId);
 
-        //update CrossRef table
-        mFavouritesViewModel.insertFavouriteCrossRef(crossRef);
-        //increment numOfFavourites
-        favouriteList.favouriteList.setNumOfFavourites(favouriteList.favouriteList.getNumOfFavourites() + 1);
-        //set favourite status in recipe
-        currentRecipe.recipe.setFavourite(1);
+            //update CrossRef table
+            mFavouritesViewModel.insertFavouriteCrossRef(crossRef);
+            //increment numOfFavourites
+            favouriteList.favouriteList.setNumOfFavourites(favouriteList.favouriteList.getNumOfFavourites() + 1);
+            //set favourite status in recipe
+            currentRecipe.recipe.setFavourite(1);
     }
 
     /*
@@ -193,14 +193,14 @@ public class RecipeDetailActivity extends AppCompatActivity {
     private void removeFavourite(RecipeWithIngredients currentRecipe){
         mFavouritesViewModel = new ViewModelProvider(this).get(FavouritesViewModel.class);
         FavouritesWithRecipes favouriteList = mFavouritesViewModel.getMFavouriteList();
-        FavouriteRecipeCrossRef crossRef = new FavouriteRecipeCrossRef(
-                favouriteList.favouriteList.getId(), currentRecipeId);
+            FavouriteRecipeCrossRef crossRef = new FavouriteRecipeCrossRef(
+                    favouriteList.favouriteList.getId(), currentRecipeId);
 
-        //update CrossRef table
-        mFavouritesViewModel.deleteFavouriteCrossRef(crossRef);
-        //decrease numOfFavourites
-        favouriteList.favouriteList.setNumOfFavourites(favouriteList.favouriteList.getNumOfFavourites() - 1);
-        //set favourite status in recipe
-        currentRecipe.recipe.setFavourite(0);
+            //update CrossRef table
+            mFavouritesViewModel.deleteFavouriteCrossRef(crossRef);
+            //decrease numOfFavourites
+            favouriteList.favouriteList.setNumOfFavourites(favouriteList.favouriteList.getNumOfFavourites() - 1);
+            //set favourite status in recipe
+            currentRecipe.recipe.setFavourite(0);
     }
 }

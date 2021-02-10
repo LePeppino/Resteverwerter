@@ -87,8 +87,18 @@ public class FavouriteRecyclerViewAdapter extends RecyclerView.Adapter<Favourite
         return mRecipes.size();
     }
 
+    /*
+    * sets recipes for default display
+    * */
     public void setMFavourites(FavouritesWithRecipes favouriteRecipes){
         this.mRecipes = favouriteRecipes.recipes;
+    }
+
+    /*
+    * sets recipes by query from search bar in FragmentFavorites
+    * */
+    public void setMFavouritesByQuery(List<Recipe> recipeList){
+        this.mRecipes = recipeList;
     }
 
     public static class RecipeHolder extends RecyclerView.ViewHolder{

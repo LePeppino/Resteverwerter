@@ -9,9 +9,13 @@ package de.prog3.proj2021.fragments;
  */
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,8 +25,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.prog3.proj2021.R;
 import de.prog3.proj2021.adapters.RecipeRecyclerViewAdapter;
+import de.prog3.proj2021.db.RecipeWithIngredients;
+import de.prog3.proj2021.models.Recipe;
 import de.prog3.proj2021.viewmodels.RecipeViewModel;
 
 public class FragmentHome extends Fragment {
@@ -30,6 +39,9 @@ public class FragmentHome extends Fragment {
     RecipeRecyclerViewAdapter recipeRecyclerViewAdapter;
     RecyclerView recipeRecyclerView;
     RecipeViewModel mRecipeViewModel;
+
+    AutoCompleteTextView autoCompleteTextView;
+    private final List<String> recipeNameList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -41,6 +53,9 @@ public class FragmentHome extends Fragment {
 
         //instantiate ViewModel and Observer
         initViewModel();
+
+        //instantiate editText search bar
+        initSearchBar(root);
 
         return root;
     }
@@ -64,11 +79,69 @@ public class FragmentHome extends Fragment {
     private void initViewModel(){
         mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
-        mRecipeViewModel.getMRecipes().observe(getViewLifecycleOwner(), recipes -> { //Observable lambda expression
-            recipeRecyclerViewAdapter.setMRecipes(recipes);
+        mRecipeViewModel.getMRecipes().observe(getViewLifecycleOwner(), recipeList -> { //Observable lambda expression
+            recipeRecyclerViewAdapter.setMRecipes(recipeList);
             recipeRecyclerViewAdapter.notifyDataSetChanged();
-            Toast.makeText(getContext(), "observed onChanged RecyclerView", Toast.LENGTH_SHORT).show();
         });
+    }
+
+    /*
+    * initialise the AutoCompleteTextView as search bar
+    * and update recipe list according to query
+    * */
+    private void initSearchBar(View root){
+        initNameList();
+
+        autoCompleteTextView = root.findViewById(R.id.autoCompleteTextView);
+        ArrayAdapter<String> recipeAdapter = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_list_item_1, recipeNameList);
+        autoCompleteTextView.setAdapter(recipeAdapter);
+
+        autoCompleteTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateRecipeList(s.toString());
+                System.out.println("onTextChanged");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateRecipeList(s.toString());
+                System.out.println("afterTextChanged");
+            }
+        });
+    }
+
+    /*
+     * display recipe in Recycler if query matches with recipe name.
+     * if query is empty, show all recipes
+     * */
+    private void updateRecipeList(String query){
+        if(!query.equals("")){
+            mRecipeViewModel.getMRecipesByQuery(query).observe(getViewLifecycleOwner(), filteredRecipeList -> {
+                recipeRecyclerViewAdapter.setMRecipes(filteredRecipeList);
+                recipeRecyclerViewAdapter.notifyDataSetChanged();
+            });
+        }else{
+            mRecipeViewModel.getMRecipes().observe(getViewLifecycleOwner(), recipeList -> {
+                recipeRecyclerViewAdapter.setMRecipes(recipeList);
+                recipeRecyclerViewAdapter.notifyDataSetChanged();
+            });
+        }
+    }
+
+    /*
+    * fill the name lists with recipe titles
+    * */
+    private void initNameList(){
+        recipeNameList.clear();
+        List<RecipeWithIngredients> tmp = mRecipeViewModel.getMRecipesWithIngredients();
+        for(RecipeWithIngredients recipeWithIngredients : tmp){
+            recipeNameList.add(recipeWithIngredients.recipe.getName());
+        }
     }
 
 }

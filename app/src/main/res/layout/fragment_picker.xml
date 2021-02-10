@@ -12,11 +12,16 @@
         style="@style/FragmentTitleText"
         />
 
-    <androidx.appcompat.widget.SearchView
-        style="@style/searchViewStyle"
-        android:id="@+id/pickerFragmentSearchView"
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/autoCompleteTextView"
         android:layout_below="@+id/pickerFragmentTitle"
-        app:queryHint="@string/recipe_searchView_placeholder"
+        android:hint="@string/searchView_placeholder"
+        android:completionHint="@string/searchView_placeholder"
+        android:completionThreshold="1"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         />
 
     <!-- Ingredient List Title Bar -->
@@ -24,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pickerRecyclerViewTitleRow"
-        android:layout_below="@+id/pickerFragmentSearchView">
+        android:layout_below="@+id/autoCompleteTextView">
             <TextView
                 style="@style/recyclerViewTitleStyle"
                 android:text="@string/picker_type_title"

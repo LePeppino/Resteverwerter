@@ -34,6 +34,9 @@ public interface FavouriteListDao {
     @Delete
     void deleteFavouritesWithRecipes(FavouriteRecipeCrossRef favouriteRecipeCrossRef);
 
+    @Query("SELECT * FROM recipe_table WHERE name = :query AND isFavourite = 1 ORDER BY name ASC")
+    LiveData<List<Recipe>> getFavouriteRecipesByQuery(String query);
+
     @Transaction
     @Query("SELECT * FROM favouriteList_table")
     List<FavouritesWithRecipes> getFavouritesWithRecipes();

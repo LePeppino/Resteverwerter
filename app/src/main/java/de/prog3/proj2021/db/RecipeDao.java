@@ -46,10 +46,7 @@ public interface RecipeDao {
     @Query("SELECT * FROM recipe_table ORDER BY name ASC")
     LiveData<List<Recipe>> getRecipesASC();
 
-    @Query("SELECT * FROM recipe_table ORDER BY name DESC")
-    LiveData<List<Recipe>> getRecipesDESC();
-
-    @Query("SELECT * FROM recipe_table WHERE name LIKE :query")
+    @Query("SELECT * FROM recipe_table WHERE name LIKE :query ORDER BY name ASC")
     LiveData<List<Recipe>> getRecipesByQuery(String query);
 
     @Transaction

@@ -34,11 +34,11 @@ public interface IngredientDao {
     @Query("SELECT * FROM ingredient_table")
     LiveData<List<Ingredient>> getIngredients();
 
-    @Query("SELECT * FROM ingredient_table ORDER BY name ASC")
-    LiveData<List<Ingredient>> getIngredientsASC();
-
     @Query("SELECT * FROM ingredient_table ORDER BY type, name ASC")
     LiveData<List<Ingredient>> getIngredientsByTypeASC();
+
+    @Query("SELECT * FROM ingredient_table WHERE name LIKE :query ORDER BY type, name ASC")
+    LiveData<List<Ingredient>> getIngredientsByQuery(String query);
 
     @Transaction
     @Query("SELECT * FROM ingredient_table")

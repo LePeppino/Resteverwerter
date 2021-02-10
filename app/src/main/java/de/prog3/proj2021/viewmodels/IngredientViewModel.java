@@ -49,4 +49,7 @@ public class IngredientViewModel extends AndroidViewModel {
     public List<IngredientWithRecipes> getMIngredientWithRecipes(){
         return mIngredientWithRecipes;
     }
+    public LiveData<List<Ingredient>> getMIngredientsByQuery(String query){
+        return ingredientRepository.getMIngredientsByQuery(query);
+    }
 }

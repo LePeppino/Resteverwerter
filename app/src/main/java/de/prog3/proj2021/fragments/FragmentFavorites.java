@@ -9,9 +9,13 @@ package de.prog3.proj2021.fragments;
  */
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,15 +24,25 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.prog3.proj2021.R;
 import de.prog3.proj2021.adapters.FavouriteRecyclerViewAdapter;
 import de.prog3.proj2021.db.FavouritesWithRecipes;
+import de.prog3.proj2021.db.RecipeWithIngredients;
+import de.prog3.proj2021.models.Recipe;
 import de.prog3.proj2021.viewmodels.FavouritesViewModel;
+import de.prog3.proj2021.viewmodels.RecipeViewModel;
 
 public class FragmentFavorites extends Fragment {
 
     FavouriteRecyclerViewAdapter favouriteRecyclerViewAdapter;
     RecyclerView favouriteRecyclerView;
+    FavouritesViewModel mFavouritesViewModel;
+
+    AutoCompleteTextView autoCompleteTextView;
+    private final List<String> recipeNameList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -40,6 +54,9 @@ public class FragmentFavorites extends Fragment {
 
         //instantiate ViewModel and Observer
         initViewModel();
+
+        //instantiate editText search bar
+        initSearchBar(root);
 
         return root;
     }
@@ -61,9 +78,69 @@ public class FragmentFavorites extends Fragment {
      * FavouriteRecipeRepository and pass data to FavouriteRecyclerViewAdapter
      */
     private void initViewModel() {
-        FavouritesViewModel mFavouritesViewModel = new ViewModelProvider(this).get(FavouritesViewModel.class);
-        FavouritesWithRecipes favouriteRecipes = mFavouritesViewModel.getMFavouriteList();
+        mFavouritesViewModel = new ViewModelProvider(this).get(FavouritesViewModel.class);
 
-        favouriteRecyclerViewAdapter.setMFavourites(favouriteRecipes);
+        FavouritesWithRecipes favouritesWithRecipes = mFavouritesViewModel.getMFavouriteList();
+        favouriteRecyclerViewAdapter.setMFavourites(favouritesWithRecipes);
+        favouriteRecyclerViewAdapter.notifyDataSetChanged();
     }
+
+    /*
+     * initialise the AutoCompleteTextView as search bar
+     * and update recipe list according to query
+     * */
+    private void initSearchBar(View root){
+        initNameList();
+
+        autoCompleteTextView = root.findViewById(R.id.autoCompleteTextView);
+        ArrayAdapter<String> recipeAdapter = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_list_item_1, recipeNameList);
+        autoCompleteTextView.setAdapter(recipeAdapter);
+
+        autoCompleteTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateRecipeList(s.toString());
+                System.out.println("onTextChanged");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateRecipeList(s.toString());
+                System.out.println("afterTextChanged");
+            }
+        });
+    }
+
+    /*
+     * display recipe in Recycler if query matches with recipe name.
+     * if query is empty, show all favourite recipes
+     * */
+    private void updateRecipeList(String query){
+        if(!query.equals("")){
+            mFavouritesViewModel.getFavouriteRecipesByQuery(query).observe(getViewLifecycleOwner(), filteredRecipeList -> {
+                favouriteRecyclerViewAdapter.setMFavouritesByQuery(filteredRecipeList);
+                favouriteRecyclerViewAdapter.notifyDataSetChanged();
+            });
+        }else{
+            FavouritesWithRecipes recipeList = mFavouritesViewModel.getMFavouriteList();
+            favouriteRecyclerViewAdapter.setMFavourites(recipeList);
+            favouriteRecyclerViewAdapter.notifyDataSetChanged();
+        }
+    }
+
+    /*
+     * fill the name lists with recipe titles
+     * */
+    private void initNameList(){
+        recipeNameList.clear();
+        FavouritesWithRecipes favouritesWithRecipes = mFavouritesViewModel.getMFavouriteList();
+            for(Recipe favouriteRecipe : favouritesWithRecipes.recipes){
+                recipeNameList.add(favouriteRecipe.getName());
+            }
+    }
+
 }

@@ -7,7 +7,7 @@
     <!-- recipe list -->
     <string name="recipe_placeholder">Recipe Name</string>
     <string name="recipe_desc_placeholder">Recipe Description</string>
-    <string name="recipe_searchView_placeholder">Search recipe</string>
+    <string name="searchView_placeholder">"Search..."</string>
     <string name="recipe_recyclerView_title">Available recipes</string>
     <string name="picker_recyclerView_title">Ingredient</string>
     <string name="picker_num_available_title">Available</string>

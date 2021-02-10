@@ -19,6 +19,7 @@ import de.prog3.proj2021.db.FavouriteListDao;
 import de.prog3.proj2021.db.FavouriteRecipeCrossRef;
 import de.prog3.proj2021.db.FavouritesWithRecipes;
 import de.prog3.proj2021.models.FavouriteList;
+import de.prog3.proj2021.models.Recipe;
 
 public class FavouriteRecipeRepository {
 
@@ -74,6 +75,7 @@ public class FavouriteRecipeRepository {
     /*
      * getters for different queries here
      */
-
-
+    public LiveData<List<Recipe>> getFavouriteRecipesByQuery(String query){
+        return favouriteListDao.getFavouriteRecipesByQuery(query);
+    }
 }

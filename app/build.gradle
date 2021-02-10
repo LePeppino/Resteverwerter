@@ -99,10 +99,13 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
-
     /**
      * SugarTask components
      */
     implementation 'com.github.mthli:SugarTask:v0.4'
 
+    /**
+     * arimorty floating search view components
+     */
+    implementation 'com.github.arimorty:floatingsearchview:2.1.1'
 }

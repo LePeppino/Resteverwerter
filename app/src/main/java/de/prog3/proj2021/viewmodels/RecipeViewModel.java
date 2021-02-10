@@ -36,11 +36,9 @@ public class RecipeViewModel extends AndroidViewModel {
     public void insert(Recipe recipe){
         recipeRepository.insert(recipe);
     }
-
     public void update(Recipe recipe){
         recipeRepository.update(recipe);
     }
-
     public void delete(Recipe recipe){
         recipeRepository.delete(recipe);
     }
@@ -48,11 +46,9 @@ public class RecipeViewModel extends AndroidViewModel {
     public void insertRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
         recipeRepository.insertRecipeIngredientCrossRef(recipeIngredientCrossRef);
     }
-
     public void updateRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
         recipeRepository.updateRecipeIngredientCrossRef(recipeIngredientCrossRef);
     }
-
     public void deleteRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
         recipeRepository.deleteRecipeIngredientCrossRef(recipeIngredientCrossRef);
     }

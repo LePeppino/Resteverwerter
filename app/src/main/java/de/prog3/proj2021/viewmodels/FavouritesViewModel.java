@@ -62,4 +62,11 @@ public class FavouritesViewModel extends AndroidViewModel {
         favouriteRecipeRepository.deleteCrossRef(favouriteRecipeCrossRef);
     }
 
+    /*
+     * getters for different queries here
+     */
+    public LiveData<List<Recipe>> getFavouriteRecipesByQuery(String query){
+        return favouriteRecipeRepository.getFavouriteRecipesByQuery(query);
+    }
+
 }

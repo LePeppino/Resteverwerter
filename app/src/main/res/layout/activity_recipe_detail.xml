@@ -8,6 +8,8 @@
 
     <!-- Title -->
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         style="@style/FragmentTitleText"
         android:id="@+id/recipeDetailTitleText"
         android:text="@string/title_recipe_detail"/>

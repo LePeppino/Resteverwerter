@@ -40,5 +40,10 @@
     <string name="addToAvailable">Add as owned</string>
     <string name="ingredient_category_title">Category</string>
 
+    <!-- Shopping Lists -->
+    <string name="shoppinglist_overview_title">Your shopping lists</string>
+    <string name="shoppinglist_name_placeholder">Shopping list</string>
+    <string name="shopping_progress_placeholder">0 / 0</string>
+    <string name="addShoppingList">Add Shopping List</string>
 
 </resources>

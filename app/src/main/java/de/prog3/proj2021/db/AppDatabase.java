@@ -55,7 +55,7 @@ public abstract class AppDatabase extends RoomDatabase {
                              * all previous data when updating database
                              * version number due to changes to database schema!
                              */
-                            //.fallbackToDestructiveMigration()
+                            .fallbackToDestructiveMigration()
                             .allowMainThreadQueries()
                             .createFromAsset("database/food_scout.db")
                             .build();

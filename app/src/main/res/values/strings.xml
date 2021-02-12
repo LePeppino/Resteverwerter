@@ -50,5 +50,6 @@
     <string name="amountToAdd">Amount</string>
 
     <string name="ifListEmptyNotifierText">No items here yet. Add an ingredient with the button down below!</string>
+    <string name="initUserInfo">Please wait while we get things ready for you...</string>
 
 </resources>

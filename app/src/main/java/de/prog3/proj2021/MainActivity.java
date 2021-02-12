@@ -25,6 +25,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
+import de.prog3.proj2021.db.RecipeWithIngredients;
 import de.prog3.proj2021.fragments.FragmentFavorites;
 import de.prog3.proj2021.fragments.FragmentHome;
 import de.prog3.proj2021.fragments.FragmentPicker;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         RecipeViewModel mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
-        List recipeWithIngredients = mRecipeViewModel.getMRecipesWithIngredients();
+        List<RecipeWithIngredients> recipeWithIngredients = mRecipeViewModel.getMRecipesWithIngredients();
 
         //TODO: check all recipe data behind splash screen
         // and configure if necessary

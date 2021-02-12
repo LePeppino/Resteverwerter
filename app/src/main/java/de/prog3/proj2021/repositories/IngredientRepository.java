@@ -67,4 +67,8 @@ public class IngredientRepository {
         return ingredientDao.getIngredientsByQuery(query);
     }
 
+    public Ingredient getSingleIngredientByQuery(String query){
+        return ingredientDao.getSingleIngredientByQuery(query);
+    }
+
 }

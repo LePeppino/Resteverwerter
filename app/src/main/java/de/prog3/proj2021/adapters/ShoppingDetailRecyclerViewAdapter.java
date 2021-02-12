@@ -87,12 +87,18 @@ public class ShoppingDetailRecyclerViewAdapter extends RecyclerView.Adapter<Shop
     //return number of items. if this returns 0, nothing will display
     @Override
     public int getItemCount() {
-        return currentShoppingList.ingredients.size();
+        try {
+            return currentShoppingList.ingredients.size();
+        }catch (Exception e){
+            System.out.println("Null object reference: ingredient list is null");
+        }
+        return 0;
     }
 
     //setter for current ShoppingList
     public void setMShoppingListWithIngredients(ShoppingListWithIngredients shoppingListWithIngredients){
         this.currentShoppingList = shoppingListWithIngredients;
+        currentShoppingList.ingredients = shoppingListWithIngredients.ingredients;
     }
 
     /*

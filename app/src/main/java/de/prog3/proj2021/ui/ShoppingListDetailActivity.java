@@ -6,7 +6,6 @@ package de.prog3.proj2021.ui;
  * Instantiates a ViewModel to retrieve
  * ShoppingList data from repository.
  *
- *
  * File authors: Giuseppe Buccellato
  */
 
@@ -34,6 +33,7 @@ import java.util.List;
 import de.prog3.proj2021.R;
 import de.prog3.proj2021.adapters.ShoppingDetailRecyclerViewAdapter;
 import de.prog3.proj2021.db.IngredientWithRecipes;
+import de.prog3.proj2021.db.ShoppingListIngredientCrossRef;
 import de.prog3.proj2021.db.ShoppingListWithIngredients;
 import de.prog3.proj2021.models.Ingredient;
 import de.prog3.proj2021.viewmodels.IngredientViewModel;
@@ -45,6 +45,8 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
     RecyclerView shoppingDetailRecyclerView;
     ShoppingListViewModel mShoppingListViewModel;
     IngredientViewModel mIngredientViewModel;
+
+    private Ingredient queriedIngredient;
 
     private final List<String> ingredientNameList = new ArrayList<>();
 
@@ -70,7 +72,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         initRecyclerView();
 
         //instantiate ViewModel, Observer and Views
-        initViewModel();
+        initViewModels();
 
         //fill nameList with ingredient names
         initNameList();
@@ -95,8 +97,9 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
      * Observe ViewModel for changes, query ShoppingLists from
      * ShoppingListRepository and pass data to RecyclerViewAdapter
      */
-    private void initViewModel(){
+    private void initViewModels() {
         mShoppingListViewModel = new ViewModelProvider(this).get(ShoppingListViewModel.class);
+        mIngredientViewModel = new ViewModelProvider(this).get(IngredientViewModel.class);
 
         mShoppingListViewModel.getMShoppingListsWithIngredients().observe(this, shoppingLists -> { //Observable lambda expression
             setCurrentList(shoppingLists);
@@ -105,6 +108,11 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
             shoppingDetailAdapter.notifyDataSetChanged();
         });
     }
+
+    /*
+    * getter for queried Ingredient
+    * */
+    public Ingredient getQueriedIngredient(){return queriedIngredient;}
 
     /*
     * finds chosen ShoppingListWithIngredients among all lists
@@ -139,7 +147,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAddDialog(currentShoppingListId);
+                showAddDialog();
             }
         });
     }
@@ -147,7 +155,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
     /*
     * create alert dialog to add ingredient
     * */
-    private void showAddDialog(int currentShoppingListId){
+    private void showAddDialog(){
         //create alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         //set dialog message and title
@@ -178,8 +186,8 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
                     value = Integer.parseInt(amount);
                 }
                 //check if inputs are valid. if yes, add ingredient, else cancel
-                if(!name.equals("") && value >= 1){
-                    addIngredientToList(name, value, currentShoppingListId);
+                if(!name.equals("") && ingredientNameList.contains(name) && value >= 1){
+                    addIngredientToList(name, value);
                 }else{
                     Toast.makeText(ShoppingListDetailActivity.this, "Name cannot be empty and amount must be 1 or more.", Toast.LENGTH_LONG).show();
                 }
@@ -198,8 +206,6 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
      * fill the name lists with ingredient titles
      * */
     private void initNameList(){
-        mIngredientViewModel = new ViewModelProvider(this).get(IngredientViewModel.class);
-
         ingredientNameList.clear();
         List<IngredientWithRecipes> tmp = mIngredientViewModel.getMIngredientWithRecipes();
         for(IngredientWithRecipes ingredientWithRecipes : tmp){
@@ -210,14 +216,37 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
     /*
     * add ingredient to list, duh
     * */
-    private void addIngredientToList(String name, int amount, int currentShoppingListId){
-        //TODO: setup existing or new ingredient to add
+    private void addIngredientToList(String name, int amount){
+        //fetch ingredient from database by query
+        queriedIngredient = mIngredientViewModel.getSingleIngredientByQuery(name);
+        setNewIngredient(queriedIngredient, amount);
 
-        //currentList.ingredients.add(newIngredient);
-        //TODO: update crossRef table
+        updateIngredientInDB(queriedIngredient);
 
         //update ingredient list via adapter
-        //shoppingDetailAdapter.notifyDataSetChanged();
+        shoppingDetailAdapter.setMShoppingListWithIngredients(currentList);
+        shoppingDetailAdapter.notifyDataSetChanged();
+    }
+
+    /*
+    * set given amount as numToBuy
+    * and increment number of unchecked items on current ShoppingList
+    * */
+    private void setNewIngredient(Ingredient newIngredient, int amount){
+        newIngredient.setNumToBuy(amount);
+        currentList.ingredients.add(newIngredient);
+        currentList.shoppingList.setNumUncheckedItems(
+                currentList.shoppingList.getNumUncheckedItems() + 1
+        );
+    }
+
+    private void updateIngredientInDB(Ingredient newIngredient){
+        mIngredientViewModel.update(newIngredient);
+
+        //update ShoppingListIngredientCrossRef table
+        ShoppingListIngredientCrossRef crossRef = new ShoppingListIngredientCrossRef(
+                currentList.shoppingList.getId(), newIngredient.getId());
+        mShoppingListViewModel.insertShoppingIngredientCrossRef(crossRef);
     }
 
 }

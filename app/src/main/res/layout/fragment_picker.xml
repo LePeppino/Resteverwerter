@@ -39,7 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pickerRecyclerViewTitleRow"
-        android:layout_below="@+id/headerContainer">
+        android:layout_below="@+id/headerContainer"
+        android:weightSum="12">
             <TextView
                 style="@style/recyclerViewTitleStyle"
                 android:text="@string/picker_type_title"

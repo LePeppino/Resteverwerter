@@ -190,7 +190,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
     * Button methods
     * */
     public void addToShoppingList(View view){
-
+        //TODO
     }
 
     public void addAsOwned(View view){

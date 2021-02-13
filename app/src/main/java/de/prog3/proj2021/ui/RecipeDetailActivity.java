@@ -46,7 +46,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
     //Recipe data
     List<RecipeWithIngredients> recipesWithIngredients;
-    RecipeWithIngredients currentRecipe;
+    RecipeWithIngredients currentRecipe = new RecipeWithIngredients();
     FavouritesWithRecipes favouritesWithRecipes = new FavouritesWithRecipes();
     int currentRecipeId = 1; // gets updated in onCreate
 
@@ -123,11 +123,13 @@ public class RecipeDetailActivity extends AppCompatActivity {
     private void initViewModels(){
         mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
-        mRecipeViewModel.getMRecipeById(currentRecipeId).observe(this, queriedRecipe -> {
+        mRecipeViewModel.getMRecipesWithIngredients().observe(this, queriedRecipe -> {
             if(queriedRecipe != null){
-                setCurrentRecipe(queriedRecipe);
-                recipeDetailRecyclerViewAdapter.setRecipes(queriedRecipe);
+                setCurrentRecipe(queriedRecipe, currentRecipeId);
+            }else{
+                System.out.println("queried recipe is null!");
             }
+            recipeDetailRecyclerViewAdapter.setRecipes(currentRecipe);
             recipeDetailRecyclerViewAdapter.notifyDataSetChanged();
         });
 
@@ -142,14 +144,19 @@ public class RecipeDetailActivity extends AppCompatActivity {
     /*
      * set currentRecipe for this Activity
      */
-    private void setCurrentRecipe(RecipeWithIngredients recipeWithIngredients){
-        currentRecipe = new RecipeWithIngredients(recipeWithIngredients);
+    private void setCurrentRecipe(List<RecipeWithIngredients> recipeWithIngredients, int currentRecipeId){
+        for(RecipeWithIngredients recipe : recipeWithIngredients){
+            if(recipe.recipe.getId() == currentRecipeId){
+                this.currentRecipe = recipe;
+            }
+        }
+
     }
 
     //initial check if recipe is among favourites
     //TODO: check for null object
     private void checkIsFavourite(RecipeWithIngredients currentRecipe){
-            if(currentRecipe.getRecipe().isFavourite() != 1){
+            if(currentRecipe.recipe.isFavourite() != 1){
                 toggleFavouriteButton.setImageResource(R.drawable.heart_empty);
             }else{
                 toggleFavouriteButton.setImageResource(R.drawable.heart_full);
@@ -181,7 +188,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
      */
     private void addFavourite(RecipeWithIngredients currentRecipe){
         FavouriteRecipeCrossRef crossRef = new FavouriteRecipeCrossRef(
-                favouritesWithRecipes.favouriteList.getfId(), currentRecipeId);
+                favouritesWithRecipes.favouriteList.getId(), currentRecipeId);
 
         //update CrossRef table
         mFavouritesViewModel.insertFavouriteCrossRef(crossRef);
@@ -197,7 +204,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
      */
     private void removeFavourite(RecipeWithIngredients currentRecipe){
         FavouriteRecipeCrossRef crossRef = new FavouriteRecipeCrossRef(
-                favouritesWithRecipes.favouriteList.getfId(), currentRecipeId);
+                favouritesWithRecipes.favouriteList.getId(), currentRecipeId);
 
         //update CrossRef table
         mFavouritesViewModel.deleteFavouriteCrossRef(crossRef);

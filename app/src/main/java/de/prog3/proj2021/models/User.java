@@ -25,8 +25,8 @@ public class User {
     }
 
     //getter, setter
-    public int getuId() {return uId;}
-    private void setuId(int uId) {this.uId = uId;}
+    public int getId() {return uId;}
+    private void setId(int uId) {this.uId = uId;}
 
     public String username() {return username;}
     private void setUsername(@NonNull String username) {this.username = username;}

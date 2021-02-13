@@ -42,7 +42,7 @@ public class ShoppingList {
     }
 
     //getter, setter
-    public int getsId() {
+    public int getId() {
         return sId;
     }
     public @NonNull String getName() {
@@ -55,7 +55,7 @@ public class ShoppingList {
         return userCreatorId;
     }
 
-    public void setsId(int sId) {
+    public void setId(int sId) {
         this.sId = sId;
     }
     public void setName(@NonNull String name) {

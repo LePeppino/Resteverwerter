@@ -56,8 +56,8 @@ public class Recipe {
     }
 
     //getter, setter
-    public int getrId() {return rId;}
-    private void setrId(int rId) {this.rId = rId;}
+    public int getId() {return rId;}
+    private void setId(int rId) {this.rId = rId;}
 
     public @NonNull String getName() {return name;}
     private void setName(@NonNull String name) {this.name = name;}

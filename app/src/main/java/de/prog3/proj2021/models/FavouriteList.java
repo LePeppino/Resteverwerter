@@ -34,8 +34,8 @@ public class FavouriteList {
     }
 
     //getter, setter
-    public int getfId(){ return fId;}
-    public void setfId(int fId){ this.fId = fId;}
+    public int getId(){ return fId;}
+    public void setId(int fId){ this.fId = fId;}
 
     public int getNumOfFavourites(){return numOfFavourites;}
     public void setNumOfFavourites(int numOfFavourites){this.numOfFavourites = numOfFavourites;}

@@ -20,7 +20,6 @@ public class ShoppingListWithIngredients {
     public ShoppingList shoppingList;
     @Relation(
             parentColumn = "sId",
-            entity = Ingredient.class,
             entityColumn = "iId",
             associateBy = @Junction(value = ShoppingListIngredientCrossRef.class,
                     parentColumn = "shoppingListId",

@@ -63,7 +63,7 @@ public abstract class AppDatabase extends RoomDatabase {
                              * version number due to changes to database schema!
                              */
                             .fallbackToDestructiveMigration()
-                            .allowMainThreadQueries()
+                            //.allowMainThreadQueries()
                             .createFromAsset("database/food_scout.db")
                             .build();
                 }

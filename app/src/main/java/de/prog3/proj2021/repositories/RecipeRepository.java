@@ -42,7 +42,7 @@ public class RecipeRepository {
             crossRefDataSet = recipeDao.getRecipesWithIngredients();
     }
 
-    //getter and setter for recipe dataSet
+    //getter for recipe dataSet
     public LiveData<List<Recipe>> getRecipes(){
         return dataSet;
     }
@@ -54,40 +54,34 @@ public class RecipeRepository {
      * database operations communicating with RecipeDao
      */
     public void insert(Recipe recipe){
-        AppDatabase.databaseExecutor.execute(() -> {
-            recipeDao.insertRecipe(recipe);
-        });
+        AppDatabase.databaseExecutor.execute(() ->
+                recipeDao.insertRecipe(recipe));
         System.out.println("recipe inserted");
     }
     public void update(Recipe recipe){
-        AppDatabase.databaseExecutor.execute(() -> {
-            recipeDao.updateRecipe(recipe);
-        });
+        AppDatabase.databaseExecutor.execute(() ->
+                recipeDao.updateRecipe(recipe));
         System.out.println("recipe updated");
     }
     public void delete(Recipe recipe){
-        AppDatabase.databaseExecutor.execute(() -> {
-            recipeDao.deleteRecipe(recipe);
-        });
+        AppDatabase.databaseExecutor.execute(() ->
+                recipeDao.deleteRecipe(recipe));
         System.out.println("recipe deleted");
     }
 
     public void insertRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
-        AppDatabase.databaseExecutor.execute(() -> {
-            recipeDao.insertRecipeIngredientCrossRef(recipeIngredientCrossRef);
-        });
+        AppDatabase.databaseExecutor.execute(() ->
+                recipeDao.insertRecipeIngredientCrossRef(recipeIngredientCrossRef));
         System.out.println("recipeIngredientCrossRef inserted");
     }
     public void updateRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
-        AppDatabase.databaseExecutor.execute(() -> {
-            recipeDao.updateRecipeIngredientCrossRef(recipeIngredientCrossRef);
-        });
+        AppDatabase.databaseExecutor.execute(() ->
+                recipeDao.updateRecipeIngredientCrossRef(recipeIngredientCrossRef));
         System.out.println("recipeIngredientCrossRef updated");
     }
     public void deleteRecipeIngredientCrossRef(RecipeIngredientCrossRef... recipeIngredientCrossRef){
-        AppDatabase.databaseExecutor.execute(() -> {
-            recipeDao.deleteRecipeIngredientCrossRef(recipeIngredientCrossRef);
-        });
+        AppDatabase.databaseExecutor.execute(() ->
+                recipeDao.deleteRecipeIngredientCrossRef(recipeIngredientCrossRef));
         System.out.println("recipeIngredientCrossRef deleted");
     }
 
@@ -103,9 +97,8 @@ public class RecipeRepository {
     }
 
     public LiveData<RecipeWithIngredients> getRecipeWithIngredientsById(int id){
-        AppDatabase.databaseExecutor.execute(() -> {
-            singleRecipe = recipeDao.getRecipeWithIngredientsById(id);
-        });
+        AppDatabase.databaseExecutor.execute(() ->
+                singleRecipe = recipeDao.getRecipeWithIngredientsById(id));
         return singleRecipe;
     }
 

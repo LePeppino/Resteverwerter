@@ -114,7 +114,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
     * */
     private void setCurrentList(List<ShoppingListWithIngredients> shoppingLists){
         for(ShoppingListWithIngredients list : shoppingLists){
-            if(list.shoppingList.getsId() == currentShoppingListId){
+            if(list.shoppingList.getId() == currentShoppingListId){
                 this.currentList = list;
             }
         }
@@ -242,7 +242,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
 
         //update ShoppingListIngredientCrossRef table
         ShoppingListIngredientCrossRef crossRef = new ShoppingListIngredientCrossRef(
-                currentList.shoppingList.getsId(), newIngredient.getiId());
+                currentList.shoppingList.getId(), newIngredient.getId());
         mShoppingListViewModel.insertShoppingIngredientCrossRef(crossRef);
     }
 

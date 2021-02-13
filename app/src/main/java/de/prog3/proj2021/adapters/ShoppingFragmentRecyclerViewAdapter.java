@@ -68,7 +68,7 @@ public class ShoppingFragmentRecyclerViewAdapter extends RecyclerView.Adapter<Sh
             @Override
             public void onClick(View view) {
                 //get ID of currentShoppingList and pass to new Activity
-                int shoppingListId = currentShoppingList.shoppingList.getsId();
+                int shoppingListId = currentShoppingList.shoppingList.getId();
 
                 Intent intent = new Intent(mContext, ShoppingListDetailActivity.class);
                 intent.putExtra("currentShoppingListId", shoppingListId);

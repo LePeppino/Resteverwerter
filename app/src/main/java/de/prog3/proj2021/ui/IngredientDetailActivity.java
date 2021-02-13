@@ -102,7 +102,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
      */
     private void setCurrentIngredient(List<IngredientWithRecipes> ingredientList, int currentIngredientId){
         for(IngredientWithRecipes ingredient : ingredientList){
-            if(ingredient.ingredient.getiId() == currentIngredientId){
+            if(ingredient.ingredient.getId() == currentIngredientId){
                 currentIngredient = ingredient;
             }
         }

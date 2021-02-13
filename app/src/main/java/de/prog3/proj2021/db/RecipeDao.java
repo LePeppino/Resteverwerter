@@ -51,11 +51,14 @@ public interface RecipeDao {
     LiveData<Recipe> getSingleRecipeByQuery(String query);
 
     @Transaction
-    @Query("SELECT * FROM recipe_table r WHERE r.rId = :id")
+    @Query("SELECT * FROM recipe_table where rId = :id")
     LiveData<RecipeWithIngredients> getRecipeWithIngredientsById(int id);
 
     @Transaction
-    @Query("SELECT * FROM recipe_table")
+    @Query("SELECT * FROM recipe_table r\n" +
+            "join recipeIngredientCrossRef_table x on r.rId = x.recipeId\n" +
+            "join ingredient_table i on i.iId = x.ingredientId\n" +
+            "order by name asc")
     LiveData<List<RecipeWithIngredients>> getRecipesWithIngredients();
 
 }

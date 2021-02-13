@@ -45,7 +45,7 @@ public class Ingredient {
     }
 
     //getter, setter
-    public int getiId() {
+    public int getId() {
         return iId;
     }
     public @NonNull String getName() {
@@ -71,7 +71,7 @@ public class Ingredient {
     }
 
 
-    public void setiId(int ingredientId) {
+    public void setId(int ingredientId) {
         this.iId = ingredientId;
     }
     public void setName(@NonNull String name) {

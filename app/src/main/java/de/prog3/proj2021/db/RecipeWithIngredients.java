@@ -26,7 +26,6 @@ public class RecipeWithIngredients {
     public Recipe recipe;
     @Relation(
             parentColumn = "rId",
-            entity = Ingredient.class,
             entityColumn = "iId",
             associateBy = @Junction(value = RecipeIngredientCrossRef.class,
                     parentColumn = "recipeId",
@@ -34,29 +33,29 @@ public class RecipeWithIngredients {
     )
     public List<Ingredient> ingredients;
 
-    public RecipeWithIngredients(Recipe recipe, List<Ingredient> ingredients){
-        setRecipe(recipe);
-        setIngredients(ingredients);
-    }
-
-    public RecipeWithIngredients(RecipeWithIngredients recipeWithIngredients){
-        this.recipe = new Recipe(recipeWithIngredients.recipe);
-        this.ingredients = new ArrayList<>(recipeWithIngredients.ingredients);
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    private void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    private void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
+//    public RecipeWithIngredients(Recipe recipe, List<Ingredient> ingredients){
+//        setRecipe(recipe);
+//        setIngredients(ingredients);
+//    }
+//
+//    public RecipeWithIngredients(RecipeWithIngredients recipeWithIngredients){
+//        this.recipe = new Recipe(recipeWithIngredients.recipe);
+//        this.ingredients = new ArrayList<>(recipeWithIngredients.ingredients);
+//    }
+//
+//    public Recipe getRecipe() {
+//        return recipe;
+//    }
+//
+//    private void setRecipe(Recipe recipe) {
+//        this.recipe = recipe;
+//    }
+//
+//    public List<Ingredient> getIngredients() {
+//        return ingredients;
+//    }
+//
+//    private void setIngredients(List<Ingredient> ingredients) {
+//        this.ingredients = ingredients;
+//    }
 }

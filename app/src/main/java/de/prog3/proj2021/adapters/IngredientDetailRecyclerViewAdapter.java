@@ -72,7 +72,7 @@ public class IngredientDetailRecyclerViewAdapter extends RecyclerView.Adapter<In
             @Override
             public void onClick(View view) {
                 //get ID of currentRecipe and pass to new Activity
-                int currentRecipeId = currentRecipe.getrId();
+                int currentRecipeId = currentRecipe.getId();
 
                 Intent intent = new Intent(mContext, RecipeDetailActivity.class);
                 intent.putExtra("currentRecipeId", currentRecipeId);

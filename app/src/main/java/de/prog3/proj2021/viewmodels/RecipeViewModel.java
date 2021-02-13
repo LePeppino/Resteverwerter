@@ -12,6 +12,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
@@ -23,14 +24,21 @@ import de.prog3.proj2021.repositories.RecipeRepository;
 public class RecipeViewModel extends AndroidViewModel {
 
     private final RecipeRepository recipeRepository;
-    private final LiveData<List<Recipe>> mRecipes;
-    private final List<RecipeWithIngredients> mRecipesWithIngredients;
+    private LiveData<List<Recipe>> mRecipes;
+    private LiveData<List<RecipeWithIngredients>> mRecipesWithIngredients;
 
     public RecipeViewModel(@NonNull Application application) {
         super(application);
         recipeRepository = new RecipeRepository(application);
-        mRecipes = recipeRepository.getRecipesAlphabetical();
-        mRecipesWithIngredients = recipeRepository.getRecipesWithIngredients();
+        setRecipes();
+        setRecipesWithIngredients();
+    }
+
+    private void setRecipes(){
+        this.mRecipes = recipeRepository.getRecipes();
+    }
+    private void setRecipesWithIngredients(){
+        this.mRecipesWithIngredients = recipeRepository.getRecipesWithIngredients();
     }
 
     public void insert(Recipe recipe){
@@ -55,15 +63,26 @@ public class RecipeViewModel extends AndroidViewModel {
 
     //getters for cached repository LiveData
     public LiveData<List<Recipe>> getMRecipes(){
+        if(mRecipes == null){
+            mRecipes = recipeRepository.getRecipes();
+        }
         return mRecipes;
     }
-
-    public List<RecipeWithIngredients> getMRecipesWithIngredients() {
+    public LiveData<List<RecipeWithIngredients>> getMRecipesWithIngredients() {
+        if(mRecipesWithIngredients == null){
+            mRecipesWithIngredients = recipeRepository.getRecipesWithIngredients();
+        }
         return mRecipesWithIngredients;
     }
 
+    /*
+    * other getters
+    * */
     public LiveData<List<Recipe>> getMRecipesByQuery(String query){
         return recipeRepository.getRecipesByQuery(query);
+    }
+    public RecipeWithIngredients getMRecipeById(int id){
+        return recipeRepository.getRecipeWithIngredientsById(id);
     }
 
 

@@ -110,11 +110,6 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
     }
 
     /*
-    * getter for queried Ingredient
-    * */
-    public Ingredient getQueriedIngredient(){return queriedIngredient;}
-
-    /*
     * finds chosen ShoppingListWithIngredients among all lists
     * */
     private void setCurrentList(List<ShoppingListWithIngredients> shoppingLists){
@@ -207,10 +202,11 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
      * */
     private void initNameList(){
         ingredientNameList.clear();
-        List<IngredientWithRecipes> tmp = mIngredientViewModel.getMIngredientWithRecipes();
-        for(IngredientWithRecipes ingredientWithRecipes : tmp){
-            ingredientNameList.add(ingredientWithRecipes.ingredient.getName());
-        }
+        mIngredientViewModel.getMIngredientWithRecipes().observe(this, ingredientList -> {
+            for(IngredientWithRecipes ingredientWithRecipes : ingredientList){
+                ingredientNameList.add(ingredientWithRecipes.ingredient.getName());
+            }
+        });
     }
 
     /*
@@ -218,8 +214,9 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
     * */
     private void addIngredientToList(String name, int amount){
         //fetch ingredient from database by query
-        queriedIngredient = mIngredientViewModel.getSingleIngredientByQuery(name);
-        setNewIngredient(queriedIngredient, amount);
+        mIngredientViewModel.getSingleIngredientByQuery(name).observe(this, queriedIngredient -> {
+            setNewIngredient(queriedIngredient, amount);
+        });
 
         updateIngredientInDB(queriedIngredient);
 

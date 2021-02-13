@@ -44,6 +44,17 @@ public class Recipe {
         setHeaderImageUrl(headerImageUrl);
     }
 
+    //copy
+    public Recipe(Recipe recipe){
+        this.id = recipe.id;
+        this.name = recipe.name;
+        this.calories = recipe.calories;
+        this.isFavourite = recipe.isFavourite;
+        this.description = recipe.description;
+        this.instructions = recipe.instructions;
+        this.headerImageUrl = recipe.headerImageUrl;
+    }
+
     //getter, setter
     public int getId() {return id;}
     private void setId(int id) {this.id = id;}

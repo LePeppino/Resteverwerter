@@ -34,7 +34,7 @@ import de.prog3.proj2021.ui.RecipeDetailActivity;
 public class RecipeDetailRecyclerViewAdapter  extends RecyclerView.Adapter<RecipeDetailRecyclerViewAdapter.RecipeDetailHolder>{
 
     private final Context mContext;
-    private RecipeWithIngredients currentRecipe = new RecipeWithIngredients();
+    private RecipeWithIngredients currentRecipe;
 
     //constructor
     public RecipeDetailRecyclerViewAdapter(Context mContext){
@@ -100,7 +100,7 @@ public class RecipeDetailRecyclerViewAdapter  extends RecyclerView.Adapter<Recip
 
     //setter
     public void setRecipes(RecipeWithIngredients recipeWithIngredients){
-        this.currentRecipe = recipeWithIngredients;
+        this.currentRecipe = new RecipeWithIngredients(recipeWithIngredients);
     }
 
     //Ingredient Unit to String converter

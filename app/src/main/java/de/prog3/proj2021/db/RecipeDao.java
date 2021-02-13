@@ -8,6 +8,7 @@ package de.prog3.proj2021.db;
  */
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -40,17 +41,21 @@ public interface RecipeDao {
     @Delete
     void deleteRecipeIngredientCrossRef(RecipeIngredientCrossRef... recipeIngredientCrossRef);
 
-    @Query("SELECT * FROM recipe_table")
-    LiveData<List<Recipe>> getRecipes();
-
     @Query("SELECT * FROM recipe_table ORDER BY name ASC")
     LiveData<List<Recipe>> getRecipesASC();
 
     @Query("SELECT * FROM recipe_table WHERE name LIKE :query ORDER BY name ASC")
     LiveData<List<Recipe>> getRecipesByQuery(String query);
 
+    @Query("SELECT * FROM recipe_table WHERE name LIKE :query ORDER BY name ASC")
+    LiveData<Recipe> getSingleRecipeByQuery(String query);
+
+    @Transaction
+    @Query("SELECT * FROM recipe_table r WHERE r.id = :id")
+    RecipeWithIngredients getRecipeWithIngredientsById(int id);
+
     @Transaction
     @Query("SELECT * FROM recipe_table")
-    List<RecipeWithIngredients> getRecipesWithIngredients();
+    LiveData<List<RecipeWithIngredients>> getRecipesWithIngredients();
 
 }

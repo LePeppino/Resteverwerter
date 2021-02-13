@@ -8,6 +8,7 @@ package de.prog3.proj2021.db;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 
 import de.prog3.proj2021.models.Ingredient;
 import de.prog3.proj2021.models.Recipe;

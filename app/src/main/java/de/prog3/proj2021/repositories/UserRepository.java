@@ -21,6 +21,7 @@ import de.prog3.proj2021.models.User;
 public class UserRepository {
 
     private LiveData<List<User>> userDataSet;
+
     private final UserDao userDao;
 
     //constructor
@@ -41,25 +42,29 @@ public class UserRepository {
     * database operations communicating with UserDao
     * */
     public void insert(User user){
-        userDao.insertUser(user);
+        AppDatabase.databaseExecutor.execute(() -> {
+            userDao.insertUser(user);
+        });
         System.out.println("user inserted");
     }
-
     public void update(User user){
-        userDao.insertUser(user);
+        AppDatabase.databaseExecutor.execute(() -> {
+            userDao.updateUser(user);
+        });
         System.out.println("user updated");
     }
-
     public void delete(User user){
-        userDao.deleteUser(user);
+        AppDatabase.databaseExecutor.execute(() -> {
+            userDao.deleteUser(user);
+        });
         System.out.println("user deleted");
     }
 
     /*
     * getters for different queries here
     * */
-    public LiveData<List<User>> getUserById(int userId){
-        return userDataSet = userDao.getUserById(userId);
+    public LiveData<User> getUserById(int userId){
+        return userDao.getUserById(userId);
     }
 
 }

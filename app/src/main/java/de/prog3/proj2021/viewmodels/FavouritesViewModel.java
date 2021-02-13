@@ -27,22 +27,17 @@ import de.prog3.proj2021.repositories.RecipeRepository;
 public class FavouritesViewModel extends AndroidViewModel {
 
     private final FavouriteRecipeRepository favouriteRecipeRepository;
-    private final List<FavouritesWithRecipes> mFavouriteRecipes;
-    private final FavouritesWithRecipes mFavouriteList;
+    private final LiveData<FavouritesWithRecipes> mFavouriteList;
 
     public FavouritesViewModel(@NonNull Application application) {
         super(application);
         favouriteRecipeRepository = new FavouriteRecipeRepository(application);
-        mFavouriteRecipes = favouriteRecipeRepository.getFavouritesWithRecipes();
         mFavouriteList = favouriteRecipeRepository.getFavouriteList();
     }
 
     //getters for cached repository data
-    public List<FavouritesWithRecipes> getAllFavouriteListsWithRecipes() {
-        return mFavouriteRecipes;
-    }
 
-    public FavouritesWithRecipes getMFavouriteList(){
+    public LiveData<FavouritesWithRecipes> getMFavouriteList(){
         return mFavouriteList;
     }
 
@@ -52,10 +47,6 @@ public class FavouritesViewModel extends AndroidViewModel {
 
     public void insertFavouriteCrossRef(FavouriteRecipeCrossRef favouriteRecipeCrossRef){
         favouriteRecipeRepository.insertCrossRef(favouriteRecipeCrossRef);
-    }
-
-    public void updateFavouriteCrossRef(FavouriteRecipeCrossRef favouriteRecipeCrossRef){
-        favouriteRecipeRepository.updateCrossRef(favouriteRecipeCrossRef);
     }
 
     public void deleteFavouriteCrossRef(FavouriteRecipeCrossRef favouriteRecipeCrossRef){

@@ -136,10 +136,11 @@ public class FragmentPicker extends Fragment {
      * */
     private void initNameList(){
         ingredientNameList.clear();
-        List<IngredientWithRecipes> tmp = mIngredientViewModel.getMIngredientWithRecipes();
-        for(IngredientWithRecipes ingredientWithRecipes : tmp){
-            ingredientNameList.add(ingredientWithRecipes.ingredient.getName());
-        }
+        mIngredientViewModel.getMIngredientWithRecipes().observe(getViewLifecycleOwner(), ingredientList -> {
+            for(IngredientWithRecipes ingredientWithRecipes : ingredientList){
+                ingredientNameList.add(ingredientWithRecipes.ingredient.getName());
+            }
+        });
     }
 
 }

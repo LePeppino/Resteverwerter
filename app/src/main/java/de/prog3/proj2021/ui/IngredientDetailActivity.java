@@ -91,11 +91,10 @@ public class IngredientDetailActivity extends AppCompatActivity {
     private void initIngredientViewModel(){
         mIngredientViewModel = new ViewModelProvider(this).get(IngredientViewModel.class);
 
-        List<IngredientWithRecipes> ingredientsWithRecipes = mIngredientViewModel.getMIngredientWithRecipes();
-
-        //set currentIngredient and pass to RecyclerView
-        setCurrentIngredient(ingredientsWithRecipes, currentIngredientId);
-        ingredientDetailRecyclerViewAdapter.setIngredientWithRecipes(currentIngredient);
+        mIngredientViewModel.getMIngredientWithRecipes().observe(this, ingredientsWithRecipes -> {
+            setCurrentIngredient(ingredientsWithRecipes, currentIngredientId);
+            ingredientDetailRecyclerViewAdapter.setIngredientWithRecipes(currentIngredient);
+        });
     }
 
     /*

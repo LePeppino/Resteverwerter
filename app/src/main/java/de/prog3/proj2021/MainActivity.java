@@ -38,11 +38,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.splashscreen);
+        //setContentView(R.layout.splashscreen);
 
-        RecipeViewModel mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
+        //RecipeViewModel mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
-        List<RecipeWithIngredients> recipeWithIngredients = mRecipeViewModel.getMRecipesWithIngredients();
+        //List<RecipeWithIngredients> recipeWithIngredients = mRecipeViewModel.getMRecipesWithIngredients();
 
         //TODO: check all recipe data behind splash screen
         // and configure if necessary

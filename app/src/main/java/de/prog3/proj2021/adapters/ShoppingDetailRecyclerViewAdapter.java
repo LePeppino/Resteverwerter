@@ -98,7 +98,6 @@ public class ShoppingDetailRecyclerViewAdapter extends RecyclerView.Adapter<Shop
     //setter for current ShoppingList
     public void setMShoppingListWithIngredients(ShoppingListWithIngredients shoppingListWithIngredients){
         this.currentShoppingList = shoppingListWithIngredients;
-        currentShoppingList.ingredients = shoppingListWithIngredients.ingredients;
     }
 
     /*

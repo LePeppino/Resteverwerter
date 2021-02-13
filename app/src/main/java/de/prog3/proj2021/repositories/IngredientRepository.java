@@ -22,7 +22,8 @@ import de.prog3.proj2021.models.Ingredient;
 public class IngredientRepository {
 
     private LiveData<List<Ingredient>> dataSet;
-    private List<IngredientWithRecipes> crossRefDataSet;
+    private LiveData<List<IngredientWithRecipes>> crossRefDataSet;
+
     private final IngredientDao ingredientDao;
 
     //constructor
@@ -32,31 +33,37 @@ public class IngredientRepository {
         updateIngredients();
     }
 
-    //getter and setter for ingredient dataSet
-    public LiveData<List<Ingredient>> getIngredients() { return dataSet; }
-
-    public List<IngredientWithRecipes> getIngredientWithRecipes(){
-        return crossRefDataSet;
-    }
-
+    //setter
     private void updateIngredients() {
         dataSet = ingredientDao.getIngredientsByTypeASC();
         crossRefDataSet = ingredientDao.getIngredientWithRecipes();
+    }
+
+    //getter for ingredient dataSet
+    public LiveData<List<Ingredient>> getIngredients() { return dataSet; }
+    public LiveData<List<IngredientWithRecipes>> getIngredientWithRecipes(){
+        return crossRefDataSet;
     }
 
     /*
      * database operations communicating with IngredientDao
      */
     public void insert(Ingredient ingredient){
-        ingredientDao.insertIngredient(ingredient);
+        AppDatabase.databaseExecutor.execute(() -> {
+            ingredientDao.insertIngredient(ingredient);
+        });
         System.out.println("ingredient inserted");
     }
     public void update(Ingredient ingredient){
-        ingredientDao.updateIngredient(ingredient);
+        AppDatabase.databaseExecutor.execute(() -> {
+            ingredientDao.updateIngredient(ingredient);
+        });
         System.out.println("ingredient updated");
     }
     public void delete(Ingredient ingredient){
-        ingredientDao.deleteIngredient(ingredient);
+        AppDatabase.databaseExecutor.execute(() -> {
+            ingredientDao.deleteIngredient(ingredient);
+        });
         System.out.println("ingredient deleted");
     }
 
@@ -67,7 +74,7 @@ public class IngredientRepository {
         return ingredientDao.getIngredientsByQuery(query);
     }
 
-    public Ingredient getSingleIngredientByQuery(String query){
+    public LiveData<Ingredient> getSingleIngredientByQuery(String query){
         return ingredientDao.getSingleIngredientByQuery(query);
     }
 

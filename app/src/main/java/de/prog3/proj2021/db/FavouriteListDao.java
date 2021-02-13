@@ -28,9 +28,6 @@ public interface FavouriteListDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertFavouritesWithRecipes(FavouriteRecipeCrossRef favouriteRecipeCrossRef);
 
-    @Update
-    void updateFavouritesWithRecipes(FavouriteRecipeCrossRef favouriteRecipeCrossRef);
-
     @Delete
     void deleteFavouritesWithRecipes(FavouriteRecipeCrossRef favouriteRecipeCrossRef);
 
@@ -38,10 +35,6 @@ public interface FavouriteListDao {
     LiveData<List<Recipe>> getFavouriteRecipesByQuery(String query);
 
     @Transaction
-    @Query("SELECT * FROM favouriteList_table")
-    List<FavouritesWithRecipes> getFavouritesWithRecipes();
-
-    @Transaction
     @Query("SELECT * FROM favouriteList_table WHERE id = 1 AND userOwnerId = 1")
-    FavouritesWithRecipes getFavouritesWithRecipesById();
+    LiveData<FavouritesWithRecipes> getFavouritesWithRecipesById();
 }

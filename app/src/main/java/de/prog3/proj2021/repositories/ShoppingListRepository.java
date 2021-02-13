@@ -25,7 +25,9 @@ import de.prog3.proj2021.models.ShoppingList;
 
 public class ShoppingListRepository {
 
-    private LiveData<List<ShoppingListWithIngredients>> dataSet;
+    private LiveData<List<ShoppingList>> dataSet;
+    private LiveData<List<ShoppingListWithIngredients>> CrossRefDataSet;
+
     private final ShoppingListDao shoppingListDao;
 
     //constructor
@@ -35,41 +37,58 @@ public class ShoppingListRepository {
         updateShoppingListWithIngredients();
     }
 
-    //getter and setter for shoppingList dataSat
-    public LiveData<List<ShoppingListWithIngredients>> getShoppingListWithIngredients() {
-        return dataSet;
+    //setter
+    private void updateShoppingListWithIngredients(){
+        dataSet = shoppingListDao.getShoppingLists();
+        CrossRefDataSet = shoppingListDao.getShoppingListWithIngredients();
     }
 
-    private void updateShoppingListWithIngredients(){
-        dataSet = shoppingListDao.getShoppingListWithIngredients();
+    //getter for shoppingList dataSat
+    public LiveData<List<ShoppingList>> getShoppingLists() {
+        return dataSet;
+    }
+    public LiveData<List<ShoppingListWithIngredients>> getShoppingListWithIngredients() {
+        return CrossRefDataSet;
     }
 
     /*
      * database operations communicating with FavouriteListDao
      */
     public void insert(ShoppingList shoppingList){
-        shoppingListDao.insertShoppingList(shoppingList);
+        AppDatabase.databaseExecutor.execute(() ->
+                shoppingListDao.insertShoppingList(shoppingList)
+        );
         System.out.println("shoppingList inserted");
     }
     public void update(ShoppingList shoppingList){
-        shoppingListDao.updateShoppingList(shoppingList);
+        AppDatabase.databaseExecutor.execute(() -> {
+            shoppingListDao.updateShoppingList(shoppingList);
+        });
         System.out.println("shoppingList updated");
     }
     public void delete(ShoppingList shoppingList){
-        shoppingListDao.deleteShoppingList(shoppingList);
+        AppDatabase.databaseExecutor.execute(() -> {
+            shoppingListDao.deleteShoppingList(shoppingList);
+        });
         System.out.println("shoppingList deleted");
     }
 
     public void insertCrossRef(ShoppingListIngredientCrossRef shoppingListIngredientCrossRef){
-        shoppingListDao.insertShoppingListWithIngredients(shoppingListIngredientCrossRef);
+        AppDatabase.databaseExecutor.execute(() -> {
+            shoppingListDao.insertShoppingListWithIngredients(shoppingListIngredientCrossRef);
+        });
         System.out.println("shoppingListWithIngredientCrossRef inserted");
     }
     public void updateCrossRef(ShoppingListIngredientCrossRef shoppingListIngredientCrossRef){
-        shoppingListDao.updateShoppingListWithIngredients(shoppingListIngredientCrossRef);
+        AppDatabase.databaseExecutor.execute(() -> {
+            shoppingListDao.updateShoppingListWithIngredients(shoppingListIngredientCrossRef);
+        });
         System.out.println("shoppingListWithIngredientCrossRef updated");
     }
     public void deleteCrossRef(ShoppingListIngredientCrossRef shoppingListIngredientCrossRef){
-        shoppingListDao.deleteShoppingListWithIngredients(shoppingListIngredientCrossRef);
+        AppDatabase.databaseExecutor.execute(() -> {
+            shoppingListDao.deleteShoppingListWithIngredients(shoppingListIngredientCrossRef);
+        });
         System.out.println("shoppingListWithIngredientCrossRef deleted");
     }
 

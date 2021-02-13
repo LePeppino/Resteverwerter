@@ -80,9 +80,10 @@ public class FragmentFavorites extends Fragment {
     private void initViewModel() {
         mFavouritesViewModel = new ViewModelProvider(this).get(FavouritesViewModel.class);
 
-        FavouritesWithRecipes favouritesWithRecipes = mFavouritesViewModel.getMFavouriteList();
-        favouriteRecyclerViewAdapter.setMFavourites(favouritesWithRecipes);
-        favouriteRecyclerViewAdapter.notifyDataSetChanged();
+        mFavouritesViewModel.getMFavouriteList().observe(getViewLifecycleOwner(), favouritesWithRecipes -> {
+            favouriteRecyclerViewAdapter.setMFavourites(favouritesWithRecipes);
+            favouriteRecyclerViewAdapter.notifyDataSetChanged();
+        });
     }
 
     /*
@@ -126,9 +127,10 @@ public class FragmentFavorites extends Fragment {
                 favouriteRecyclerViewAdapter.notifyDataSetChanged();
             });
         }else{
-            FavouritesWithRecipes recipeList = mFavouritesViewModel.getMFavouriteList();
-            favouriteRecyclerViewAdapter.setMFavourites(recipeList);
-            favouriteRecyclerViewAdapter.notifyDataSetChanged();
+            mFavouritesViewModel.getMFavouriteList().observe(getViewLifecycleOwner(), recipeList -> {
+                favouriteRecyclerViewAdapter.setMFavourites(recipeList);
+                favouriteRecyclerViewAdapter.notifyDataSetChanged();
+            });
         }
     }
 
@@ -137,10 +139,11 @@ public class FragmentFavorites extends Fragment {
      * */
     private void initNameList(){
         recipeNameList.clear();
-        FavouritesWithRecipes favouritesWithRecipes = mFavouritesViewModel.getMFavouriteList();
+        mFavouritesViewModel.getMFavouriteList().observe(getViewLifecycleOwner(), favouritesWithRecipes -> {
             for(Recipe favouriteRecipe : favouritesWithRecipes.recipes){
                 recipeNameList.add(favouriteRecipe.getName());
             }
+        });
     }
 
 }

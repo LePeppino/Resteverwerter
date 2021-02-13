@@ -148,10 +148,12 @@ public class FragmentHome extends Fragment {
     * */
     private void initNameList(){
         recipeNameList.clear();
-        List<RecipeWithIngredients> tmp = mRecipeViewModel.getMRecipesWithIngredients();
-        for(RecipeWithIngredients recipeWithIngredients : tmp){
-            recipeNameList.add(recipeWithIngredients.recipe.getName());
-        }
+        mRecipeViewModel.getMRecipesWithIngredients().observe(getViewLifecycleOwner(), recipeList -> {
+            for(RecipeWithIngredients recipeWithIngredients : recipeList){
+                recipeNameList.add(recipeWithIngredients.recipe.getName());
+            }
+        });
+
     }
 
 }

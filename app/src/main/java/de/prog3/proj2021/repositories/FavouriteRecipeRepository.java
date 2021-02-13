@@ -23,8 +23,8 @@ import de.prog3.proj2021.models.Recipe;
 
 public class FavouriteRecipeRepository {
 
-    private List<FavouritesWithRecipes> dataSet;
-    private FavouritesWithRecipes favouriteList;
+    private LiveData<FavouritesWithRecipes> favouriteList;
+
     private final FavouriteListDao favouriteListDao;
 
     //constructor
@@ -34,41 +34,39 @@ public class FavouriteRecipeRepository {
         updateFavouritesWithRecipes();
     }
 
-    //getter and setter for dataSet and favouriteList by id
-    public List<FavouritesWithRecipes> getFavouritesWithRecipes() {
-        return dataSet;
-    }
-
-    public FavouritesWithRecipes getFavouriteList(){
-        return favouriteList;
-    }
-
+    //setter
     private void updateFavouritesWithRecipes(){
-        dataSet = favouriteListDao.getFavouritesWithRecipes();
         favouriteList = favouriteListDao.getFavouritesWithRecipesById();
     }
 
+    //getter for dataSet
+    public LiveData<FavouritesWithRecipes> getFavouriteList(){
+        return favouriteList;
+    }
+
+
     /*
      * database operations communicating with FavouriteListDao
-     * update() is to update the numOfFavourites on the only existing instance of FavouriteList
+     * update() updates the numOfFavourites on the only existing instance of FavouriteList
      */
     public void update(FavouriteList favouriteList){
-        favouriteListDao.update(favouriteList);
+        AppDatabase.databaseExecutor.execute(() -> {
+            favouriteListDao.update(favouriteList);
+        });
         System.out.println("favouriteList updated");
     }
 
     public void insertCrossRef(FavouriteRecipeCrossRef favouriteRecipeCrossRef){
-        favouriteListDao.insertFavouritesWithRecipes(favouriteRecipeCrossRef);
+        AppDatabase.databaseExecutor.execute(() -> {
+            favouriteListDao.insertFavouritesWithRecipes(favouriteRecipeCrossRef);
+        });
         System.out.println("favouriteRecipeCrossRef inserted");
     }
 
-    public void updateCrossRef(FavouriteRecipeCrossRef favouriteRecipeCrossRef){
-        favouriteListDao.updateFavouritesWithRecipes(favouriteRecipeCrossRef);
-        System.out.println("favouriteRecipeCrossRef updated");
-    }
-
     public void deleteCrossRef(FavouriteRecipeCrossRef favouriteRecipeCrossRef){
-        favouriteListDao.deleteFavouritesWithRecipes(favouriteRecipeCrossRef);
+        AppDatabase.databaseExecutor.execute(() -> {
+            favouriteListDao.deleteFavouritesWithRecipes(favouriteRecipeCrossRef);
+        });
         System.out.println("favouriteRecipeCrossRef deleted");
     }
 

@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.prog3.proj2021.R;
@@ -32,6 +33,7 @@ import de.prog3.proj2021.adapters.RecipeDetailRecyclerViewAdapter;
 import de.prog3.proj2021.db.FavouriteRecipeCrossRef;
 import de.prog3.proj2021.db.FavouritesWithRecipes;
 import de.prog3.proj2021.db.RecipeWithIngredients;
+import de.prog3.proj2021.models.Recipe;
 import de.prog3.proj2021.viewmodels.FavouritesViewModel;
 import de.prog3.proj2021.viewmodels.RecipeViewModel;
 
@@ -46,7 +48,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
     RecyclerView recipeDetailRecyclerView;
 
     //Recipe data
-    RecipeWithIngredients currentRecipe = new RecipeWithIngredients();
+    List<RecipeWithIngredients> recipesWithIngredients;
+    RecipeWithIngredients currentRecipe;
+    FavouritesWithRecipes favouritesWithRecipes = new FavouritesWithRecipes();
     int currentRecipeId = 1; // gets updated in onCreate
 
     //Recipe Info Views
@@ -73,7 +77,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         //instantiate RecipeDetailRecyclerView and Adapter
         initRecyclerView();
         //instantiate ViewModel
-        initRecipeViewModel();
+        initViewModels();
         //assign Views
         initViews();
 
@@ -115,34 +119,35 @@ public class RecipeDetailActivity extends AppCompatActivity {
     }
 
     /*
-     * Initiate RecipeViewModel, query recipes from
-     * RecipeRepository and pass data
-     * to RecipeRecyclerViewAdapter and Activity
+     * Initiate ViewModels, query recipes from
+     * Repositories and pass data
+     * to RecyclerViewAdapter and Activity
      */
-    private void initRecipeViewModel(){
+    private void initViewModels(){
         mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
-        List<RecipeWithIngredients> recipeList = mRecipeViewModel.getMRecipesWithIngredients();
-
-        //set currentRecipe and pass to RecyclerView
-        setCurrentRecipe(recipeList, currentRecipeId);
+        this.currentRecipe = mRecipeViewModel.getMRecipeById(currentRecipeId);
         recipeDetailRecyclerViewAdapter.setRecipes(currentRecipe);
+        recipeDetailRecyclerViewAdapter.notifyDataSetChanged();
+
+        mFavouritesViewModel = new ViewModelProvider(this).get(FavouritesViewModel.class);
+
+        mFavouritesViewModel.getMFavouriteList().observe(this, favouriteList -> {
+            favouritesWithRecipes = favouriteList;
+        });
     }
 
     /*
      * set currentRecipe for this Activity
      */
-    private void setCurrentRecipe(List<RecipeWithIngredients> recipeList, int currentRecipeId){
-        for(RecipeWithIngredients recipe : recipeList){
-            if(recipe.recipe.getId() == currentRecipeId){
-                currentRecipe = recipe;
-            }
-        }
+    private void setCurrentRecipe(RecipeWithIngredients recipeWithIngredients){
+        currentRecipe = new RecipeWithIngredients(recipeWithIngredients);
     }
 
     //initial check if recipe is among favourites
+    //TODO: check for null object
     private void checkIsFavourite(RecipeWithIngredients currentRecipe){
-            if(currentRecipe.recipe.isFavourite() != 1){
+            if(currentRecipe.getRecipe().isFavourite() != 1){
                 toggleFavouriteButton.setImageResource(R.drawable.heart_empty);
             }else{
                 toggleFavouriteButton.setImageResource(R.drawable.heart_full);
@@ -173,17 +178,15 @@ public class RecipeDetailActivity extends AppCompatActivity {
      * and increment numOfFavourites
      */
     private void addFavourite(RecipeWithIngredients currentRecipe){
-        mFavouritesViewModel = new ViewModelProvider(this).get(FavouritesViewModel.class);
-        FavouritesWithRecipes favouriteList = mFavouritesViewModel.getMFavouriteList();
-            FavouriteRecipeCrossRef crossRef = new FavouriteRecipeCrossRef(
-                    favouriteList.favouriteList.getId(), currentRecipeId);
+        FavouriteRecipeCrossRef crossRef = new FavouriteRecipeCrossRef(
+                favouritesWithRecipes.favouriteList.getId(), currentRecipeId);
 
-            //update CrossRef table
-            mFavouritesViewModel.insertFavouriteCrossRef(crossRef);
-            //increment numOfFavourites
-            favouriteList.favouriteList.setNumOfFavourites(favouriteList.favouriteList.getNumOfFavourites() + 1);
-            //set favourite status in recipe
-            currentRecipe.recipe.setFavourite(1);
+        //update CrossRef table
+        mFavouritesViewModel.insertFavouriteCrossRef(crossRef);
+        //increment numOfFavourites
+        favouritesWithRecipes.favouriteList.setNumOfFavourites(favouritesWithRecipes.favouriteList.getNumOfFavourites() + 1);
+        //set favourite status in recipe
+        currentRecipe.recipe.setFavourite(1);
     }
 
     /*
@@ -191,16 +194,15 @@ public class RecipeDetailActivity extends AppCompatActivity {
      * and decrease numOfFavourites
      */
     private void removeFavourite(RecipeWithIngredients currentRecipe){
-        mFavouritesViewModel = new ViewModelProvider(this).get(FavouritesViewModel.class);
-        FavouritesWithRecipes favouriteList = mFavouritesViewModel.getMFavouriteList();
-            FavouriteRecipeCrossRef crossRef = new FavouriteRecipeCrossRef(
-                    favouriteList.favouriteList.getId(), currentRecipeId);
+        FavouriteRecipeCrossRef crossRef = new FavouriteRecipeCrossRef(
+                favouritesWithRecipes.favouriteList.getId(), currentRecipeId);
 
-            //update CrossRef table
-            mFavouritesViewModel.deleteFavouriteCrossRef(crossRef);
-            //decrease numOfFavourites
-            favouriteList.favouriteList.setNumOfFavourites(favouriteList.favouriteList.getNumOfFavourites() - 1);
-            //set favourite status in recipe
-            currentRecipe.recipe.setFavourite(0);
+        //update CrossRef table
+        mFavouritesViewModel.deleteFavouriteCrossRef(crossRef);
+        //decrease numOfFavourites
+        favouritesWithRecipes.favouriteList.setNumOfFavourites(
+                favouritesWithRecipes.favouriteList.getNumOfFavourites() - 1);
+        //set favourite status in recipe
+        currentRecipe.recipe.setFavourite(0);
     }
 }

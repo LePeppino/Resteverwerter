@@ -39,6 +39,9 @@ public interface ShoppingListDao {
     @Delete
     void deleteShoppingListWithIngredients(ShoppingListIngredientCrossRef shoppingListIngredientCrossRef);
 
+    @Query("SELECT * FROM shoppingList_table WHERE userCreatorId = 1")
+    LiveData<List<ShoppingList>> getShoppingLists();
+
     @Transaction
     @Query("SELECT * FROM shoppingList_table WHERE userCreatorId = 1")
     LiveData<List<ShoppingListWithIngredients>> getShoppingListWithIngredients();

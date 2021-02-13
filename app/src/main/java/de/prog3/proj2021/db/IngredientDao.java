@@ -31,9 +31,6 @@ public interface IngredientDao {
     @Delete
     void deleteIngredient(Ingredient... ingredients); //attempts to delete one or more ingredients
 
-    @Query("SELECT * FROM ingredient_table")
-    LiveData<List<Ingredient>> getIngredients();
-
     @Query("SELECT * FROM ingredient_table ORDER BY type, name ASC")
     LiveData<List<Ingredient>> getIngredientsByTypeASC();
 
@@ -41,10 +38,10 @@ public interface IngredientDao {
     LiveData<List<Ingredient>> getIngredientsByQuery(String query);
 
     @Query("SELECT * FROM ingredient_table WHERE name LIKE :query")
-    Ingredient getSingleIngredientByQuery(String query);
+    LiveData<Ingredient> getSingleIngredientByQuery(String query);
 
     @Transaction
     @Query("SELECT * FROM ingredient_table")
-    List<IngredientWithRecipes> getIngredientWithRecipes();
+    LiveData<List<IngredientWithRecipes>> getIngredientWithRecipes();
 
 }

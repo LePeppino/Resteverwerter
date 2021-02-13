@@ -11,6 +11,7 @@ package de.prog3.proj2021.repositories;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
@@ -22,8 +23,10 @@ import de.prog3.proj2021.db.RecipeDao;
 
 public class RecipeRepository {
 
+    private RecipeWithIngredients singleRecipe;
     private LiveData<List<Recipe>> dataSet;
-    private List<RecipeWithIngredients> crossRefDataSet;
+    private LiveData<List<RecipeWithIngredients>> crossRefDataSet;
+
     private final RecipeDao recipeDao;
 
     //constructor
@@ -31,60 +34,79 @@ public class RecipeRepository {
         AppDatabase recipeDB = AppDatabase.getInstance(application);
         recipeDao = recipeDB.recipeDao();
         updateRecipes();
-        updateRecipesWithIngredients();
+    }
+
+    //setter
+    private void updateRecipes() {
+            dataSet = recipeDao.getRecipesASC();
+            crossRefDataSet = recipeDao.getRecipesWithIngredients();
     }
 
     //getter and setter for recipe dataSet
     public LiveData<List<Recipe>> getRecipes(){
         return dataSet;
     }
-    public List<RecipeWithIngredients> getRecipesWithIngredients(){
+    public LiveData<List<RecipeWithIngredients>> getRecipesWithIngredients(){
         return crossRefDataSet;
     }
 
-    private void updateRecipes(){
-        dataSet = recipeDao.getRecipes();
-    }
-    private void updateRecipesWithIngredients(){
-        crossRefDataSet = recipeDao.getRecipesWithIngredients();
-    }
     /*
      * database operations communicating with RecipeDao
      */
     public void insert(Recipe recipe){
-        recipeDao.insertRecipe(recipe);
+        AppDatabase.databaseExecutor.execute(() -> {
+            recipeDao.insertRecipe(recipe);
+        });
         System.out.println("recipe inserted");
     }
     public void update(Recipe recipe){
-        recipeDao.updateRecipe(recipe);
+        AppDatabase.databaseExecutor.execute(() -> {
+            recipeDao.updateRecipe(recipe);
+        });
         System.out.println("recipe updated");
     }
     public void delete(Recipe recipe){
-        recipeDao.deleteRecipe(recipe);
+        AppDatabase.databaseExecutor.execute(() -> {
+            recipeDao.deleteRecipe(recipe);
+        });
         System.out.println("recipe deleted");
     }
 
     public void insertRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
-        recipeDao.insertRecipeIngredientCrossRef(recipeIngredientCrossRef);
+        AppDatabase.databaseExecutor.execute(() -> {
+            recipeDao.insertRecipeIngredientCrossRef(recipeIngredientCrossRef);
+        });
         System.out.println("recipeIngredientCrossRef inserted");
     }
     public void updateRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
-        recipeDao.updateRecipeIngredientCrossRef(recipeIngredientCrossRef);
+        AppDatabase.databaseExecutor.execute(() -> {
+            recipeDao.updateRecipeIngredientCrossRef(recipeIngredientCrossRef);
+        });
         System.out.println("recipeIngredientCrossRef updated");
     }
     public void deleteRecipeIngredientCrossRef(RecipeIngredientCrossRef... recipeIngredientCrossRef){
-        recipeDao.deleteRecipeIngredientCrossRef(recipeIngredientCrossRef);
+        AppDatabase.databaseExecutor.execute(() -> {
+            recipeDao.deleteRecipeIngredientCrossRef(recipeIngredientCrossRef);
+        });
         System.out.println("recipeIngredientCrossRef deleted");
     }
 
     /*
      * getters for different queries here
      */
-    public LiveData<List<Recipe>> getRecipesAlphabetical() {
-        return dataSet = recipeDao.getRecipesASC();
-    }
     public LiveData<List<Recipe>> getRecipesByQuery(String query) {
-        return dataSet = recipeDao.getRecipesByQuery(query);
+        return recipeDao.getRecipesByQuery(query);
+    }
+
+    public LiveData<Recipe> getSingleRecipeByQuery(String query) {
+        return recipeDao.getSingleRecipeByQuery(query);
+    }
+
+    public RecipeWithIngredients getRecipeWithIngredientsById(int id){
+        AppDatabase.databaseExecutor.execute(() -> {
+            singleRecipe = recipeDao.getRecipeWithIngredientsById(id);
+        });
+        return singleRecipe;
     }
 
 }

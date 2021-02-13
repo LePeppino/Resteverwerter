@@ -51,8 +51,8 @@ public interface RecipeDao {
     LiveData<Recipe> getSingleRecipeByQuery(String query);
 
     @Transaction
-    @Query("SELECT * FROM recipe_table r WHERE r.id = :id")
-    RecipeWithIngredients getRecipeWithIngredientsById(int id);
+    @Query("SELECT * FROM recipe_table r WHERE r.rId = :id")
+    LiveData<RecipeWithIngredients> getRecipeWithIngredientsById(int id);
 
     @Transaction
     @Query("SELECT * FROM recipe_table")

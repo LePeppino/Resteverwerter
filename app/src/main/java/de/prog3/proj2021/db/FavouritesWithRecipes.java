@@ -24,9 +24,9 @@ public class FavouritesWithRecipes {
     @Embedded
     public FavouriteList favouriteList;
     @Relation(
-            parentColumn = "id",
+            parentColumn = "fId",
             entity = Recipe.class,
-            entityColumn = "id",
+            entityColumn = "rId",
             associateBy = @Junction(value = FavouriteRecipeCrossRef.class,
                     parentColumn = "favouriteListId",
                     entityColumn = "recipeId")

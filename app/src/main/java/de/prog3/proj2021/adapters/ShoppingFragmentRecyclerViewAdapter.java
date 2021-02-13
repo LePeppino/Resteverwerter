@@ -20,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -28,14 +27,8 @@ import java.util.List;
 
 import de.prog3.proj2021.R;
 import de.prog3.proj2021.db.AppDatabase;
-import de.prog3.proj2021.db.ShoppingListIngredientCrossRef;
 import de.prog3.proj2021.db.ShoppingListWithIngredients;
-import de.prog3.proj2021.models.Ingredient;
-import de.prog3.proj2021.models.ShoppingList;
-import de.prog3.proj2021.repositories.ShoppingListRepository;
-import de.prog3.proj2021.ui.RecipeDetailActivity;
 import de.prog3.proj2021.ui.ShoppingListDetailActivity;
-import de.prog3.proj2021.viewmodels.ShoppingListViewModel;
 
 
 public class ShoppingFragmentRecyclerViewAdapter extends RecyclerView.Adapter<ShoppingFragmentRecyclerViewAdapter.ShoppingFragmentHolder> {
@@ -75,7 +68,7 @@ public class ShoppingFragmentRecyclerViewAdapter extends RecyclerView.Adapter<Sh
             @Override
             public void onClick(View view) {
                 //get ID of currentShoppingList and pass to new Activity
-                int shoppingListId = currentShoppingList.shoppingList.getId();
+                int shoppingListId = currentShoppingList.shoppingList.getsId();
 
                 Intent intent = new Intent(mContext, ShoppingListDetailActivity.class);
                 intent.putExtra("currentShoppingListId", shoppingListId);

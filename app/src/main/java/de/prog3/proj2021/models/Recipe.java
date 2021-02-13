@@ -15,7 +15,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "recipe_table")
 public class Recipe {
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public int rId;
 
     @NonNull
     public String name = "";
@@ -46,7 +46,7 @@ public class Recipe {
 
     //copy
     public Recipe(Recipe recipe){
-        this.id = recipe.id;
+        this.rId = recipe.rId;
         this.name = recipe.name;
         this.calories = recipe.calories;
         this.isFavourite = recipe.isFavourite;
@@ -56,8 +56,8 @@ public class Recipe {
     }
 
     //getter, setter
-    public int getId() {return id;}
-    private void setId(int id) {this.id = id;}
+    public int getrId() {return rId;}
+    private void setrId(int rId) {this.rId = rId;}
 
     public @NonNull String getName() {return name;}
     private void setName(@NonNull String name) {this.name = name;}

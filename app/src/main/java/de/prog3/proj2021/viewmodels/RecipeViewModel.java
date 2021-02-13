@@ -81,7 +81,7 @@ public class RecipeViewModel extends AndroidViewModel {
     public LiveData<List<Recipe>> getMRecipesByQuery(String query){
         return recipeRepository.getRecipesByQuery(query);
     }
-    public RecipeWithIngredients getMRecipeById(int id){
+    public LiveData<RecipeWithIngredients> getMRecipeById(int id){
         return recipeRepository.getRecipeWithIngredientsById(id);
     }
 

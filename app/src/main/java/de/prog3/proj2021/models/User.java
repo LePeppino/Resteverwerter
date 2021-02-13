@@ -14,7 +14,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "user_table")
 public class User {
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public int uId;
 
     @NonNull
     public String username = "";
@@ -25,8 +25,8 @@ public class User {
     }
 
     //getter, setter
-    public int getId() {return id;}
-    private void setId(int id) {this.id = id;}
+    public int getuId() {return uId;}
+    private void setuId(int uId) {this.uId = uId;}
 
     public String username() {return username;}
     private void setUsername(@NonNull String username) {this.username = username;}

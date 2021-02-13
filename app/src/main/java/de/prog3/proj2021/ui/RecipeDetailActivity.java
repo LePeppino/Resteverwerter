@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +24,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.prog3.proj2021.R;
@@ -33,7 +31,6 @@ import de.prog3.proj2021.adapters.RecipeDetailRecyclerViewAdapter;
 import de.prog3.proj2021.db.FavouriteRecipeCrossRef;
 import de.prog3.proj2021.db.FavouritesWithRecipes;
 import de.prog3.proj2021.db.RecipeWithIngredients;
-import de.prog3.proj2021.models.Recipe;
 import de.prog3.proj2021.viewmodels.FavouritesViewModel;
 import de.prog3.proj2021.viewmodels.RecipeViewModel;
 
@@ -126,9 +123,14 @@ public class RecipeDetailActivity extends AppCompatActivity {
     private void initViewModels(){
         mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
-        this.currentRecipe = mRecipeViewModel.getMRecipeById(currentRecipeId);
-        recipeDetailRecyclerViewAdapter.setRecipes(currentRecipe);
-        recipeDetailRecyclerViewAdapter.notifyDataSetChanged();
+        mRecipeViewModel.getMRecipeById(currentRecipeId).observe(this, queriedRecipe -> {
+            if(queriedRecipe != null){
+                setCurrentRecipe(queriedRecipe);
+                recipeDetailRecyclerViewAdapter.setRecipes(queriedRecipe);
+            }
+            recipeDetailRecyclerViewAdapter.notifyDataSetChanged();
+        });
+
 
         mFavouritesViewModel = new ViewModelProvider(this).get(FavouritesViewModel.class);
 
@@ -179,7 +181,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
      */
     private void addFavourite(RecipeWithIngredients currentRecipe){
         FavouriteRecipeCrossRef crossRef = new FavouriteRecipeCrossRef(
-                favouritesWithRecipes.favouriteList.getId(), currentRecipeId);
+                favouritesWithRecipes.favouriteList.getfId(), currentRecipeId);
 
         //update CrossRef table
         mFavouritesViewModel.insertFavouriteCrossRef(crossRef);
@@ -195,7 +197,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
      */
     private void removeFavourite(RecipeWithIngredients currentRecipe){
         FavouriteRecipeCrossRef crossRef = new FavouriteRecipeCrossRef(
-                favouritesWithRecipes.favouriteList.getId(), currentRecipeId);
+                favouritesWithRecipes.favouriteList.getfId(), currentRecipeId);
 
         //update CrossRef table
         mFavouritesViewModel.deleteFavouriteCrossRef(crossRef);

@@ -23,7 +23,7 @@ import de.prog3.proj2021.db.RecipeDao;
 
 public class RecipeRepository {
 
-    private RecipeWithIngredients singleRecipe;
+    private LiveData<RecipeWithIngredients> singleRecipe;
     private LiveData<List<Recipe>> dataSet;
     private LiveData<List<RecipeWithIngredients>> crossRefDataSet;
 
@@ -102,7 +102,7 @@ public class RecipeRepository {
         return recipeDao.getSingleRecipeByQuery(query);
     }
 
-    public RecipeWithIngredients getRecipeWithIngredientsById(int id){
+    public LiveData<RecipeWithIngredients> getRecipeWithIngredientsById(int id){
         AppDatabase.databaseExecutor.execute(() -> {
             singleRecipe = recipeDao.getRecipeWithIngredientsById(id);
         });

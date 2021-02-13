@@ -22,9 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.prog3.proj2021.R;
 import de.prog3.proj2021.db.ShoppingListWithIngredients;
 import de.prog3.proj2021.models.Ingredient;
@@ -75,7 +72,7 @@ public class ShoppingDetailRecyclerViewAdapter extends RecyclerView.Adapter<Shop
             @Override
             public void onClick(View view) {
                 //get ID of currentIngredient and pass to new Activity
-                int currentIngredientId = currentIngredient.getId();
+                int currentIngredientId = currentIngredient.getiId();
 
                 Intent intent = new Intent(mContext, IngredientDetailActivity.class);
                 intent.putExtra("currentIngredientId", currentIngredientId);

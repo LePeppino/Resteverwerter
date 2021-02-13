@@ -32,7 +32,7 @@ import de.prog3.proj2021.models.User;
         Ingredient.class,
         ShoppingList.class,
         ShoppingListIngredientCrossRef.class},
-        version = 7, //TODO: needs to be incremented every time the db schema is altered
+        version = 11, //TODO: needs to be incremented every time the db schema is altered
         exportSchema = false)
 
 @TypeConverters({DataConverter.class})
@@ -63,7 +63,7 @@ public abstract class AppDatabase extends RoomDatabase {
                              * version number due to changes to database schema!
                              */
                             .fallbackToDestructiveMigration()
-                            //.allowMainThreadQueries()
+                            .allowMainThreadQueries()
                             .createFromAsset("database/food_scout.db")
                             .build();
                 }

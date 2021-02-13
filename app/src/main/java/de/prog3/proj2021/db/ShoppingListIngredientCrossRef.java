@@ -17,11 +17,11 @@ import static androidx.room.ForeignKey.CASCADE;
         primaryKeys = {"shoppingListId", "ingredientId"},
         foreignKeys = {
         @ForeignKey(entity = ShoppingList.class,
-                parentColumns = "id",
+                parentColumns = "sId",
                 childColumns = "shoppingListId",
                 onDelete = CASCADE),
         @ForeignKey(entity = Ingredient.class,
-                parentColumns = "id",
+                parentColumns = "iId",
                 childColumns = "ingredientId",
                 onDelete = CASCADE)})
 public class ShoppingListIngredientCrossRef {

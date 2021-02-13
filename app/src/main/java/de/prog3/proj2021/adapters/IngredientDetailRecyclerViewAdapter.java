@@ -27,7 +27,6 @@ import java.util.List;
 
 import de.prog3.proj2021.R;
 import de.prog3.proj2021.db.IngredientWithRecipes;
-import de.prog3.proj2021.models.Ingredient;
 import de.prog3.proj2021.models.Recipe;
 import de.prog3.proj2021.ui.RecipeDetailActivity;
 
@@ -73,7 +72,7 @@ public class IngredientDetailRecyclerViewAdapter extends RecyclerView.Adapter<In
             @Override
             public void onClick(View view) {
                 //get ID of currentRecipe and pass to new Activity
-                int currentRecipeId = currentRecipe.getId();
+                int currentRecipeId = currentRecipe.getrId();
 
                 Intent intent = new Intent(mContext, RecipeDetailActivity.class);
                 intent.putExtra("currentRecipeId", currentRecipeId);

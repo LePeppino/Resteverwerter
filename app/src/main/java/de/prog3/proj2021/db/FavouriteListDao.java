@@ -35,6 +35,6 @@ public interface FavouriteListDao {
     LiveData<List<Recipe>> getFavouriteRecipesByQuery(String query);
 
     @Transaction
-    @Query("SELECT * FROM favouriteList_table WHERE id = 1 AND userOwnerId = 1")
+    @Query("SELECT * FROM favouriteList_table WHERE fId = 1 AND userOwnerId = 1")
     LiveData<FavouritesWithRecipes> getFavouritesWithRecipesById();
 }

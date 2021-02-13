@@ -18,11 +18,11 @@ import static androidx.room.ForeignKey.CASCADE;
         primaryKeys = {"favouriteListId", "recipeId"},
         foreignKeys = {
         @ForeignKey(entity = FavouriteList.class,
-                parentColumns = "id",
+                parentColumns = "fId",
                 childColumns = "favouriteListId",
                 onDelete = CASCADE),
         @ForeignKey(entity = Recipe.class,
-                parentColumns = "id",
+                parentColumns = "rId",
                 childColumns = "recipeId",
                 onDelete = CASCADE)})
 public class FavouriteRecipeCrossRef {

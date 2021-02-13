@@ -13,8 +13,6 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,7 +24,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import de.prog3.proj2021.R;
 import de.prog3.proj2021.models.Recipe;
@@ -74,7 +71,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
             @Override
             public void onClick(View view) {
                 //get ID of currentRecipe and pass to new Activity
-                int currentRecipeId = currentRecipe.getId();
+                int currentRecipeId = currentRecipe.getrId();
 
                 Intent intent = new Intent(mContext, RecipeDetailActivity.class);
                 intent.putExtra("currentRecipeId", currentRecipeId);

@@ -19,9 +19,9 @@ public class ShoppingListWithIngredients {
     @Embedded
     public ShoppingList shoppingList;
     @Relation(
-            parentColumn = "id",
+            parentColumn = "sId",
             entity = Ingredient.class,
-            entityColumn = "id",
+            entityColumn = "iId",
             associateBy = @Junction(value = ShoppingListIngredientCrossRef.class,
                     parentColumn = "shoppingListId",
                     entityColumn = "ingredientId")

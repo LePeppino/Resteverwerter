@@ -152,13 +152,20 @@ public class IngredientDetailActivity extends AppCompatActivity {
      * Ingredient Unit to String converter
      */
     private String fromIntegerToUnitString(int unitValue){
-        String unitString;
-
-        if(unitValue == 1){unitString = "g";}
-        else if(unitValue == 2){unitString = "ml";}
-        else if(unitValue == 3){unitString = "pcs";}
-        else{unitString = "units";}
-
+        String unitString = "";
+        if(unitValue > 3){
+            return "units";
+        }
+        switch(unitValue){
+            case 1:
+                unitString = "g";
+                break;
+            case 2:
+                unitString = "ml";
+                break;
+            case 3:
+                unitString = "pcs";
+        }
         return unitString;
     }
 
@@ -166,22 +173,50 @@ public class IngredientDetailActivity extends AppCompatActivity {
     * Ingredient Type to String converter
     * */
     private String fromIntegerToTypeString(int typeValue){
-        String typeString;
-
-        if(typeValue == 1){typeString = "Dairy";}
-        else if(typeValue == 2){typeString = "Vegetables";}
-        else if(typeValue == 3){typeString = "Fruits";}
-        else if(typeValue == 4){typeString = "Grains";}
-        else if(typeValue == 5){typeString = "Spices";}
-        else if(typeValue == 6){typeString = "Meats";}
-        else if(typeValue == 7){typeString = "Fish";}
-        else if(typeValue == 8){typeString = "Seafood";}
-        else if(typeValue == 9){typeString = "Condiments";}
-        else if(typeValue == 10){typeString = "Dairy Alternates";}
-        else if(typeValue == 11){typeString = "Sweets";}
-        else if(typeValue == 12){typeString = "Beverages";}
-        else if(typeValue == 13){typeString = "Baking";}
-        else{typeString = "Other";}
+        String typeString = "";
+        if(typeValue > 13){
+            return "Other";
+        }
+        switch(typeValue){
+            case 1:
+                typeString = "Dairy";
+                break;
+            case 2:
+                typeString = "Vegetables";
+                break;
+            case 3:
+                typeString = "Fruits";
+                break;
+            case 4:
+                typeString = "Grains";
+                break;
+            case 5:
+                typeString = "Spices";
+                break;
+            case 6:
+                typeString = "Meats";
+                break;
+            case 7:
+                typeString = "Fish";
+                break;
+            case 8:
+                typeString = "Seafood";
+                break;
+            case 9:
+                typeString = "Condiments";
+                break;
+            case 10:
+                typeString = "Dairy Alternatives";
+                break;
+            case 11:
+                typeString = "Sweets";
+                break;
+            case 12:
+                typeString = "Beverages";
+                break;
+            case 13:
+                typeString = "Baking";
+        }
 
         return typeString;
     }
@@ -190,7 +225,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
     * Button methods
     * */
     public void addToShoppingList(View view){
-
+        //TODO
     }
 
     public void addAsOwned(View view){

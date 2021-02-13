@@ -29,14 +29,16 @@ public class ShoppingList {
     public String name = "";
     public int numUncheckedItems;
 
-    public int userCreatorId; //for reference to parent entity
+    private int userCreatorId; //for reference to parent entity
 
     //constructor
     public ShoppingList(String name,
-                        int numUncheckedItems)
+                        int numUncheckedItems,
+                        int userCreatorId)
     {
         setName(name);
         setNumUncheckedItems(numUncheckedItems);
+        setUserCreatorId(userCreatorId);
     }
 
     //getter, setter
@@ -49,6 +51,9 @@ public class ShoppingList {
     public int getNumUncheckedItems() {
         return numUncheckedItems;
     }
+    public int getUserCreatorId(){
+        return userCreatorId;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -58,6 +63,9 @@ public class ShoppingList {
     }
     public void setNumUncheckedItems(int numUncheckedItems) {
         this.numUncheckedItems = numUncheckedItems;
+    }
+    private void setUserCreatorId(int userCreatorId){
+        this.userCreatorId = userCreatorId;
     }
 
 }

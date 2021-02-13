@@ -8,14 +8,22 @@ package de.prog3.proj2021.fragments;
  * File authors: Eric Walter, Giuseppe Buccellato
  */
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -61,7 +69,7 @@ public class FragmentHome extends Fragment {
     }
 
     /*
-     * initialise RecipeRecyclerView with Adapter
+     * initialise recipeRecyclerView with Adapter
      * */
     private void initRecyclerView(View root){
         recipeRecyclerView = root.findViewById(R.id.recipeRecyclerView);
@@ -90,6 +98,7 @@ public class FragmentHome extends Fragment {
     * and update recipe list according to query
     * */
     private void initSearchBar(View root){
+        //fill recipe name list
         initNameList();
 
         autoCompleteTextView = root.findViewById(R.id.autoCompleteTextView);
@@ -97,6 +106,7 @@ public class FragmentHome extends Fragment {
                 android.R.layout.simple_list_item_1, recipeNameList);
         autoCompleteTextView.setAdapter(recipeAdapter);
 
+        //observe text in search bar
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -119,7 +129,7 @@ public class FragmentHome extends Fragment {
      * display recipe in Recycler if query matches with recipe name.
      * if query is empty, show all recipes
      * */
-    private void updateRecipeList(String query){
+    public void updateRecipeList(String query){
         if(!query.equals("")){
             mRecipeViewModel.getMRecipesByQuery(query).observe(getViewLifecycleOwner(), filteredRecipeList -> {
                 recipeRecyclerViewAdapter.setMRecipes(filteredRecipeList);

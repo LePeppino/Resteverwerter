@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:elevation="6dp"
+    android:background="#fff"
+    android:id="@+id/parentLayout"
+    android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shoppingListOverviewName"
+            android:text="@string/shoppinglist_name_placeholder"
+            android:textColor="@color/colorTextPrimary"
+            android:layout_margin="30dp"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shoppingListOverviewProgressText"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_toStartOf="@id/deleteListIcon"
+            android:textSize="18sp"
+            android:text="@string/shopping_progress_placeholder"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/deleteListIcon"
+            android:layout_alignParentEnd="true"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_baseline_delete_24"
+            android:onClick="deleteListClick"
+            />
+
+
+</RelativeLayout>

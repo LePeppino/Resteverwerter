@@ -66,4 +66,6 @@ public class RecipeViewModel extends AndroidViewModel {
         return recipeRepository.getRecipesByQuery(query);
     }
 
+
+
 }

@@ -40,5 +40,17 @@
     <string name="addToAvailable">Add as owned</string>
     <string name="ingredient_category_title">Category</string>
 
+    <!-- Shopping Lists -->
+    <string name="shoppinglist_overview_title">Your shopping lists</string>
+    <string name="shoppinglist_name_placeholder">Shopping list</string>
+    <string name="shopping_progress_placeholder">0 / 0</string>
+    <string name="addShoppingList">Add Shopping List</string>
+    <string name="shopping_num_to_buy_title">Amount</string>
+    <string name="addIngredientToShoppingList">Add To Shopping List</string>
+    <string name="amountToAdd">Amount</string>
+
+    <string name="ifListEmptyNotifierText">No items here yet. Add an ingredient with the button down below!</string>
+    <string name="initUserInfo">Please wait while we get things ready for you...</string>
+    <string name="logosplashscreen">logoSplashscreen</string>
 
 </resources>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ShoppingListDetailActivity"
+    android:background="@color/colorAppLogo"
+    android:id="@+id/parentLayout">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/shoppingListDetailTitle"
+        android:text="@string/title_shopping_list"
+        style="@style/FragmentTitleText"
+        />
+
+    <!-- Ingredient List Title Bar -->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/shoppingListDetailTitleRow"
+        android:layout_below="@+id/shoppingListDetailTitle"
+        android:weightSum="12">
+        <TextView
+            style="@style/recyclerViewTitleStyle"
+            android:text="@string/picker_type_title"
+            android:id="@+id/pickerRecyclerViewTypeTitle"
+            android:layout_weight="1"
+            />
+        <TextView
+            style="@style/recyclerViewTitleStyle"
+            android:text="@string/picker_recyclerView_title"
+            android:id="@+id/pickerRecyclerViewTitle"
+            android:layout_weight="6"
+            />
+        <TextView
+            style="@style/recyclerViewTitleStyle"
+            android:text="@string/shopping_num_to_buy_title"
+            android:id="@+id/pickerRecyclerViewAltTitle"
+            android:layout_weight="0"
+            />
+    </TableRow>
+
+    <!-- Scrolling list -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/shoppingListDetailScrollView"
+        android:layout_below="@+id/shoppingListDetailTitleRow">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/ifListEmptyNotifier"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="50dp"
+                android:visibility="gone"
+                android:text="@string/ifListEmptyNotifierText"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/shoppingListIngredientsRecycler"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                tools:listitem="@layout/layout_shoppinglist_ingredient_listitem"
+                />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/shoppingDetailFab"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_fab_add"
+        android:contentDescription="@string/addIngredientToShoppingList"
+        />
+
+</RelativeLayout>

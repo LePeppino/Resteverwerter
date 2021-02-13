@@ -1,8 +1,8 @@
 package de.prog3.proj2021.repositories;
 
 /*
- * This class interacts with the Recipe DAO
- * to retrieve and cache recipes from database
+ * This class interacts with the ShoppingListDao interface
+ * to retrieve and cache ShoppingLists with Ingredients from database
  * to pass them to a ViewModel
  *
  * File author: Giuseppe Buccellato

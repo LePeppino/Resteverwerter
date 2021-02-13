@@ -15,26 +15,38 @@ package de.prog3.proj2021;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 import de.prog3.proj2021.fragments.FragmentFavorites;
 import de.prog3.proj2021.fragments.FragmentHome;
 import de.prog3.proj2021.fragments.FragmentPicker;
 import de.prog3.proj2021.fragments.FragmentShoppingList;
+import de.prog3.proj2021.viewmodels.RecipeViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        setContentView(R.layout.splashscreen);
+
+        RecipeViewModel mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
+
+        List recipeWithIngredients = mRecipeViewModel.getMRecipesWithIngredients();
 
         //TODO: check all recipe data behind splash screen
         // and configure if necessary
+
+        setContentView(R.layout.activity_main);
 
         //initiate BottomNavBar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);

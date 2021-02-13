@@ -10,6 +10,8 @@
 
     <!-- Title -->
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         style="@style/FragmentTitleText"
         android:id="@+id/ingredientDetailTitleText"
         android:text="@string/title_ingredient_detail"/>

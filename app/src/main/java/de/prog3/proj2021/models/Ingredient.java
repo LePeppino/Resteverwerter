@@ -1,17 +1,19 @@
 package de.prog3.proj2021.models;
 
-/*
+/**
  * Ingredient has n:m relation to Recipe class.
  * Ingredient has n:m relation to ShoppingList class.
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  *
  * */
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
+/**
+ * create correlation between table entry and POJO
+ */
 @Entity(tableName = "ingredient_table")
 public class Ingredient {
     @PrimaryKey(autoGenerate = true)
@@ -26,7 +28,16 @@ public class Ingredient {
     public int numToBuy;                    //for shopping list
     public int isCheckedOnShoppingList;     //bool value: 0 = false, 1 = true
 
-    //constructor
+    /**
+     * constructor
+     * @param name
+     * @param unit
+     * @param type
+     * @param numAvailable
+     * @param numRequired
+     * @param numToBuy
+     * @param isCheckedOnShoppingList
+     */
     public Ingredient(String name,
                       int unit,
                       int type,
@@ -96,7 +107,7 @@ public class Ingredient {
         this.isCheckedOnShoppingList = isCheckedOnShoppingList;
     }
 
-    /*
+    /**
      * Enums for Ingredient Unit and Type
      * with constructors and getters
      * and methods in DataConverter class

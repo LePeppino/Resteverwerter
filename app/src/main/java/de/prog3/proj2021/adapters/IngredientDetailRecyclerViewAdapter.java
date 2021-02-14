@@ -1,10 +1,10 @@
 package de.prog3.proj2021.adapters;
 
-/*
+/**
  * RecyclerViewAdapter holds all the ViewHolders filled
  * with the Views to display the associated recipe details on IngredientDetailActivity.
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  * */
 
 import android.content.Context;
@@ -41,6 +41,10 @@ public class IngredientDetailRecyclerViewAdapter extends RecyclerView.Adapter<In
         this.mContext = mContext;
     }
 
+    /**
+     * onCreateViewHolder
+     * @return passes a newly created Holder
+     */
     @NonNull
     @Override
     public IngredientDetailHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,6 +53,9 @@ public class IngredientDetailRecyclerViewAdapter extends RecyclerView.Adapter<In
         return new IngredientDetailHolder(itemView);
     }
 
+    /**
+     *Binds the data to the view
+     */
     @Override
     public void onBindViewHolder(@NonNull IngredientDetailHolder holder, int position) {
         Recipe currentRecipe = mRecipes.get(position);
@@ -82,19 +89,26 @@ public class IngredientDetailRecyclerViewAdapter extends RecyclerView.Adapter<In
         });
     }
 
-    // return number of items. if this returns 0, nothing will display
+    /**
+     * return number of items. if this returns 0, nothing will display
+     * @return number of items
+     */
     @Override
     public int getItemCount() {
         return mRecipes.size();
     }
 
-    /*
-    * splits off recipe list from chosen ingredientWithRecipes
-    * */
+    /**
+     * splits off recipe list from chosen ingredientWithRecipes
+     * @param ingredientWithRecipes
+     */
     public void setIngredientWithRecipes(IngredientWithRecipes ingredientWithRecipes){
         this.mRecipes = ingredientWithRecipes.recipes;
     }
 
+    /**
+     * ViewHolder class that holds all the views
+     * */
     public static class IngredientDetailHolder extends RecyclerView.ViewHolder{
         private final ImageView image;
         private final TextView name;

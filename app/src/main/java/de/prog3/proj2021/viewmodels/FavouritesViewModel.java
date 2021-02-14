@@ -1,6 +1,6 @@
 package de.prog3.proj2021.viewmodels;
 
-/*
+/**
  * This ViewModel class retrieves recipe data from
  * FavouriteRecipeRepository and passes it to the UI
  *

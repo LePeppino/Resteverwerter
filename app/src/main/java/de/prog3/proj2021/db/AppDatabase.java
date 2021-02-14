@@ -1,9 +1,9 @@
 package de.prog3.proj2021.db;
 
-/*
+/**
 * Database class for App
 *
-* File author: Giuseppe Buccellato
+* @author Giuseppe Buccellato, Eric Walter
 */
 
 import android.content.Context;
@@ -20,6 +20,9 @@ import de.prog3.proj2021.models.Recipe;
 import de.prog3.proj2021.models.ShoppingList;
 import de.prog3.proj2021.models.User;
 
+/**
+ * Entities
+ */
 @Database(entities = {
         User.class,
         FavouriteList.class,
@@ -32,6 +35,9 @@ import de.prog3.proj2021.models.User;
         version = 5, //TODO: needs to be incremented every time the db schema is altered
         exportSchema = false)
 
+/**
+ * Type converters
+ */
 @TypeConverters({DataConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
@@ -42,7 +48,12 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;
 
-    //create an instance of the database and preload with data
+    /**
+     * create an instance of the database and preload with data
+     * also, implemented with singleton pattern so only one instance ever exists
+     * @param context that is to be passed
+     * @return instance
+     */
     public static AppDatabase getInstance(Context context) {
         if (instance == null) {
             synchronized (AppDatabase.class) {

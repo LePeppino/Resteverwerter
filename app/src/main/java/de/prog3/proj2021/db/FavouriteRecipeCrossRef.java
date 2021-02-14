@@ -1,9 +1,9 @@
 package de.prog3.proj2021.db;
 
-/*
+/**
  * n:m Relation cross reference class for FavouriteList and Recipe
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  * */
 
 import androidx.room.Entity;

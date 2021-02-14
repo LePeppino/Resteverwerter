@@ -1,10 +1,10 @@
 package de.prog3.proj2021.adapters;
 
-/*
+/**
  * RecyclerViewAdapter holds all the ViewHolders filled
  * with the Views to display the recipes on favourite screen.
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato, Eric Walter
  * */
 
 import android.content.Context;
@@ -40,6 +40,10 @@ public class FavouriteRecyclerViewAdapter extends RecyclerView.Adapter<Favourite
         this.mContext = mContext;
     }
 
+    /**
+     * onCreateViewHolder
+     * @return passes a newly created Holder
+     */
     @NonNull
     @Override
     public RecipeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -48,6 +52,9 @@ public class FavouriteRecyclerViewAdapter extends RecyclerView.Adapter<Favourite
         return new FavouriteRecyclerViewAdapter.RecipeHolder(itemView);
     }
 
+    /**
+     *Binds the data to the view
+     */
     @Override
     public void onBindViewHolder(@NonNull RecipeHolder holder, int position) {
         Recipe currentRecipe = mRecipes.get(position);
@@ -81,26 +88,35 @@ public class FavouriteRecyclerViewAdapter extends RecyclerView.Adapter<Favourite
         });
     }
 
-    // return number of items. if this returns 0, nothing will display
+    /**
+     * return number of items. if this returns 0, nothing will display
+     * @return number of items
+     */
     @Override
     public int getItemCount() {
         return mRecipes.size();
     }
 
-    /*
-    * sets recipes for default display
-    * */
+
+    /**
+     * sets the recipes for default display
+     * @param favouriteRecipes
+     */
     public void setMFavourites(FavouritesWithRecipes favouriteRecipes){
         this.mRecipes = favouriteRecipes.recipes;
     }
 
-    /*
-    * sets recipes by query from search bar in FragmentFavorites
-    * */
+    /**
+     * sets recipes by query from search bar in FragmentFavorites
+     * @param recipeList
+     */
     public void setMFavouritesByQuery(List<Recipe> recipeList){
         this.mRecipes = recipeList;
     }
 
+    /**
+     * ViewHolder class that holds all the views
+     * */
     public static class RecipeHolder extends RecyclerView.ViewHolder{
         private final ImageView image;
         private final TextView name;

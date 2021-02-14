@@ -1,10 +1,10 @@
 package de.prog3.proj2021.adapters;
 
-/*
+/**
  * RecyclerViewAdapter holds all the ViewHolders filled
  * with the Views to display the recipe details on RecipeDetailActivity.
  *
- * File author: Giuseppe Buccellato
+ * @author Eric Walter
  * */
 
 import android.content.Context;
@@ -31,7 +31,7 @@ import de.prog3.proj2021.models.Ingredient;
 import de.prog3.proj2021.ui.IngredientDetailActivity;
 import de.prog3.proj2021.ui.RecipeDetailActivity;
 
-public class RecipeDetailRecyclerViewAdapter  extends RecyclerView.Adapter<RecipeDetailRecyclerViewAdapter.RecipeDetailHolder>{
+public class RecipeDetailRecyclerViewAdapter extends RecyclerView.Adapter<RecipeDetailRecyclerViewAdapter.RecipeDetailHolder>{
 
     private final Context mContext;
     private RecipeWithIngredients currentRecipe = new RecipeWithIngredients();
@@ -41,6 +41,10 @@ public class RecipeDetailRecyclerViewAdapter  extends RecyclerView.Adapter<Recip
         this.mContext = mContext;
     }
 
+    /**
+     * onCreateViewHolder
+     * @return passes a newly created Holder
+     */
     @NonNull
     @Override
     public RecipeDetailHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,6 +53,9 @@ public class RecipeDetailRecyclerViewAdapter  extends RecyclerView.Adapter<Recip
         return new RecipeDetailHolder(itemView);
     }
 
+    /**
+     *Binds the data to the view
+     */
     @Override
     public void onBindViewHolder(@NonNull RecipeDetailHolder holder, int position) {
         //set current ingredient
@@ -87,7 +94,10 @@ public class RecipeDetailRecyclerViewAdapter  extends RecyclerView.Adapter<Recip
         });
     }
 
-    //return number of items. if this returns 0, nothing will display
+    /**
+     * return number of items. if this returns 0, nothing will display
+     * @return number of items
+     */
     @Override
     public int getItemCount() {
         if(currentRecipe.ingredients == null){
@@ -98,12 +108,19 @@ public class RecipeDetailRecyclerViewAdapter  extends RecyclerView.Adapter<Recip
         }
     }
 
-    //setter
+    /**
+     * sets the recipes with ingredients
+     * @param recipeWithIngredients to be set
+     */
     public void setRecipes(RecipeWithIngredients recipeWithIngredients){
         this.currentRecipe = recipeWithIngredients;
     }
 
-    //Ingredient Unit to String converter
+    /**
+     * Ingredient Unit to String converter
+     * @param unitValue determines the unit corresponding with passed integer
+     * @return String of unit
+     */
     public String fromIntegerToUnit(int unitValue){
         String unitString;
 
@@ -115,8 +132,8 @@ public class RecipeDetailRecyclerViewAdapter  extends RecyclerView.Adapter<Recip
         return unitString;
     }
 
-    /*
-    * ViewHolder class that holds all the views, duh
+    /**
+    * ViewHolder class that holds all the views
     * */
     public static class RecipeDetailHolder extends RecyclerView.ViewHolder{
 

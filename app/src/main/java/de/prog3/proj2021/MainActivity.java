@@ -1,5 +1,9 @@
 package de.prog3.proj2021;
 
+/**
+ * MainActivity that starts the BNB and sets the HomeFragment as starting point
+ * @author Eric Walter, Giuseppe Buccellato
+ */
 /*
 *
 * Abschlussprojekt Programmierung III WiSe 2020/21
@@ -37,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //setContentView(R.layout.splashscreen);
-
         //TODO: check all recipe data behind splash screen
         // and configure if necessary
 
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-    /*
+    /**
     * BottomNavBar Listener with fragment switcher
     * */
     @SuppressLint("NonConstantResourceId")

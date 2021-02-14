@@ -1,14 +1,22 @@
 package de.prog3.proj2021.converters;
 
+/**
+ * Data Converter
+ * NOT USED
+ *
+ * @author Giuseppe Buccellato
+ */
+
 import androidx.room.TypeConverter;
 
 import java.util.Date;
 
 import de.prog3.proj2021.models.Ingredient;
 
+
 public class DataConverter {
 
-    /*
+    /**
     * Date converters
     * */
     @TypeConverter

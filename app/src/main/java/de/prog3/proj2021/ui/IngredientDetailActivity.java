@@ -1,13 +1,13 @@
 package de.prog3.proj2021.ui;
 
-/*
+/**
  * UI IngredientDetailActivity.
  * Gets passed the ingredientId of the chosen ingredient.
  * Instantiates a ViewModel to retrieve
  * ingredient data from repository.
  *
  *
- * File authors: Giuseppe Buccellato
+ * @author Eric Walter, Giuseppe Buccellato
  */
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,7 +53,10 @@ public class IngredientDetailActivity extends AppCompatActivity {
     Button addToShoppingListButton;
     Button addAsOwnedButton;
 
-
+    /**
+     * onCreate method
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +76,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
         initViews();
     }
 
-    /*
+    /**
     * initialise RecyclerView and Adapter
     * */
     private void initRecyclerView(){
@@ -85,7 +88,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
         ingredientDetailRecyclerView.setAdapter(ingredientDetailRecyclerViewAdapter);
     }
 
-    /*
+    /**
     * initialise ViewModel, retrieve crossRef data and pass it to Adapter
     * */
     private void initIngredientViewModel(){
@@ -98,7 +101,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
         ingredientDetailRecyclerViewAdapter.setIngredientWithRecipes(currentIngredient);
     }
 
-    /*
+    /**
      * set currentIngredient for this Activity
      */
     private void setCurrentIngredient(List<IngredientWithRecipes> ingredientList, int currentIngredientId){
@@ -109,7 +112,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
         }
     }
 
-    /*
+    /**
     * initiates the Views in Activity apart from RecyclerView
     * */
     private void initViews(){
@@ -148,7 +151,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
 
     }
 
-    /*
+    /**
      * Ingredient Unit to String converter
      */
     private String fromIntegerToUnitString(int unitValue){
@@ -169,7 +172,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
         return unitString;
     }
 
-    /*
+    /**
     * Ingredient Type to String converter
     * */
     private String fromIntegerToTypeString(int typeValue){
@@ -221,9 +224,6 @@ public class IngredientDetailActivity extends AppCompatActivity {
         return typeString;
     }
 
-    /*
-    * Button methods
-    * */
     public void addToShoppingList(View view){
         //TODO
     }

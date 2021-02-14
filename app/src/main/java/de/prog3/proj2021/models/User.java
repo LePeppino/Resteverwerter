@@ -4,13 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-/*
+/**
 * User has 1:1 relation to FavouriteList class.
 * User has 1:n relation to ShoppingList class.
 *
-* File author: Giuseppe Buccellato
+* @author Giuseppe Buccellato, Eric Walter
 * */
-
+/**
+ * create correlation between table entry and POJO
+ */
 @Entity(tableName = "user_table")
 public class User {
     @PrimaryKey(autoGenerate = true)

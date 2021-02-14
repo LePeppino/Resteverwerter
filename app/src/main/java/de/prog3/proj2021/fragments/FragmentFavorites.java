@@ -1,11 +1,11 @@
 package de.prog3.proj2021.fragments;
 
-/*
+/**
  * UI Favourites Fragment of MainActivity.
  * Instantiates a ViewModel to retrieve data from repository.
  * Initiates a RecyclerView to display queried recipe data.
  *
- * File authors: Eric Walter, Giuseppe Buccellato
+ * @author Eric Walter
  */
 
 import android.os.Bundle;
@@ -44,6 +44,13 @@ public class FragmentFavorites extends Fragment {
     AutoCompleteTextView autoCompleteTextView;
     private final List<String> recipeNameList = new ArrayList<>();
 
+    /**
+     * onCreateView method displays the fragment
+     * @param inflater layout infalter
+     * @param container container that will display the fragment
+     * @param savedInstanceState Bundle state
+     * @return View of the fragment
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,7 +68,7 @@ public class FragmentFavorites extends Fragment {
         return root;
     }
 
-    /*
+    /**
      * initialise RecipeRecyclerView with Adapter
      * */
     private void initRecyclerView(View root){
@@ -73,7 +80,7 @@ public class FragmentFavorites extends Fragment {
         favouriteRecyclerView.setAdapter(favouriteRecyclerViewAdapter);
     }
 
-    /*
+    /**
      * Initiate ViewModel, query favourite recipes from
      * FavouriteRecipeRepository and pass data to FavouriteRecyclerViewAdapter
      */
@@ -85,7 +92,7 @@ public class FragmentFavorites extends Fragment {
         favouriteRecyclerViewAdapter.notifyDataSetChanged();
     }
 
-    /*
+    /**
      * initialise the AutoCompleteTextView as search bar
      * and update recipe list according to query
      * */
@@ -115,7 +122,7 @@ public class FragmentFavorites extends Fragment {
         });
     }
 
-    /*
+    /**
      * display recipe in Recycler if query matches with recipe name.
      * if query is empty, show all favourite recipes
      * */
@@ -132,7 +139,7 @@ public class FragmentFavorites extends Fragment {
         }
     }
 
-    /*
+    /**
      * fill the name lists with recipe titles
      * */
     private void initNameList(){

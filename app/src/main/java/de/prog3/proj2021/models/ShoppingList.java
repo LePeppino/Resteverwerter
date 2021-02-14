@@ -8,13 +8,15 @@ import androidx.room.PrimaryKey;
 import static androidx.room.ForeignKey.CASCADE;
 
 
-/*
+/**
 * ShoppingList has 1:n relation to User class.
 * ShoppingList has n:m relation to Ingredient class.
 *
-* File author: Giuseppe Buccellato
+* @author Giuseppe Buccellato, Eric Walter
 * */
-
+/**
+ * create correlation between table entry and POJO
+ */
 @Entity(tableName = "shoppingList_table",
         foreignKeys =
         @ForeignKey(entity = User.class,

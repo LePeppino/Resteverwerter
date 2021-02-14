@@ -1,11 +1,11 @@
 package de.prog3.proj2021.repositories;
 
-/*
+/**
  * This class interacts with the User DAO
  * to retrieve and cache users from database
  * to pass them to a ViewModel
- *
- * File author: Giuseppe Buccellato
+ * NOT USED
+ * @author Giuseppe Buccellato
  * */
 
 import android.app.Application;
@@ -23,41 +23,56 @@ public class UserRepository {
     private LiveData<List<User>> userDataSet;
     private final UserDao userDao;
 
-    //constructor
+    /**
+     * constructor
+     * @param application
+     */
     public UserRepository(Application application){
         AppDatabase userDB = AppDatabase.getInstance(application);
         userDao = userDB.userDao();
         updateUsers();
     }
 
-    //getter and setter for userDataSet
+    /**
+     * returns live data of list of users
+     * @return live data
+     */
     public LiveData<List<User>> getUsers() {return userDataSet;}
 
     private void updateUsers(){
         userDataSet = userDao.getUsers();
     }
 
-    /*
-    * database operations communicating with UserDao
-    * */
+    /**
+     * inserts user
+     * @param user
+     */
     public void insert(User user){
         userDao.insertUser(user);
         System.out.println("user inserted");
     }
-
+    /**
+     * updates user
+     */
     public void update(User user){
         userDao.insertUser(user);
         System.out.println("user updated");
     }
 
+    /**
+     * deletes user
+     * @param user
+     */
     public void delete(User user){
         userDao.deleteUser(user);
         System.out.println("user deleted");
     }
 
-    /*
-    * getters for different queries here
-    * */
+    /**
+     * getter for queries
+     * @param userId
+     * @return live data
+     */
     public LiveData<List<User>> getUserById(int userId){
         return userDataSet = userDao.getUserById(userId);
     }

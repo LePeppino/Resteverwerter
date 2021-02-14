@@ -41,6 +41,14 @@ public class ShoppingList {
         setUserCreatorId(userCreatorId);
     }
 
+    //copy
+    public ShoppingList(ShoppingList shoppingList){
+        this.id = shoppingList.id;
+        this.name = shoppingList.name;
+        this.numUncheckedItems = shoppingList.numUncheckedItems;
+        this.userCreatorId = shoppingList.userCreatorId;
+    }
+
     //getter, setter
     public int getId() {
         return id;

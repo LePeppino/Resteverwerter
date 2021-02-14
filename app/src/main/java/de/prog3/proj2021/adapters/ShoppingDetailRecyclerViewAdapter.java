@@ -87,12 +87,17 @@ public class ShoppingDetailRecyclerViewAdapter extends RecyclerView.Adapter<Shop
     //return number of items. if this returns 0, nothing will display
     @Override
     public int getItemCount() {
-        return currentShoppingList.ingredients.size();
+        try {
+            return currentShoppingList.ingredients.size();
+        }catch(Exception e){
+            System.out.println("current ingredient list is null!");
+        }
+        return 0;
     }
 
     //setter for current ShoppingList
     public void setMShoppingListWithIngredients(ShoppingListWithIngredients shoppingListWithIngredients){
-        this.currentShoppingList = shoppingListWithIngredients;
+        this.currentShoppingList = new ShoppingListWithIngredients(shoppingListWithIngredients);
     }
 
     /*
@@ -115,7 +120,7 @@ public class ShoppingDetailRecyclerViewAdapter extends RecyclerView.Adapter<Shop
         private final ImageView typeImage;
         private final TextView ingredientName;
         private final TextView ingredientAmount;
-        private final ImageView checkBox;
+        private final ImageView checkBox; //TODO: implement checkbox functionality
 
         public ShoppingDetailHolder(@NonNull View itemView) {
             super(itemView);

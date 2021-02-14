@@ -35,6 +35,7 @@ import de.prog3.proj2021.adapters.RecipeRecyclerViewAdapter;
 import de.prog3.proj2021.adapters.ShoppingFragmentRecyclerViewAdapter;
 import de.prog3.proj2021.db.ShoppingListWithIngredients;
 import de.prog3.proj2021.db.UserWithShoppingLists;
+import de.prog3.proj2021.models.Ingredient;
 import de.prog3.proj2021.models.ShoppingList;
 import de.prog3.proj2021.viewmodels.RecipeViewModel;
 import de.prog3.proj2021.viewmodels.ShoppingListViewModel;
@@ -44,6 +45,8 @@ public class FragmentShoppingList extends Fragment {
     ShoppingFragmentRecyclerViewAdapter shoppingFragmentRecyclerViewAdapter;
     RecyclerView shoppingFragmentRecyclerView;
     ShoppingListViewModel mShoppingListViewModel;
+
+    List<ShoppingListWithIngredients> allShoppingLists = new ArrayList<>();
 
     int userOwnerId = 1; //hard-coded for now, may expand user-features later
 
@@ -86,9 +89,17 @@ public class FragmentShoppingList extends Fragment {
         mShoppingListViewModel = new ViewModelProvider(this).get(ShoppingListViewModel.class);
 
         mShoppingListViewModel.getMShoppingListsWithIngredients().observe(getViewLifecycleOwner(), shoppingLists -> { //Observable lambda expression
+            setCurrentShoppingLists(shoppingLists);
             shoppingFragmentRecyclerViewAdapter.setShoppingListWithIngredients(shoppingLists);
             shoppingFragmentRecyclerViewAdapter.notifyDataSetChanged();
         });
+    }
+
+    /*
+    * setter for current shopping lists
+    * */
+    private void setCurrentShoppingLists(List<ShoppingListWithIngredients> shoppingListWithIngredients){
+        this.allShoppingLists.addAll(shoppingListWithIngredients);
     }
 
     /*
@@ -137,9 +148,13 @@ public class FragmentShoppingList extends Fragment {
         dialog.show();
     }
 
-    private void createNewShoppingList(String name, int userOwnerId){
-        ShoppingList newList = new ShoppingList(name, 0, userOwnerId);
-        mShoppingListViewModel.insert(newList);
+    private void createNewShoppingList(String name, int userCreatorId){
+        ShoppingListWithIngredients newList = new ShoppingListWithIngredients(
+                new ShoppingList(name, 0, userCreatorId),
+                new ArrayList<>());
+
+        allShoppingLists.add(newList);
+        mShoppingListViewModel.insert(newList.shoppingList);
 
         shoppingFragmentRecyclerViewAdapter.notifyDataSetChanged();
         Toast.makeText(getContext(), "New shopping list '" + name + "' created!", Toast.LENGTH_SHORT).show();

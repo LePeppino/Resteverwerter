@@ -34,6 +34,7 @@ import java.util.List;
 import de.prog3.proj2021.R;
 import de.prog3.proj2021.adapters.ShoppingDetailRecyclerViewAdapter;
 import de.prog3.proj2021.db.IngredientWithRecipes;
+import de.prog3.proj2021.db.ShoppingListIngredientCrossRef;
 import de.prog3.proj2021.db.ShoppingListWithIngredients;
 import de.prog3.proj2021.models.Ingredient;
 import de.prog3.proj2021.viewmodels.IngredientViewModel;
@@ -47,8 +48,9 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
     IngredientViewModel mIngredientViewModel;
 
     private final List<String> ingredientNameList = new ArrayList<>();
+    private final List<Ingredient> currentIngredientList = new ArrayList<>();
+    private ShoppingListWithIngredients currentList;
 
-    ShoppingListWithIngredients currentList;
 
     int currentShoppingListId = 1;
 
@@ -99,9 +101,11 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         mShoppingListViewModel = new ViewModelProvider(this).get(ShoppingListViewModel.class);
 
         mShoppingListViewModel.getMShoppingListsWithIngredients().observe(this, shoppingLists -> { //Observable lambda expression
-            setCurrentList(shoppingLists);
+            if(shoppingLists != null){
+                setCurrentList(shoppingLists);
+            }else { System.out.println("shoppingLists is null!");}
             initViews();
-            shoppingDetailAdapter.setMShoppingListWithIngredients(currentList);
+            shoppingDetailAdapter.setMShoppingListWithIngredients(this.currentList);
             shoppingDetailAdapter.notifyDataSetChanged();
         });
     }
@@ -112,18 +116,18 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
     private void setCurrentList(List<ShoppingListWithIngredients> shoppingLists){
         for(ShoppingListWithIngredients list : shoppingLists){
             if(list.shoppingList.getId() == currentShoppingListId){
-                this.currentList = list;
+                this.currentList = new ShoppingListWithIngredients(list);
             }
         }
     }
 
     /*
-    * initiate Views
+    * initiate info message if no items exist on list
     * */
     private void initViews(){
         ifEmptyNotifier = findViewById(R.id.ifListEmptyNotifier);
 
-        if(!currentList.ingredients.isEmpty()){
+        if(!this.currentList.ingredients.isEmpty()){
             ifEmptyNotifier.setVisibility(View.GONE);
         }else{
             ifEmptyNotifier.setVisibility(View.VISIBLE);
@@ -139,7 +143,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAddDialog(currentShoppingListId);
+                showAddDialog();
             }
         });
     }
@@ -147,11 +151,11 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
     /*
     * create alert dialog to add ingredient
     * */
-    private void showAddDialog(int currentShoppingListId){
+    private void showAddDialog(){
         //create alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         //set dialog message and title
-        builder.setTitle("Add ingredient to ShoppingList");
+        builder.setTitle("Add ingredient to shopping list");
 
         //set layout for dialog
         View v = LayoutInflater.from(ShoppingListDetailActivity.this).
@@ -178,8 +182,8 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
                     value = Integer.parseInt(amount);
                 }
                 //check if inputs are valid. if yes, add ingredient, else cancel
-                if(!name.equals("") && value >= 1){
-                    addIngredientToList(name, value, currentShoppingListId);
+                if(!name.equals("") && ingredientNameList.contains(name) && value >= 1){
+                    addIngredientToList(name, value);
                 }else{
                     Toast.makeText(ShoppingListDetailActivity.this, "Name cannot be empty and amount must be 1 or more.", Toast.LENGTH_LONG).show();
                 }
@@ -201,23 +205,70 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         mIngredientViewModel = new ViewModelProvider(this).get(IngredientViewModel.class);
 
         ingredientNameList.clear();
-        List<IngredientWithRecipes> tmp = mIngredientViewModel.getMIngredientWithRecipes();
-        for(IngredientWithRecipes ingredientWithRecipes : tmp){
-            ingredientNameList.add(ingredientWithRecipes.ingredient.getName());
-        }
+        mIngredientViewModel.getMIngredients().observe(this, ingredientList -> {
+            setCurrentIngredientList(currentIngredientList);
+            ingredientNameList.clear();
+            for(Ingredient ingredient : ingredientList){
+                ingredientNameList.add(ingredient.getName());
+            }
+        });
     }
 
     /*
-    * add ingredient to list, duh
+    * setter for current ingredient list
     * */
-    private void addIngredientToList(String name, int amount, int currentShoppingListId){
-        //TODO: setup existing or new ingredient to add
+    private void setCurrentIngredientList(List<Ingredient> currentIngredientList){
+        this.currentIngredientList.addAll(currentIngredientList);
+    }
 
-        //currentList.ingredients.add(newIngredient);
-        //TODO: update crossRef table
-
+    /*
+    * add ingredient to list, if it's not already
+    * */
+    private void addIngredientToList(String name, int amount){
+        //fetch ingredient by name
+        for(Ingredient ingredient : currentIngredientList){
+            if(ingredient.getName().equals(name) && !currentList.ingredients.contains(ingredient)){
+                setNewIngredient(ingredient, amount);
+                updateIngredientInDB(ingredient);
+            }else if(currentList.ingredients.contains(ingredient)){
+                updateExistingIngredient(ingredient);
+            }
+        }
         //update ingredient list via adapter
-        //shoppingDetailAdapter.notifyDataSetChanged();
+        shoppingDetailAdapter.setMShoppingListWithIngredients(currentList);
+        shoppingDetailAdapter.notifyDataSetChanged();
+    }
+
+    /*
+     * set given amount as numToBuy
+     * and increment number of unchecked items on current ShoppingList
+     * */
+    private void setNewIngredient(Ingredient newIngredient, int amount){
+        newIngredient.setNumToBuy(amount);
+        currentList.ingredients.add(newIngredient);
+        currentList.shoppingList.setNumUncheckedItems(
+                currentList.shoppingList.getNumUncheckedItems() + 1
+        );
+    }
+
+    /*
+    * updates ingredient on shopping list if already existing
+    * */
+    private void updateExistingIngredient(Ingredient ingredient){
+        for(Ingredient i : currentList.ingredients){
+            if(i.getName().equals(ingredient.getName())){
+                i.setNumToBuy(ingredient.getNumToBuy());
+            }
+        }
+    }
+
+    private void updateIngredientInDB(Ingredient newIngredient){
+        mIngredientViewModel.update(newIngredient);
+
+        //update ShoppingListIngredientCrossRef table
+        ShoppingListIngredientCrossRef crossRef = new ShoppingListIngredientCrossRef(
+                currentList.shoppingList.getId(), newIngredient.getId());
+        mShoppingListViewModel.insertShoppingIngredientCrossRef(crossRef);
     }
 
 }

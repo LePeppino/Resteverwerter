@@ -63,8 +63,11 @@ public class IngredientRepository {
     /*
      * getters for different queries here
      */
-    public LiveData<List<Ingredient>> getMIngredientsByQuery(String query){
+    public LiveData<List<Ingredient>> getIngredientsByQuery(String query){
         return ingredientDao.getIngredientsByQuery(query);
+    }
+    public LiveData<Ingredient> getSingleIngredientByQuery(String query){
+        return ingredientDao.getSingleIngredientByQuery(query);
     }
 
 }

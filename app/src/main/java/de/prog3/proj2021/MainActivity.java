@@ -4,7 +4,6 @@ package de.prog3.proj2021;
  * MainActivity that starts the BNB and sets the HomeFragment as starting point
  * @author Eric Walter, Giuseppe Buccellato
  */
-
 /*
 *
 * Abschlussprojekt Programmierung III WiSe 2020/21

@@ -2,8 +2,11 @@ package de.prog3.proj2021.fragments;
 
 /**
  * UI Ingredient Picker Fragment of MainActivity
+ * Instantiates a ViewModel to retrieve data from repository.
+ * Initiates a RecyclerView to display queried recipe data.
  *
  * @author Eric Walter
+ * @author Giuseppe Buccellato
  */
 
 import android.os.Bundle;

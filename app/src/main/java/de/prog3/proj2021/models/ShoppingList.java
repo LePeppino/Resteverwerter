@@ -1,5 +1,12 @@
 package de.prog3.proj2021.models;
 
+/**
+ * ShoppingList has 1:n relation to User class.
+ * ShoppingList has n:m relation to Ingredient class.
+ *
+ * @author Giuseppe Buccellato, Eric Walter
+ * */
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -7,13 +14,6 @@ import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
 
-
-/**
-* ShoppingList has 1:n relation to User class.
-* ShoppingList has n:m relation to Ingredient class.
-*
-* @author Giuseppe Buccellato, Eric Walter
-* */
 /**
  * create correlation between table entry and POJO
  */
@@ -33,7 +33,9 @@ public class ShoppingList {
 
     private int userCreatorId; //for reference to parent entity
 
-    //constructor
+    /**
+     * constructor
+     */
     public ShoppingList(String name,
                         int numUncheckedItems,
                         int userCreatorId)
@@ -43,7 +45,9 @@ public class ShoppingList {
         setUserCreatorId(userCreatorId);
     }
 
-    //copy
+    /**
+     * copy constructor
+     */
     public ShoppingList(ShoppingList shoppingList){
         this.id = shoppingList.id;
         this.name = shoppingList.name;
@@ -51,7 +55,9 @@ public class ShoppingList {
         this.userCreatorId = shoppingList.userCreatorId;
     }
 
-    //getter, setter
+    /**
+     * getter, setter
+     */
     public int getId() {
         return id;
     }

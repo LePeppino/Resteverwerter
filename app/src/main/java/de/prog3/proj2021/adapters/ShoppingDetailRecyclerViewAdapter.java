@@ -1,10 +1,10 @@
 package de.prog3.proj2021.adapters;
 
-/*
+/**
  * RecyclerViewAdapter holds all the ViewHolders filled
  * with the Views to display the ingredients on FragmentPicker.
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  * */
 
 import android.content.Context;
@@ -35,7 +35,9 @@ public class ShoppingDetailRecyclerViewAdapter extends RecyclerView.Adapter<Shop
     private final Context mContext;
     private ShoppingListWithIngredients currentShoppingList;
 
-    //constructor
+    /**
+     * constructor
+     */
     public ShoppingDetailRecyclerViewAdapter(Context mContext){this.mContext = mContext;}
 
     /**
@@ -139,6 +141,9 @@ public class ShoppingDetailRecyclerViewAdapter extends RecyclerView.Adapter<Shop
         private final TextView ingredientAmount;
         private final ImageView checkBox; //TODO: implement checkbox functionality
 
+        /**
+         * constructor
+         */
         public ShoppingDetailHolder(@NonNull View itemView) {
             super(itemView);
 

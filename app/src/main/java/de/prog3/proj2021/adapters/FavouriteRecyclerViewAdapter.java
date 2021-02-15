@@ -35,7 +35,9 @@ public class FavouriteRecyclerViewAdapter extends RecyclerView.Adapter<Favourite
     private final Context mContext;
     private List<Recipe> mRecipes = new ArrayList<>();
 
-    //constructor
+    /**
+     * constructor
+     */
     public FavouriteRecyclerViewAdapter(Context mContext) {
         this.mContext = mContext;
     }

@@ -29,8 +29,9 @@ public class ShoppingListRepository {
     private final ShoppingListDao shoppingListDao;
 
     /**
-     * constructor
-     * @param application
+     * constructor initialises Database instance and DAO interface
+     * to update local data cache.
+     * @param application passed from ViewModel to get Database Instance
      */
     public ShoppingListRepository(Application application){
         AppDatabase shoppingListDB = AppDatabase.getInstance(application);
@@ -53,13 +54,9 @@ public class ShoppingListRepository {
         dataSet = shoppingListDao.getShoppingListWithIngredients();
     }
 
-    /*
-     * database operations communicating with FavouriteListDao
-     */
-
     /**
+     * database operations communicating with FavouriteListDao
      * inserts shopping list
-     * @param shoppingList
      */
     public void insert(ShoppingList shoppingList){
         shoppingListDao.insertShoppingList(shoppingList);
@@ -68,7 +65,6 @@ public class ShoppingListRepository {
 
     /**
      * updates shopping list
-     * @param shoppingList
      */
     public void update(ShoppingList shoppingList){
         shoppingListDao.updateShoppingList(shoppingList);
@@ -77,7 +73,6 @@ public class ShoppingListRepository {
 
     /**
      * deletes shopping list
-     * @param shoppingList
      */
     public void delete(ShoppingList shoppingList){
         shoppingListDao.deleteShoppingList(shoppingList);
@@ -86,7 +81,6 @@ public class ShoppingListRepository {
 
     /**
      * inserts ShoppingListIngredientCrossRef
-     * @param shoppingListIngredientCrossRef
      */
     public void insertCrossRef(ShoppingListIngredientCrossRef shoppingListIngredientCrossRef){
         shoppingListDao.insertShoppingListWithIngredients(shoppingListIngredientCrossRef);
@@ -95,7 +89,6 @@ public class ShoppingListRepository {
 
     /**
      * updates ShoppingListIngredientCrossRef
-     * @param shoppingListIngredientCrossRef
      */
     public void updateCrossRef(ShoppingListIngredientCrossRef shoppingListIngredientCrossRef){
         shoppingListDao.updateShoppingListWithIngredients(shoppingListIngredientCrossRef);
@@ -104,7 +97,6 @@ public class ShoppingListRepository {
 
     /**
      * deletes ShoppingListIngredientCrossRef
-     * @param shoppingListIngredientCrossRef
      */
     public void deleteCrossRef(ShoppingListIngredientCrossRef shoppingListIngredientCrossRef){
         shoppingListDao.deleteShoppingListWithIngredients(shoppingListIngredientCrossRef);

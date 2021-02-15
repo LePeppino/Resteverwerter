@@ -1,10 +1,10 @@
 package de.prog3.proj2021.viewmodels;
 
-/*
+/**
  * This ViewModel class retrieves data from
  * ShoppingListRepository and passes it to the UI
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  */
 
 import android.app.Application;
@@ -25,12 +25,19 @@ public class ShoppingListViewModel extends AndroidViewModel {
     private final ShoppingListRepository shoppingRepository;
     private final LiveData<List<ShoppingListWithIngredients>> mShoppingListsWithIngredients;
 
+    /**
+     * Constructor gets passed application context by Activity/Fragment
+     * and forwards it to repository class.
+     * */
     public ShoppingListViewModel(@NonNull Application application) {
         super(application);
         shoppingRepository = new ShoppingListRepository(application);
         mShoppingListsWithIngredients = shoppingRepository.getShoppingListWithIngredients();
     }
 
+    /**
+     * Database communication methods for single objects and cross references
+     * */
     public void insert(ShoppingList shoppingList){shoppingRepository.insert(shoppingList);}
     public void update(ShoppingList shoppingList){shoppingRepository.update(shoppingList);}
     public void delete(ShoppingList shoppingList){shoppingRepository.delete(shoppingList);}
@@ -45,7 +52,9 @@ public class ShoppingListViewModel extends AndroidViewModel {
         shoppingRepository.deleteCrossRef(shoppingListIngredientCrossRef);
     }
 
-    //getters
+    /**
+     * getters to pass data to UI
+     */
     public LiveData<List<ShoppingListWithIngredients>> getMShoppingListsWithIngredients(){
         return mShoppingListsWithIngredients;
     }

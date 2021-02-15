@@ -6,6 +6,7 @@ package de.prog3.proj2021.fragments;
  * Initiates a RecyclerView to display queried recipe data.
  *
  * @author Eric Walter
+ * @author Giuseppe Buccellato
  */
 
 import android.os.Bundle;
@@ -46,7 +47,7 @@ public class FragmentFavorites extends Fragment {
 
     /**
      * onCreateView method displays the fragment
-     * @param inflater layout infalter
+     * @param inflater layout inflater
      * @param container container that will display the fragment
      * @param savedInstanceState Bundle state
      * @return View of the fragment

@@ -1,10 +1,10 @@
 package de.prog3.proj2021.adapters;
 
-/*
+/**
  * RecyclerViewAdapter holds all the ViewHolders filled
  * with the Views to display the associated ShoppingList details on FragmentShoppingList.
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  * */
 
 import android.app.AlertDialog;
@@ -44,7 +44,9 @@ public class ShoppingFragmentRecyclerViewAdapter extends RecyclerView.Adapter<Sh
     private List<ShoppingListWithIngredients> mShoppingLists = new ArrayList<>();
     private ShoppingListWithIngredients currentShoppingList;
 
-    //constructor
+    /**
+     * constructor
+     */
     public ShoppingFragmentRecyclerViewAdapter(Context mContext){
         this.mContext = mContext;
     }
@@ -165,7 +167,9 @@ public class ShoppingFragmentRecyclerViewAdapter extends RecyclerView.Adapter<Sh
         RelativeLayout parentLayout;
         ImageView deleteListButton;
 
-        //constructor
+        /**
+         * constructor
+         */
         public ShoppingFragmentHolder(@NonNull View itemView) {
             super(itemView);
 

@@ -7,7 +7,7 @@ package de.prog3.proj2021.ui;
  * recipe + ingredient data from repository.
  *
  *
- * @author Eric Walter, Giuseppe Buccellato
+ * @author Giuseppe Buccellato, Eric Walter
  */
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,8 +59,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
     ImageView toggleFavouriteButton;
 
     /**
-     * onCreate method
-     * @param savedInstanceState
+     * onCreate method gets passed selected recipe id from Bundle
+     * of previous Fragment to display additional recipe
+     * data on UI besides RecyclerView.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

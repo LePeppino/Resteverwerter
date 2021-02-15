@@ -7,7 +7,7 @@ package de.prog3.proj2021.ui;
  * ingredient data from repository.
  *
  *
- * @author Eric Walter, Giuseppe Buccellato
+ * @author Giuseppe Buccellato, Eric Walter
  */
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,8 +54,9 @@ public class IngredientDetailActivity extends AppCompatActivity {
     Button addAsOwnedButton;
 
     /**
-     * onCreate method
-     * @param savedInstanceState
+     * onCreate method gets passed selected ingredient id from Bundle
+     * of previous Fragment to display additional ingredient
+     * data on UI besides RecyclerView
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +154,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
 
     /**
      * Ingredient Unit to String converter
+     * currently in use because enum converters are not active
      */
     private String fromIntegerToUnitString(int unitValue){
         String unitString = "";
@@ -174,6 +176,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
 
     /**
     * Ingredient Type to String converter
+     * currently in use because enum converters are not active
     * */
     private String fromIntegerToTypeString(int typeValue){
         String typeString = "";
@@ -224,11 +227,16 @@ public class IngredientDetailActivity extends AppCompatActivity {
         return typeString;
     }
 
+    /**
+    * Buttons for ShoppingList function
+     * CURRENTLY NOT IN USE because functionality
+     * was not fully developed / fixed
+    * */
     public void addToShoppingList(View view){
         //TODO
     }
 
     public void addAsOwned(View view){
-
+        //TODO
     }
 }

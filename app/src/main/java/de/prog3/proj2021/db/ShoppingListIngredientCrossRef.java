@@ -1,9 +1,10 @@
 package de.prog3.proj2021.db;
 
-/*
+/**
  * n:m Relation cross reference class for ShoppingList and Ingredient
  *
- * */
+ * @author Giuseppe Buccellato
+ */
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -28,7 +29,10 @@ public class ShoppingListIngredientCrossRef {
     public int shoppingListId;
     public int ingredientId;
 
-    //constructor for database insertion
+    /**
+     * constructor for database insertion
+     * of cross reference objects
+     */
     public ShoppingListIngredientCrossRef(int shoppingListId, int ingredientId){
         this.shoppingListId = shoppingListId;
         this.ingredientId = ingredientId;

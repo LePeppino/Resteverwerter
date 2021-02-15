@@ -36,7 +36,9 @@ public class IngredientDetailRecyclerViewAdapter extends RecyclerView.Adapter<In
     private final Context mContext;
     private List<Recipe> mRecipes = new ArrayList<>();
 
-    //constructor
+    /**
+     * constructor
+     */
     public IngredientDetailRecyclerViewAdapter(Context mContext){
         this.mContext = mContext;
     }
@@ -115,7 +117,9 @@ public class IngredientDetailRecyclerViewAdapter extends RecyclerView.Adapter<In
         private final TextView description;
         RelativeLayout parentLayout;
 
-        //constructor
+        /**
+         * constructor
+         */
         public IngredientDetailHolder(@NonNull View itemView) {
             super(itemView);
 

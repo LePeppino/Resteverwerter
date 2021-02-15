@@ -25,7 +25,11 @@ public class IngredientRepository {
     private List<IngredientWithRecipes> crossRefDataSet;
     private final IngredientDao ingredientDao;
 
-    //constructor
+    /**
+     * constructor initialises Database instance and DAO interface
+     * to update local data cache.
+     * @param application passed from ViewModel to get Database Instance
+     */
     public IngredientRepository(Application application){
         AppDatabase ingredientDB = AppDatabase.getInstance(application);
         ingredientDao = ingredientDB.ingredientDao();

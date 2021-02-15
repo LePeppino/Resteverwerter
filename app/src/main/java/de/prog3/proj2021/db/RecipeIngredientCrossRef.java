@@ -1,10 +1,10 @@
 package de.prog3.proj2021.db;
 
-/*
+/**
  * n:m Relation cross reference class for Recipe and Ingredient
  *
- * File author: Giuseppe Buccellato
- * */
+ * @author Giuseppe Buccellato
+ */
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -29,7 +29,10 @@ public class RecipeIngredientCrossRef {
     public int recipeId;
     public int ingredientId;
 
-    //constructor for database insertion
+    /**
+     * constructor for database insertion
+     * of cross reference objects
+     */
     public RecipeIngredientCrossRef(int recipeId, int ingredientId){
         this.recipeId = recipeId;
         this.ingredientId = ingredientId;

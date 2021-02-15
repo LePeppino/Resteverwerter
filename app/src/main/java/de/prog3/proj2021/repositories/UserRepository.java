@@ -4,7 +4,8 @@ package de.prog3.proj2021.repositories;
  * This class interacts with the User DAO
  * to retrieve and cache users from database
  * to pass them to a ViewModel
- * NOT USED
+ * NOT CURRENTLY IN USE
+ *
  * @author Giuseppe Buccellato
  * */
 
@@ -24,8 +25,9 @@ public class UserRepository {
     private final UserDao userDao;
 
     /**
-     * constructor
-     * @param application
+     * constructor initialises Database instance and DAO interface
+     * to update local data cache.
+     * @param application passed from ViewModel to get Database Instance
      */
     public UserRepository(Application application){
         AppDatabase userDB = AppDatabase.getInstance(application);
@@ -45,7 +47,6 @@ public class UserRepository {
 
     /**
      * inserts user
-     * @param user
      */
     public void insert(User user){
         userDao.insertUser(user);
@@ -61,7 +62,6 @@ public class UserRepository {
 
     /**
      * deletes user
-     * @param user
      */
     public void delete(User user){
         userDao.deleteUser(user);
@@ -70,7 +70,6 @@ public class UserRepository {
 
     /**
      * getter for queries
-     * @param userId
      * @return live data
      */
     public LiveData<List<User>> getUserById(int userId){

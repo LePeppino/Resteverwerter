@@ -27,8 +27,9 @@ public class RecipeRepository {
     private final RecipeDao recipeDao;
 
     /**
-     * constructor
-     * @param application
+     * constructor initialises Database instance and DAO interface
+     * to update local data cache.
+     * @param application passed from ViewModel to get Database Instance
      */
     public RecipeRepository(Application application){
         AppDatabase recipeDB = AppDatabase.getInstance(application);
@@ -38,7 +39,7 @@ public class RecipeRepository {
     }
 
     /**
-     * gets dataset with list of FavouritesWithRecipes
+     * gets dataSet with list of FavouritesWithRecipes
      * @return live data list
      */
     public LiveData<List<Recipe>> getRecipes(){
@@ -76,7 +77,6 @@ public class RecipeRepository {
 
     /**
      * update specific recipe
-     * @param recipe
      */
     public void update(Recipe recipe){
         recipeDao.updateRecipe(recipe);
@@ -85,7 +85,6 @@ public class RecipeRepository {
 
     /**
      * delete specific recipe
-     * @param recipe
      */
     public void delete(Recipe recipe){
         recipeDao.deleteRecipe(recipe);
@@ -94,7 +93,6 @@ public class RecipeRepository {
 
     /**
      * insert RecipeIngredientCrossRef
-     * @param recipeIngredientCrossRef
      */
     public void insertRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
         recipeDao.insertRecipeIngredientCrossRef(recipeIngredientCrossRef);
@@ -103,7 +101,6 @@ public class RecipeRepository {
 
     /**
      * update RecipeIngredientCrossRef
-     * @param recipeIngredientCrossRef
      */
     public void updateRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
         recipeDao.updateRecipeIngredientCrossRef(recipeIngredientCrossRef);
@@ -112,7 +109,6 @@ public class RecipeRepository {
 
     /**
      * delete RecipeIngredientCrossRef
-     * @param recipeIngredientCrossRef
      */
     public void deleteRecipeIngredientCrossRef(RecipeIngredientCrossRef... recipeIngredientCrossRef){
         recipeDao.deleteRecipeIngredientCrossRef(recipeIngredientCrossRef);

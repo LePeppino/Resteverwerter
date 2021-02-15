@@ -1,10 +1,10 @@
 package de.prog3.proj2021.viewmodels;
 
-/*
+/**
  * This ViewModel class retrieves data from
  * RecipeRepository and passes it to the UI
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  */
 
 import android.app.Application;
@@ -26,6 +26,10 @@ public class RecipeViewModel extends AndroidViewModel {
     private final LiveData<List<Recipe>> mRecipes;
     private final List<RecipeWithIngredients> mRecipesWithIngredients;
 
+    /**
+     * Constructor gets passed application context by Activity/Fragment
+     * and forwards it to repository class.
+     * */
     public RecipeViewModel(@NonNull Application application) {
         super(application);
         recipeRepository = new RecipeRepository(application);
@@ -33,6 +37,9 @@ public class RecipeViewModel extends AndroidViewModel {
         mRecipesWithIngredients = recipeRepository.getRecipesWithIngredients();
     }
 
+    /**
+    * Database communication methods for single objects and cross references
+    * */
     public void insert(Recipe recipe){
         recipeRepository.insert(recipe);
     }
@@ -43,6 +50,10 @@ public class RecipeViewModel extends AndroidViewModel {
         recipeRepository.delete(recipe);
     }
 
+    /**
+    * currently not in use because database comes
+     * pre-populated and adding own recipes is not yet a thing
+    * */
     public void insertRecipeIngredientCrossRef(RecipeIngredientCrossRef recipeIngredientCrossRef){
         recipeRepository.insertRecipeIngredientCrossRef(recipeIngredientCrossRef);
     }
@@ -53,7 +64,9 @@ public class RecipeViewModel extends AndroidViewModel {
         recipeRepository.deleteRecipeIngredientCrossRef(recipeIngredientCrossRef);
     }
 
-    //getters for cached repository LiveData
+    /**
+     * getters for cached repository data
+     */
     public LiveData<List<Recipe>> getMRecipes(){
         return mRecipes;
     }

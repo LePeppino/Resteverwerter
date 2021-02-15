@@ -9,10 +9,10 @@ import java.util.List;
 import de.prog3.proj2021.models.Ingredient;
 import de.prog3.proj2021.models.Recipe;
 
-/*
+/**
  * n:m Relation class for queries for Recipes containing Ingredients
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  * */
 
 public class RecipeWithIngredients {

@@ -4,7 +4,7 @@ package de.prog3.proj2021.viewmodels;
  * This ViewModel class retrieves recipe data from
  * FavouriteRecipeRepository and passes it to the UI
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  */
 
 import android.app.Application;
@@ -30,6 +30,10 @@ public class FavouritesViewModel extends AndroidViewModel {
     private final List<FavouritesWithRecipes> mFavouriteRecipes;
     private final FavouritesWithRecipes mFavouriteList;
 
+    /**
+    * Constructor gets passed application context by Activity/Fragment
+     * and forwards it to repository class.
+    * */
     public FavouritesViewModel(@NonNull Application application) {
         super(application);
         favouriteRecipeRepository = new FavouriteRecipeRepository(application);
@@ -37,7 +41,9 @@ public class FavouritesViewModel extends AndroidViewModel {
         mFavouriteList = favouriteRecipeRepository.getFavouriteList();
     }
 
-    //getters for cached repository data
+    /**
+     * getters for cached repository data
+     */
     public List<FavouritesWithRecipes> getAllFavouriteListsWithRecipes() {
         return mFavouriteRecipes;
     }
@@ -46,10 +52,16 @@ public class FavouritesViewModel extends AndroidViewModel {
         return mFavouriteList;
     }
 
+    /**
+    * Updates the favouriteList object in database for numOfFavourites
+    */
     public void update(FavouriteList favouriteList){
         favouriteRecipeRepository.update(favouriteList);
     }
 
+    /**
+     * Database cross reference methods to communicate with repository
+     * */
     public void insertFavouriteCrossRef(FavouriteRecipeCrossRef favouriteRecipeCrossRef){
         favouriteRecipeRepository.insertCrossRef(favouriteRecipeCrossRef);
     }
@@ -62,7 +74,7 @@ public class FavouritesViewModel extends AndroidViewModel {
         favouriteRecipeRepository.deleteCrossRef(favouriteRecipeCrossRef);
     }
 
-    /*
+    /**
      * getters for different queries here
      */
     public LiveData<List<Recipe>> getFavouriteRecipesByQuery(String query){

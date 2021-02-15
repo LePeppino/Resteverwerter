@@ -30,13 +30,6 @@ public class Ingredient {
 
     /**
      * constructor
-     * @param name
-     * @param unit
-     * @param type
-     * @param numAvailable
-     * @param numRequired
-     * @param numToBuy
-     * @param isCheckedOnShoppingList
      */
     public Ingredient(String name,
                       int unit,
@@ -55,7 +48,9 @@ public class Ingredient {
         setCheckedOnShoppingList(isCheckedOnShoppingList);
     }
 
-    //getter, setter
+    /**
+     * Getter
+     */
     public int getId() {
         return id;
     }
@@ -81,7 +76,9 @@ public class Ingredient {
         return isCheckedOnShoppingList;
     }
 
-
+    /**
+     * Setter
+     * */
     public void setId(int ingredientId) {
         this.id = ingredientId;
     }
@@ -111,6 +108,7 @@ public class Ingredient {
      * Enums for Ingredient Unit and Type
      * with constructors and getters
      * and methods in DataConverter class
+     * CURRENTLY NOT IN PROPER USE
      * */
     public enum Unit {
         g(1),

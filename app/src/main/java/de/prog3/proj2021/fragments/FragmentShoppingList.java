@@ -6,6 +6,7 @@ package de.prog3.proj2021.fragments;
  * Initiates a RecyclerView to display the shopping list overview.
  *
  * @author Eric Walter
+ * @author Giuseppe Buccellato
  */
 
 import android.app.AlertDialog;
@@ -155,9 +156,9 @@ public class FragmentShoppingList extends Fragment {
     }
 
     /**
-     * creats new shopping list
+     * creates new shopping list
      * @param name name of shopping list
-     * @param userCreatorId id of the user, hardcoded to 0 for now
+     * @param userCreatorId id of the user, hardcoded to 1 for now
      */
     private void createNewShoppingList(String name, int userCreatorId){
         ShoppingListWithIngredients newList = new ShoppingListWithIngredients(

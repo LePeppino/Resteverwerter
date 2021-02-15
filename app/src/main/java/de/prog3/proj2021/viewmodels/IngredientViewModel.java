@@ -1,10 +1,10 @@
 package de.prog3.proj2021.viewmodels;
 
-/*
+/**
  * This ViewModel class retrieves data from
  * IngredientRepository and passes it to the UI
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  */
 
 import android.app.Application;
@@ -25,6 +25,10 @@ public class IngredientViewModel extends AndroidViewModel {
     private final LiveData<List<Ingredient>> mIngredients;
     private final List<IngredientWithRecipes> mIngredientWithRecipes;
 
+    /**
+     * Constructor gets passed application context by Activity/Fragment
+     * and forwards it to repository class.
+     * */
     public IngredientViewModel(@NonNull Application application){
         super(application);
         ingredientRepository = new IngredientRepository(application);
@@ -32,6 +36,9 @@ public class IngredientViewModel extends AndroidViewModel {
         mIngredientWithRecipes = ingredientRepository.getIngredientWithRecipes();
     }
 
+    /**
+     * Database communication methods for single objects and cross references
+     * */
     public void insert(Ingredient ingredient){
         ingredientRepository.insert(ingredient);
     }
@@ -42,6 +49,9 @@ public class IngredientViewModel extends AndroidViewModel {
         ingredientRepository.delete(ingredient);
     }
 
+    /**
+    * getters to pass data to UI
+    * */
     public LiveData<List<Ingredient>> getMIngredients(){
         return mIngredients;
     }

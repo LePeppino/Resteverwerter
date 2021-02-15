@@ -1,9 +1,12 @@
 package de.prog3.proj2021.db;
 
-/*
+/**
  * Data Access Object for User Model
+ * This DAO is NOT currently in use for the application
+ * as there is not yet enough functionality available
+ * to make proper use of it
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  */
 
 import androidx.lifecycle.LiveData;

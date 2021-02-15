@@ -29,7 +29,10 @@ public class FavouriteRecipeCrossRef {
     public int favouriteListId;
     public int recipeId;
 
-    //constructor for database insertion
+    /**
+     * constructor for database insertion
+     * of cross reference objects
+     */
     public FavouriteRecipeCrossRef(int favouriteListId, int recipeId){
         this.favouriteListId = favouriteListId;
         this.recipeId = recipeId;

@@ -28,8 +28,9 @@ public class FavouriteRecipeRepository {
     private final FavouriteListDao favouriteListDao;
 
     /**
-     * constructor
-     * @param application
+     * constructor initialises Database instance and DAO interface
+     * to update local data cache.
+     * @param application passed from ViewModel to get Database Instance
      */
     public FavouriteRecipeRepository(Application application){
         AppDatabase favouriteListDB = AppDatabase.getInstance(application);
@@ -38,8 +39,8 @@ public class FavouriteRecipeRepository {
     }
 
     /**
-     * gets dataset with list of FavouritesWithRecipes
-     * @return dataset
+     * gets dataSet with list of FavouritesWithRecipes
+     * @return dataSet
      */
     public List<FavouritesWithRecipes> getFavouritesWithRecipes() {
         return dataSet;
@@ -59,8 +60,7 @@ public class FavouriteRecipeRepository {
     }
 
     /**
-     * database update of favouritelist
-     * @param favouriteList
+     * database update of favouriteList
      */
     public void update(FavouriteList favouriteList){
         favouriteListDao.update(favouriteList);
@@ -69,7 +69,6 @@ public class FavouriteRecipeRepository {
 
     /**
      * database insert of FavouriteRecipeCrossRef
-     * @param favouriteRecipeCrossRef
      */
     public void insertCrossRef(FavouriteRecipeCrossRef favouriteRecipeCrossRef){
         favouriteListDao.insertFavouritesWithRecipes(favouriteRecipeCrossRef);
@@ -77,7 +76,6 @@ public class FavouriteRecipeRepository {
     }
     /**
      * database update of FavouriteRecipeCrossRef
-     * @param favouriteRecipeCrossRef
      */
     public void updateCrossRef(FavouriteRecipeCrossRef favouriteRecipeCrossRef){
         favouriteListDao.updateFavouritesWithRecipes(favouriteRecipeCrossRef);
@@ -85,7 +83,6 @@ public class FavouriteRecipeRepository {
     }
     /**
      * database deletion of FavouriteRecipeCrossRef
-     * @param favouriteRecipeCrossRef
      */
     public void deleteCrossRef(FavouriteRecipeCrossRef favouriteRecipeCrossRef){
         favouriteListDao.deleteFavouritesWithRecipes(favouriteRecipeCrossRef);

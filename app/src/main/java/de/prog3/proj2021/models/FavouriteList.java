@@ -33,33 +33,17 @@ public class FavouriteList {
 
     /**
      * constructor
-     * @param numOfFavourites
      */
     public FavouriteList(int numOfFavourites){
         setNumOfFavourites(numOfFavourites);
     }
 
     /**
-     * gets id
-     * @return id
+     * Getter, Setter
      */
     public int getId(){ return id;}
-
-    /**
-     * sets id
-     * @param id
-     */
     public void setId(int id){ this.id = id;}
 
-    /**
-     * gets number of favourites
-     * @return number of favourites
-     */
     public int getNumOfFavourites(){return numOfFavourites;}
-
-    /**
-     * sets number of favourites
-     * @param numOfFavourites
-     */
     public void setNumOfFavourites(int numOfFavourites){this.numOfFavourites = numOfFavourites;}
 }

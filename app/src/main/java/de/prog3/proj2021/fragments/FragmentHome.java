@@ -6,6 +6,7 @@ package de.prog3.proj2021.fragments;
  * Initiates a RecyclerView to display queried recipe data.
  *
  * @author Eric Walter
+ * @author Giuseppe Buccellato
  */
 
 import android.content.Context;

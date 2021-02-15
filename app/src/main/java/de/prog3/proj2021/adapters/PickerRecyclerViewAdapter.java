@@ -35,7 +35,9 @@ public class PickerRecyclerViewAdapter extends RecyclerView.Adapter<PickerRecycl
     private final Context mContext;
     private List<Ingredient> ingredients = new ArrayList<>();
 
-    //constructor
+    /**
+     * constructor
+     */
     public PickerRecyclerViewAdapter(Context mContext){
         this.mContext = mContext;
     }
@@ -136,7 +138,9 @@ public class PickerRecyclerViewAdapter extends RecyclerView.Adapter<PickerRecycl
         private final TextView ingredientAmount;
         private final TextView ingredientUnit;
 
-        //constructor
+        /**
+         * constructor
+         */
         public IngredientHolder(@NonNull View itemView) {
             super(itemView);
 

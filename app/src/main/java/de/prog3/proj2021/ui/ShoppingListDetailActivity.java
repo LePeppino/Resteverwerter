@@ -7,7 +7,7 @@ package de.prog3.proj2021.ui;
  * ShoppingList data from repository.
  *
  *
- * @author Eric Walter, Giuseppe Buccellato
+ * @author Giuseppe Buccellato, Eric Walter
  */
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,8 +58,9 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
     TextView ifEmptyNotifier;
 
     /**
-     * onCreate method
-     * @param savedInstanceState
+     * onCreate method gets passed selected shoppingList id from Bundle
+     * of previous Fragment to display additional shoppingList
+     * data on UI besides RecyclerView
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -227,6 +228,9 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
 
     /**
     * add ingredient to list, if it's not already
+    * CURRENTLY NOT FULLY FUNCTIONAL
+    * Error source could not be found yet, we figure it must be
+    * something with the database or observer pattern.
     * */
     private void addIngredientToList(String name, int amount){
         //fetch ingredient by name
@@ -268,7 +272,6 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
 
     /**
      * updates ingredient in db
-     * @param newIngredient
      */
     private void updateIngredientInDB(Ingredient newIngredient){
         mIngredientViewModel.update(newIngredient);

@@ -1,9 +1,9 @@
 package de.prog3.proj2021.db;
 
-/*
+/**
  * n:m Relation cross reference class for FavouriteList and Recipe
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  * */
 
 import androidx.room.Entity;
@@ -29,7 +29,10 @@ public class FavouriteRecipeCrossRef {
     public int favouriteListId;
     public int recipeId;
 
-    //constructor for database insertion
+    /**
+     * constructor for database insertion
+     * of cross reference objects
+     */
     public FavouriteRecipeCrossRef(int favouriteListId, int recipeId){
         this.favouriteListId = favouriteListId;
         this.recipeId = recipeId;

@@ -1,16 +1,19 @@
 package de.prog3.proj2021.models;
 
+/**
+ * User has 1:1 relation to FavouriteList class.
+ * User has 1:n relation to ShoppingList class.
+ *
+ * @author Giuseppe Buccellato, Eric Walter
+ * */
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-/*
-* User has 1:1 relation to FavouriteList class.
-* User has 1:n relation to ShoppingList class.
-*
-* File author: Giuseppe Buccellato
-* */
-
+/**
+ * create correlation between table entry and POJO
+ */
 @Entity(tableName = "user_table")
 public class User {
     @PrimaryKey(autoGenerate = true)
@@ -19,16 +22,20 @@ public class User {
     @NonNull
     public String username = "";
 
-    //constructor
+    /**
+     * constructor
+     */
     public User(String username) {
         setUsername(username);
     }
 
-    //getter, setter
+    /**
+     * getter, setter
+     */
     public int getId() {return id;}
     private void setId(int id) {this.id = id;}
 
-    public String username() {return username;}
+    public @NonNull String getUsername() {return username;}
     private void setUsername(@NonNull String username) {this.username = username;}
 
 }

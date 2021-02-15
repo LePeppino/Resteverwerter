@@ -6,10 +6,11 @@ import androidx.room.Relation;
 import de.prog3.proj2021.models.FavouriteList;
 import de.prog3.proj2021.models.User;
 
-/*
+/**
 * 1:1 Relation reference class for User and FavouriteList
 *
-* */
+* @author Giuseppe Buccellato
+*/
 
 public class UserWithFavouriteList {
     @Embedded

@@ -1,10 +1,10 @@
 package de.prog3.proj2021.db;
 
-/*
+/**
  * Data Access Object for Recipe Model
  * and for RecipeWithIngredientCrossRef
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  */
 
 import androidx.lifecycle.LiveData;

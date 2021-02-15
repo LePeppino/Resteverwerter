@@ -1,10 +1,10 @@
 package de.prog3.proj2021.adapters;
 
-/*
+/**
  * RecyclerViewAdapter holds all the ViewHolders filled
  * with the Views to display the associated ShoppingList details on FragmentShoppingList.
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  * */
 
 import android.app.AlertDialog;
@@ -44,11 +44,17 @@ public class ShoppingFragmentRecyclerViewAdapter extends RecyclerView.Adapter<Sh
     private List<ShoppingListWithIngredients> mShoppingLists = new ArrayList<>();
     private ShoppingListWithIngredients currentShoppingList;
 
-    //constructor
+    /**
+     * constructor
+     */
     public ShoppingFragmentRecyclerViewAdapter(Context mContext){
         this.mContext = mContext;
     }
 
+    /**
+     * onCreateViewHolder
+     * @return passes a newly created Holder
+     */
     @NonNull
     @Override
     public ShoppingFragmentHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -56,7 +62,9 @@ public class ShoppingFragmentRecyclerViewAdapter extends RecyclerView.Adapter<Sh
                 .inflate(R.layout.layout_shopping_listitem, parent, false);
         return new ShoppingFragmentHolder(itemView);
     }
-
+    /**
+     *Binds the data to the view
+     */
     @Override
     public void onBindViewHolder(@NonNull ShoppingFragmentHolder holder, int position) {
         currentShoppingList = mShoppingLists.get(position);
@@ -92,20 +100,24 @@ public class ShoppingFragmentRecyclerViewAdapter extends RecyclerView.Adapter<Sh
         });
     }
 
-    // return number of ShoppingLists. if this returns 0, nothing will display
+    /**
+     * return number of shopping lists. if this returns 0, nothing will display
+     * @return number of shopping lists
+     */
     @Override
     public int getItemCount() {
         return mShoppingLists.size();
     }
 
-    /*
-    * setter
-    * */
+    /**
+     * setter for shopping lists
+     * @param shoppingListsWithIngredients
+     */
     public void setShoppingListWithIngredients(List<ShoppingListWithIngredients> shoppingListsWithIngredients){
         this.mShoppingLists = shoppingListsWithIngredients;
     }
 
-    /*
+    /**
      * show prompt and in case of yes, delete ShoppingList on current position
      * */
     private void deleteListClick(ShoppingListWithIngredients currentShoppingList, int position){
@@ -130,7 +142,7 @@ public class ShoppingFragmentRecyclerViewAdapter extends RecyclerView.Adapter<Sh
         dialog.show();
     }
 
-    /*
+    /**
      * deletes chosen ShoppingList from UI and from database
      * including ShoppingListIngredientCrossRefs
      * */
@@ -145,6 +157,9 @@ public class ShoppingFragmentRecyclerViewAdapter extends RecyclerView.Adapter<Sh
         notifyItemRangeChanged(position, getItemCount());
     }
 
+    /**
+     * ViewHolder class that holds all the views
+     * */
     public static class ShoppingFragmentHolder extends RecyclerView.ViewHolder{
 
         private final TextView name;
@@ -152,7 +167,9 @@ public class ShoppingFragmentRecyclerViewAdapter extends RecyclerView.Adapter<Sh
         RelativeLayout parentLayout;
         ImageView deleteListButton;
 
-        //constructor
+        /**
+         * constructor
+         */
         public ShoppingFragmentHolder(@NonNull View itemView) {
             super(itemView);
 

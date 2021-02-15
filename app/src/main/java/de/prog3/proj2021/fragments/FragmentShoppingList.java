@@ -1,11 +1,12 @@
 package de.prog3.proj2021.fragments;
 
-/*
+/**
  * UI ShoppingList Fragment of MainActivity
  * Instantiates a ViewModel to retrieve ShoppingList data from repository.
  * Initiates a RecyclerView to display the shopping list overview.
  *
- * File authors: Eric Walter, Giuseppe Buccellato
+ * @author Eric Walter
+ * @author Giuseppe Buccellato
  */
 
 import android.app.AlertDialog;
@@ -51,7 +52,13 @@ public class FragmentShoppingList extends Fragment {
     int userOwnerId = 1; //hard-coded for now, may expand user-features later
 
     FloatingActionButton fab;
-
+    /**
+     * onCreateView method displays the fragment
+     * @param inflater layout infalter
+     * @param container container that will display the fragment
+     * @param savedInstanceState Bundle state
+     * @return View of the fragment
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,7 +76,7 @@ public class FragmentShoppingList extends Fragment {
         return root;
     }
 
-    /*
+    /**
      * initialise shoppingFragmentRecyclerView with Adapter
      * */
     private void initRecyclerView(View root){
@@ -81,7 +88,7 @@ public class FragmentShoppingList extends Fragment {
         shoppingFragmentRecyclerView.setAdapter(shoppingFragmentRecyclerViewAdapter);
     }
 
-    /*
+    /**
      * Observe ViewModel for changes, query ShoppingLists from
      * ShoppingListRepository and pass data to RecyclerViewAdapter
      */
@@ -95,14 +102,14 @@ public class FragmentShoppingList extends Fragment {
         });
     }
 
-    /*
+    /**
     * setter for current shopping lists
     * */
     private void setCurrentShoppingLists(List<ShoppingListWithIngredients> shoppingListWithIngredients){
         this.allShoppingLists.addAll(shoppingListWithIngredients);
     }
 
-    /*
+    /**
     * initialise floating action button
     * for ShoppingList creation
     * */
@@ -116,7 +123,7 @@ public class FragmentShoppingList extends Fragment {
         });
     }
 
-    /*
+    /**
     * create alert dialog to give new list a name
     * */
     private void showCreateDialog(int userOwnerId){
@@ -148,6 +155,11 @@ public class FragmentShoppingList extends Fragment {
         dialog.show();
     }
 
+    /**
+     * creates new shopping list
+     * @param name name of shopping list
+     * @param userCreatorId id of the user, hardcoded to 1 for now
+     */
     private void createNewShoppingList(String name, int userCreatorId){
         ShoppingListWithIngredients newList = new ShoppingListWithIngredients(
                 new ShoppingList(name, 0, userCreatorId),

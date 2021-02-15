@@ -1,9 +1,9 @@
 package de.prog3.proj2021.db;
 
-/*
+/**
  * Data Access Object for Ingredient Model
  *
- * File author: Giuseppe Buccellato
+ * @author Eric Walter
  */
 
 import androidx.lifecycle.LiveData;

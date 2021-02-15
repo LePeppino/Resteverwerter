@@ -1,10 +1,10 @@
 package de.prog3.proj2021.adapters;
 
-/*
+/**
  * RecyclerViewAdapter holds all the ViewHolders filled
  * with the Views to display the ingredients on FragmentPicker.
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  * */
 
 import android.content.Context;
@@ -35,9 +35,15 @@ public class ShoppingDetailRecyclerViewAdapter extends RecyclerView.Adapter<Shop
     private final Context mContext;
     private ShoppingListWithIngredients currentShoppingList;
 
-    //constructor
+    /**
+     * constructor
+     */
     public ShoppingDetailRecyclerViewAdapter(Context mContext){this.mContext = mContext;}
 
+    /**
+     * onCreateViewHolder
+     * @return passes a newly created Holder
+     */
     @NonNull
     @Override
     public ShoppingDetailHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,7 +51,9 @@ public class ShoppingDetailRecyclerViewAdapter extends RecyclerView.Adapter<Shop
                 .inflate(R.layout.layout_shoppinglist_ingredient_listitem, parent, false);
         return new ShoppingDetailHolder(itemView);
     }
-
+    /**
+     *Binds the data to the view
+     */
     @Override
     public void onBindViewHolder(@NonNull ShoppingDetailHolder holder, int position) {
         //set current ingredient
@@ -84,7 +92,10 @@ public class ShoppingDetailRecyclerViewAdapter extends RecyclerView.Adapter<Shop
         });
     }
 
-    //return number of items. if this returns 0, nothing will display
+    /**
+     * return number of items. if this returns 0, nothing will display
+     * @return number of items
+     */
     @Override
     public int getItemCount() {
         try {
@@ -95,13 +106,18 @@ public class ShoppingDetailRecyclerViewAdapter extends RecyclerView.Adapter<Shop
         return 0;
     }
 
-    //setter for current ShoppingList
+    /**
+     * setter for current ShoppingList
+     * @param shoppingListWithIngredients
+     */
     public void setMShoppingListWithIngredients(ShoppingListWithIngredients shoppingListWithIngredients){
         this.currentShoppingList = new ShoppingListWithIngredients(shoppingListWithIngredients);
     }
 
-    /*
+    /**
      * Ingredient Unit to String converter
+     * @param unitValue determines the unit corresponding with passed integer
+     * @return String of unit
      */
     private String fromIntegerToUnitString(int unitValue){
         String unitString;
@@ -114,6 +130,9 @@ public class ShoppingDetailRecyclerViewAdapter extends RecyclerView.Adapter<Shop
         return unitString;
     }
 
+    /**
+     * ViewHolder class that holds all the views
+     * */
     public static class ShoppingDetailHolder extends RecyclerView.ViewHolder{
 
         RelativeLayout parentLayout;
@@ -122,6 +141,9 @@ public class ShoppingDetailRecyclerViewAdapter extends RecyclerView.Adapter<Shop
         private final TextView ingredientAmount;
         private final ImageView checkBox; //TODO: implement checkbox functionality
 
+        /**
+         * constructor
+         */
         public ShoppingDetailHolder(@NonNull View itemView) {
             super(itemView);
 

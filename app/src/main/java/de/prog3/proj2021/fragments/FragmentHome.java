@@ -1,11 +1,12 @@
 package de.prog3.proj2021.fragments;
 
-/*
+/**
  * UI Home Fragment of MainActivity.
  * Instantiates a ViewModel to retrieve data from repository.
  * Initiates a RecyclerView to display queried recipe data.
  *
- * File authors: Eric Walter, Giuseppe Buccellato
+ * @author Eric Walter
+ * @author Giuseppe Buccellato
  */
 
 import android.content.Context;
@@ -51,6 +52,13 @@ public class FragmentHome extends Fragment {
     AutoCompleteTextView autoCompleteTextView;
     private final List<String> recipeNameList = new ArrayList<>();
 
+    /**
+     * onCreateView method displays the fragment
+     * @param inflater layout infalter
+     * @param container container that will display the fragment
+     * @param savedInstanceState Bundle state
+     * @return View of the fragment
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,7 +76,7 @@ public class FragmentHome extends Fragment {
         return root;
     }
 
-    /*
+    /**
      * initialise recipeRecyclerView with Adapter
      * */
     private void initRecyclerView(View root){
@@ -80,7 +88,7 @@ public class FragmentHome extends Fragment {
         recipeRecyclerView.setAdapter(recipeRecyclerViewAdapter);
     }
 
-    /*
+    /**
      * Observe ViewModel for changes, query recipes from
      * RecipeRepository and pass data to RecipeRecyclerViewAdapter
      */
@@ -93,7 +101,7 @@ public class FragmentHome extends Fragment {
         });
     }
 
-    /*
+    /**
     * initialise the AutoCompleteTextView as search bar
     * and update recipe list according to query
     * */
@@ -125,7 +133,7 @@ public class FragmentHome extends Fragment {
         });
     }
 
-    /*
+    /**
      * display recipe in Recycler if query matches with recipe name.
      * if query is empty, show all recipes
      * */
@@ -143,7 +151,7 @@ public class FragmentHome extends Fragment {
         }
     }
 
-    /*
+    /**
     * fill the name lists with recipe titles
     * */
     private void initNameList(){

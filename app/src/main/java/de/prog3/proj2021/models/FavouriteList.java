@@ -1,10 +1,10 @@
 package de.prog3.proj2021.models;
 
-/*
+/**
  * FavouriteList has 1:1 relation to User class.
  * FavouriteList has n:m relation to Recipe class.
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato, Eric Walter
  * */
 
 import androidx.room.Entity;
@@ -13,6 +13,9 @@ import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
 
+/**
+ * create correlation between table entry and POJO
+ */
 @Entity(tableName = "favouriteList_table",
         foreignKeys =
         @ForeignKey(entity = User.class,
@@ -28,12 +31,16 @@ public class FavouriteList {
     //for reference to parent entity
     public int userOwnerId;
 
-    //constructor
+    /**
+     * constructor
+     */
     public FavouriteList(int numOfFavourites){
         setNumOfFavourites(numOfFavourites);
     }
 
-    //getter, setter
+    /**
+     * Getter, Setter
+     */
     public int getId(){ return id;}
     public void setId(int id){ this.id = id;}
 

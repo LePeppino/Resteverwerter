@@ -1,13 +1,13 @@
 package de.prog3.proj2021.ui;
 
-/*
+/**
  * UI IngredientDetailActivity.
  * Gets passed the ingredientId of the chosen ingredient.
  * Instantiates a ViewModel to retrieve
  * ingredient data from repository.
  *
  *
- * File authors: Giuseppe Buccellato
+ * @author Giuseppe Buccellato, Eric Walter
  */
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,7 +53,11 @@ public class IngredientDetailActivity extends AppCompatActivity {
     Button addToShoppingListButton;
     Button addAsOwnedButton;
 
-
+    /**
+     * onCreate method gets passed selected ingredient id from Bundle
+     * of previous Fragment to display additional ingredient
+     * data on UI besides RecyclerView
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +77,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
         initViews();
     }
 
-    /*
+    /**
     * initialise RecyclerView and Adapter
     * */
     private void initRecyclerView(){
@@ -85,7 +89,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
         ingredientDetailRecyclerView.setAdapter(ingredientDetailRecyclerViewAdapter);
     }
 
-    /*
+    /**
     * initialise ViewModel, retrieve crossRef data and pass it to Adapter
     * */
     private void initIngredientViewModel(){
@@ -98,7 +102,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
         ingredientDetailRecyclerViewAdapter.setIngredientWithRecipes(currentIngredient);
     }
 
-    /*
+    /**
      * set currentIngredient for this Activity
      */
     private void setCurrentIngredient(List<IngredientWithRecipes> ingredientList, int currentIngredientId){
@@ -109,7 +113,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
         }
     }
 
-    /*
+    /**
     * initiates the Views in Activity apart from RecyclerView
     * */
     private void initViews(){
@@ -148,8 +152,9 @@ public class IngredientDetailActivity extends AppCompatActivity {
 
     }
 
-    /*
+    /**
      * Ingredient Unit to String converter
+     * currently in use because enum converters are not active
      */
     private String fromIntegerToUnitString(int unitValue){
         String unitString = "";
@@ -169,8 +174,9 @@ public class IngredientDetailActivity extends AppCompatActivity {
         return unitString;
     }
 
-    /*
+    /**
     * Ingredient Type to String converter
+     * currently in use because enum converters are not active
     * */
     private String fromIntegerToTypeString(int typeValue){
         String typeString = "";
@@ -221,14 +227,16 @@ public class IngredientDetailActivity extends AppCompatActivity {
         return typeString;
     }
 
-    /*
-    * Button methods
+    /**
+    * Buttons for ShoppingList function
+     * CURRENTLY NOT IN USE because functionality
+     * was not fully developed / fixed
     * */
     public void addToShoppingList(View view){
         //TODO
     }
 
     public void addAsOwned(View view){
-
+        //TODO
     }
 }

@@ -1,13 +1,13 @@
 package de.prog3.proj2021.ui;
 
-/*
+/**
  * UI RecipeDetailActivity.
  * Gets passed the recipeId of the chosen recipe.
  * Instantiates a ViewModel to retrieve
  * recipe + ingredient data from repository.
  *
  *
- * File authors: Giuseppe Buccellato
+ * @author Giuseppe Buccellato, Eric Walter
  */
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,7 +58,11 @@ public class RecipeDetailActivity extends AppCompatActivity {
     //Buttons and stuff
     ImageView toggleFavouriteButton;
 
-
+    /**
+     * onCreate method gets passed selected recipe id from Bundle
+     * of previous Fragment to display additional recipe
+     * data on UI besides RecyclerView.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +83,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * initialise the views
+     */
     private void initViews(){
         headerImage = findViewById(R.id.detailHeaderImage);
         recipeTitle = findViewById(R.id.recipeDetailTitleText);
@@ -102,7 +109,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 .into(headerImage);                     // destination View
     }
 
-    /*
+    /**
      * initialise RecipeRecyclerView with Adapter
      * */
     private void initRecyclerView(){
@@ -114,7 +121,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         recipeDetailRecyclerView.setAdapter(recipeDetailRecyclerViewAdapter);
     }
 
-    /*
+    /**
      * Initiate RecipeViewModel, query recipes from
      * RecipeRepository and pass data
      * to RecipeRecyclerViewAdapter and Activity
@@ -129,7 +136,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         recipeDetailRecyclerViewAdapter.setRecipes(currentRecipe);
     }
 
-    /*
+    /**
      * set currentRecipe for this Activity
      */
     private void setCurrentRecipe(List<RecipeWithIngredients> recipeList, int currentRecipeId){
@@ -140,7 +147,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
         }
     }
 
-    //initial check if recipe is among favourites
+    /**
+     *  initial check if recipe is among favourites
+     */
     private void checkIsFavourite(RecipeWithIngredients currentRecipe){
             if(currentRecipe.recipe.isFavourite() != 1){
                 toggleFavouriteButton.setImageResource(R.drawable.heart_empty);
@@ -149,7 +158,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
             }
     }
 
-    /*
+    /**
      * toggleFavouriteButton onClick
      * 0 = false, 1 = true
      */
@@ -168,7 +177,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         mRecipeViewModel.update(currentRecipe.recipe);
     }
 
-    /*
+    /**
      * call mFavouritesViewModel to add favourite + crossRef to db
      * and increment numOfFavourites
      */
@@ -186,7 +195,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
             currentRecipe.recipe.setFavourite(1);
     }
 
-    /*
+    /**
      * call mFavouritesViewModel to remove favourite + crossRef from db
      * and decrease numOfFavourites
      */

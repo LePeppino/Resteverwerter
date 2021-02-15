@@ -1,10 +1,10 @@
 package de.prog3.proj2021.adapters;
 
-/*
+/**
  * RecyclerViewAdapter holds all the ViewHolders filled
  * with the Views to display the recipes on home screen.
  *
- * File author: Giuseppe Buccellato
+ * @author Eric Walter
  * */
 
 import android.content.Context;
@@ -37,11 +37,17 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
     private final Context mContext;
     private List<Recipe> mRecipes = new ArrayList<>();
 
-    //constructor
+    /**
+     * constructor
+     */
     public RecipeRecyclerViewAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
+    /**
+     * onCreateViewHolder
+     * @return passes a newly created Holder
+     */
     @NonNull
     @Override
     public RecipeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -50,6 +56,9 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         return new RecipeHolder(itemView);
     }
 
+    /**
+     *Binds the data to the view
+     */
     @Override
     public void onBindViewHolder(@NonNull RecipeHolder holder, int position) {
         Recipe currentRecipe = mRecipes.get(position);
@@ -83,23 +92,35 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         });
     }
 
-    // return number of items. if this returns 0, nothing will display
+    /**
+     * return number of items. if this returns 0, nothing will display
+     * @return number of items
+     */
     @Override
     public int getItemCount() {
         return mRecipes.size();
     }
 
+    /**
+     * set the passed recipes
+     * @param mRecipes recipes to be set
+     */
     public void setMRecipes(List<Recipe> mRecipes){
         this.mRecipes = mRecipes;
     }
 
+    /**
+     * ViewHolder class that holds all the views
+     * */
     public static class RecipeHolder extends RecyclerView.ViewHolder{
         private final ImageView image;
         private final TextView name;
         private final TextView description;
         RelativeLayout parentLayout;
 
-        //constructor
+        /**
+         * constructor
+         */
         public RecipeHolder(@NonNull View itemView) {
             super(itemView);
 

@@ -1,9 +1,12 @@
 package de.prog3.proj2021.fragments;
 
-/*
+/**
  * UI Ingredient Picker Fragment of MainActivity
+ * Instantiates a ViewModel to retrieve data from repository.
+ * Initiates a RecyclerView to display queried recipe data.
  *
- * File authors: Eric Walter, Giuseppe Buccellato
+ * @author Eric Walter
+ * @author Giuseppe Buccellato
  */
 
 import android.os.Bundle;
@@ -41,6 +44,13 @@ public class FragmentPicker extends Fragment {
     AutoCompleteTextView autoCompleteTextView;
     private final List<String> ingredientNameList = new ArrayList<>();
 
+    /**
+     * onCreateView method displays the fragment
+     * @param inflater layout infalter
+     * @param container container that will display the fragment
+     * @param savedInstanceState Bundle state
+     * @return View of the fragment
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,7 +68,7 @@ public class FragmentPicker extends Fragment {
         return root;
     }
 
-    /*
+    /**
      * initialise RecipeRecyclerView with Adapter
      * */
     private void initRecyclerView(View root){
@@ -70,7 +80,7 @@ public class FragmentPicker extends Fragment {
         pickerRecyclerView.setAdapter(pickerAdapter);
     }
 
-    /*
+    /**
      * Observe ViewModel for changes, query ingredients from
      * IngredientRepository and pass data to PickerRecyclerViewAdapter
      */
@@ -83,7 +93,7 @@ public class FragmentPicker extends Fragment {
         });
     }
 
-    /*
+    /**
      * initialise the AutoCompleteTextView as search bar
      * and update ingredient list according to query
      * */
@@ -113,7 +123,7 @@ public class FragmentPicker extends Fragment {
         });
     }
 
-    /*
+    /**
     * display ingredient in Recycler if query matches with ingredient name.
     * if query is empty, show all ingredients
     * */
@@ -131,7 +141,7 @@ public class FragmentPicker extends Fragment {
         }
     }
 
-    /*
+    /**
      * fill the name lists with ingredient titles
      * */
     private void initNameList(){

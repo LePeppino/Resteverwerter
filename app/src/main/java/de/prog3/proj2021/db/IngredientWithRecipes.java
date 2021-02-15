@@ -1,9 +1,9 @@
 package de.prog3.proj2021.db;
 
-/*
+/**
  * n:m Relation class for queries for Recipes containing Ingredients
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  * */
 
 import androidx.room.Embedded;

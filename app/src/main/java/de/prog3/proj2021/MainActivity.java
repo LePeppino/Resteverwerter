@@ -1,6 +1,6 @@
 package de.prog3.proj2021;
 
-/*
+/**
 *
 * Abschlussprojekt Programmierung III WiSe 2020/21
 * Prüfer:   Prof. Dr.-Ing. Rainer Roosmann
@@ -10,6 +10,8 @@ package de.prog3.proj2021;
 *
 * Titel:    Food Scout - Resteverwerter App
 *
+ * MainActivity that starts the BNB and sets the HomeFragment as starting point
+ * @author Eric Walter, Giuseppe Buccellato
 * */
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,15 +35,15 @@ import de.prog3.proj2021.viewmodels.RecipeViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    /**
+    * Main Activity could start up with a splash screen in the future,
+     * to configure all recipe data with current needed amounts
+     * and/or updated data like images or improvements
+    * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.splashscreen);
-
-        RecipeViewModel mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
-
-        List recipeWithIngredients = mRecipeViewModel.getMRecipesWithIngredients();
 
         //TODO: check all recipe data behind splash screen
         // and configure if necessary
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-    /*
+    /**
     * BottomNavBar Listener with fragment switcher
     * */
     @SuppressLint("NonConstantResourceId")

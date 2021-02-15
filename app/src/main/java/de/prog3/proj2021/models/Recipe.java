@@ -1,17 +1,20 @@
 package de.prog3.proj2021.models;
 
+/**
+ * Recipe has n:m relation to FavouriteList class.
+ * Recipe has n:m relation to Ingredient class.
+ *
+ * @author Giuseppe Buccellato
+ *
+ * */
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-/*
-* Recipe has n:m relation to FavouriteList class.
-* Recipe has n:m relation to Ingredient class.
-*
-* File author: Giuseppe Buccellato
-*
-* */
-
+/**
+ * create correlation between table entry and POJO
+ */
 @Entity(tableName = "recipe_table")
 public class Recipe {
     @PrimaryKey(autoGenerate = true)
@@ -28,7 +31,9 @@ public class Recipe {
     @NonNull
     public String headerImageUrl = "";
 
-    //constructor
+    /**
+     * constructor
+     */
     public Recipe(String name,
                   int calories,
                   int isFavourite,
@@ -44,7 +49,9 @@ public class Recipe {
         setHeaderImageUrl(headerImageUrl);
     }
 
-    //getter, setter
+    /**
+     * Getter, Setter
+     */
     public int getId() {return id;}
     private void setId(int id) {this.id = id;}
 

@@ -1,10 +1,10 @@
 package de.prog3.proj2021.adapters;
 
-/*
+/**
  * RecyclerViewAdapter holds all the ViewHolders filled
  * with the Views to display the ingredients on FragmentPicker.
  *
- * File author: Giuseppe Buccellato
+ * @author Giuseppe Buccellato
  * */
 
 import android.content.Context;
@@ -35,11 +35,17 @@ public class PickerRecyclerViewAdapter extends RecyclerView.Adapter<PickerRecycl
     private final Context mContext;
     private List<Ingredient> ingredients = new ArrayList<>();
 
-    //constructor
+    /**
+     * constructor
+     */
     public PickerRecyclerViewAdapter(Context mContext){
         this.mContext = mContext;
     }
 
+    /**
+     * onCreateViewHolder
+     * @return passes a newly created Holder
+     */
     @NonNull
     @Override
     public IngredientHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -48,6 +54,9 @@ public class PickerRecyclerViewAdapter extends RecyclerView.Adapter<PickerRecycl
         return new IngredientHolder(itemView);
     }
 
+    /**
+     *Binds the data to the view
+     */
     @Override
     public void onBindViewHolder(@NonNull IngredientHolder holder, int position) {
         //set current ingredient
@@ -86,18 +95,28 @@ public class PickerRecyclerViewAdapter extends RecyclerView.Adapter<PickerRecycl
         });
     }
 
-    //return number of items. if this returns 0, nothing will display
+    /**
+     * return number of items. if this returns 0, nothing will display
+     * @return number of items
+     */
     @Override
     public int getItemCount() {
         return ingredients.size();
     }
 
-    //setter
+    /**
+     * sets the ingredient list
+     * @param mIngredientList list of ingredients to set
+     */
     public void setIngredients(List<Ingredient> mIngredientList){
         this.ingredients = mIngredientList;
     }
 
-    //Ingredient Unit to String converter
+    /**
+     * Ingredient Unit to String converter
+     * @param unitValue determines the unit corresponding with passed integer
+     * @return String of unit
+     */
     public String fromIntegerToUnitString(int unitValue){
         String unitString;
 
@@ -109,6 +128,9 @@ public class PickerRecyclerViewAdapter extends RecyclerView.Adapter<PickerRecycl
         return unitString;
     }
 
+    /**
+     * ViewHolder class that holds all the views
+     * */
     public static class IngredientHolder extends RecyclerView.ViewHolder{
         RelativeLayout parentLayout;
         private final ImageView typeImage;
@@ -116,7 +138,9 @@ public class PickerRecyclerViewAdapter extends RecyclerView.Adapter<PickerRecycl
         private final TextView ingredientAmount;
         private final TextView ingredientUnit;
 
-        //constructor
+        /**
+         * constructor
+         */
         public IngredientHolder(@NonNull View itemView) {
             super(itemView);
 

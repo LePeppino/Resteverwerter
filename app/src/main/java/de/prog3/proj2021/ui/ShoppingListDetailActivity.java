@@ -1,13 +1,13 @@
 package de.prog3.proj2021.ui;
 
-/*
+/**
  * UI ShoppingListDetailActivity.
  * Gets passed the shoppingListId of the chosen ShoppingList.
  * Instantiates a ViewModel to retrieve
  * ShoppingList data from repository.
  *
  *
- * File authors: Giuseppe Buccellato
+ * @author Giuseppe Buccellato, Eric Walter
  */
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,6 +57,11 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
     FloatingActionButton fab;
     TextView ifEmptyNotifier;
 
+    /**
+     * onCreate method gets passed selected shoppingList id from Bundle
+     * of previous Fragment to display additional shoppingList
+     * data on UI besides RecyclerView
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +86,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         initFab();
     }
 
-    /*
+    /**
      * initialise shoppingDetailRecyclerView with Adapter
      * */
     private void initRecyclerView(){
@@ -93,7 +98,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         shoppingDetailRecyclerView.setAdapter(shoppingDetailAdapter);
     }
 
-    /*
+    /**
      * Observe ViewModel for changes, query ShoppingLists from
      * ShoppingListRepository and pass data to RecyclerViewAdapter
      */
@@ -110,7 +115,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         });
     }
 
-    /*
+    /**
     * finds chosen ShoppingListWithIngredients among all lists
     * */
     private void setCurrentList(List<ShoppingListWithIngredients> shoppingLists){
@@ -121,7 +126,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         }
     }
 
-    /*
+    /**
     * initiate info message if no items exist on list
     * */
     private void initViews(){
@@ -134,7 +139,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         }
     }
 
-    /*
+    /**
      * initialise floating action button
      * for adding ingredients to shoppingList
      * */
@@ -148,7 +153,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         });
     }
 
-    /*
+    /**
     * create alert dialog to add ingredient
     * */
     private void showAddDialog(){
@@ -198,7 +203,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    /*
+    /**
      * fill the name lists with ingredient titles
      * */
     private void initNameList(){
@@ -214,15 +219,18 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         });
     }
 
-    /*
+    /**
     * setter for current ingredient list
     * */
     private void setCurrentIngredientList(List<Ingredient> currentIngredientList){
         this.currentIngredientList.addAll(currentIngredientList);
     }
 
-    /*
+    /**
     * add ingredient to list, if it's not already
+    * CURRENTLY NOT FULLY FUNCTIONAL
+    * Error source could not be found yet, we figure it must be
+    * something with the database or observer pattern.
     * */
     private void addIngredientToList(String name, int amount){
         //fetch ingredient by name
@@ -239,7 +247,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         shoppingDetailAdapter.notifyDataSetChanged();
     }
 
-    /*
+    /**
      * set given amount as numToBuy
      * and increment number of unchecked items on current ShoppingList
      * */
@@ -251,7 +259,7 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         );
     }
 
-    /*
+    /**
     * updates ingredient on shopping list if already existing
     * */
     private void updateExistingIngredient(Ingredient ingredient){
@@ -262,6 +270,9 @@ public class ShoppingListDetailActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * updates ingredient in db
+     */
     private void updateIngredientInDB(Ingredient newIngredient){
         mIngredientViewModel.update(newIngredient);
 
